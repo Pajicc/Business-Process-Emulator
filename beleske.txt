@@ -1,0 +1,25 @@
+Klase:
+ Zaposleni - unosicemo ih u bazu
+	ime, prz, password
+	bool loggedIn
+	radnoVremePoc, radnoVremeKraj
+	imeKompanije
+	enum uloga
+
+  Kompanija:
+    naziv
+	
+
+1. Prijava i odjava - ime pass, iz baze zaposlenih
+					- baza ima sve zaposlene, njihove uloge i kompanije
+
+2. Pregled svih zaposlenih - citanje iz liste prijavljenih
+
+3. CEO/HR mogu da dodaju novog ili menjaju TIP zaposlenog
+					-enum uloge: CEO,HR,PO,radnik,SM
+					
+4. Zaposleni moze da menja svoje podatke - u meniju client WPF osnovni podaci - edit
+
+5. Svaki zaposleni definise svoje radno vreme - u meniju u podacima moze da setuje vreme
+
+6. 
