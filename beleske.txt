@@ -1,15 +1,25 @@
 Klase:
- Zaposleni - unosicemo ih u bazu
-	ime, prz, password
+  User - unosicemo ih u bazu
+	ime, prz, password, email
 	bool loggedIn
 	radnoVremePoc, radnoVremeKraj
-	imeKompanije
 	enum uloga
 
   Kompanija:
     naziv
+	lista partnerskihKompanija
+    User direktor
+	lista zaposlenih
 	
+  Projekat:
+    ime, kratak opis
+    pocetak, rokZavrsetka
+	User productOwner
+    KorisnickePrice korisnickePrice	
 
+  KorisnickePrice:
+     
+	
 1. Prijava i odjava - ime pass, iz baze zaposlenih
 					- baza ima sve zaposlene, njihove uloge i kompanije
 
@@ -20,6 +30,13 @@ Klase:
 					
 4. Zaposleni moze da menja svoje podatke - u meniju client WPF osnovni podaci - edit
 
-5. Svaki zaposleni definise svoje radno vreme - u meniju u podacima moze da setuje vreme
+5. Svaki zaposleni definise svoje radno vreme tj. kaze kada je dosao i kada je otisao
+   i na osnovu toga poredimo sa radnim vremenom kompanije, i znamo dal je kasnio
 
-6. 
+6. Ako kasni >15min saljemo mu mejl(ima kod na netu)
+
+7. Moduo1 uspostavlja konekciju sa Moduom2 i obrnuto, i razmenjuju liste kompanija
+   Moduo1 - ulogovani CEO/HR selektuje kompaniju iz liste i salje zahtev(mejl sa podacima) tj ugovor Moduu2
+   Moduo2 - moze da prihvati zahtev
+
+8. Kreiranje novog projekta - PO kreira, CEO odobrava i salje zahtev da se preuzme razovoj nekoj od partnerskih kompanija   
