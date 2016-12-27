@@ -22,15 +22,19 @@ namespace Client1
     {
         public LoginForm()
         {
-            InitializeComponent();
+            InitializeComponent();           
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            using (Client1Proxy proxy = new Client1Proxy(MainWindow., new EndpointAddress(new Uri(MainWindow.address))))
+            NetTcpBinding binding = new NetTcpBinding();
+            string address = "net.tcp://localhost:9999/CompanyService";
+
+            using (Client1Proxy proxy = new Client1Proxy(binding, new EndpointAddress(new Uri(address))))
             {
-                proxy.Login(textbox1.Text, textbox2.Text);
+                proxy.Login(textbox1.Text, textbox2.Password);
             }
+            this.Close();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

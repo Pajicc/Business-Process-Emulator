@@ -25,10 +25,6 @@ namespace Client1
         public MainWindow()
         {
             InitializeComponent();
-
-            NetTcpBinding binding = new NetTcpBinding();
-            string address = "net.tcp://localhost:9999/CompanyService";
-
             LoginForm win = new LoginForm();
             win.ShowDialog();
         }

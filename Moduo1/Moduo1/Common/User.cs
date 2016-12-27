@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +19,7 @@ namespace Common
 
     public class User
     {
+        private int id;       
         private string username = string.Empty;
         private string password = string.Empty;
         private string email = string.Empty;
@@ -26,8 +29,9 @@ namespace Common
         private Roles role;
 
         public User() { }
-        public User(string name, string pass, string email, double start, double end, Roles role)
+        public User(int id, string name, string pass, string email, double start, double end, Roles role)
         {
+            this.id = id;
             this.username = name;
             this.password = pass;
             this.email = email;
@@ -36,6 +40,13 @@ namespace Common
             this.role = role;
         }
 
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
         public string Username
         {
             get { return username; }
@@ -46,6 +57,7 @@ namespace Common
             get { return password; }
             set { password = value; }
         }
+
         public string Email
         {
             get { return email; }
