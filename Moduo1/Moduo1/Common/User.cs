@@ -29,15 +29,15 @@ namespace Common
         private Roles role;
 
         public User() { }
-        public User(int id, string name, string pass, string email, double start, double end, Roles role)
+        public User(int ID, string name, string pass, string mail, double start, double end, Roles r)
         {
-            this.id = id;
+            this.id = ID;
             this.username = name;
             this.password = pass;
-            this.email = email;
+            this.email = mail;
             this.workTimeStart = start;
             this.workTimeEnd = end;
-            this.role = role;
+            this.role = r;
         }
 
         [Key]
