@@ -44,9 +44,6 @@ namespace SRV1.Access
         {
             using (var access = new AccessDB())
             {
-                int aa = access.Actions.Count();
-
-                
                 for(int i=1; i<=access.Actions.Count(); i++)
                 {
                     if(access.Actions.Find(i).Username == username)
@@ -57,23 +54,33 @@ namespace SRV1.Access
                         }
                     }
                 }
-            }
-                
+            }   
             return false;
-            
         }
-        /*
-        public bool EditUser(User action)
+        
+        public bool EditUser(string username, string pass)
         {
+            User usr = new User();
+
             using (var access = new AccessDB())
             {
-                access.Actions.Add(action);
-                int i = access.SaveChanges();
+                for (int i = 1; i <= access.Actions.Count(); i++)
+                {
+                    if (access.Actions.Find(i).Username == username)
+                    {
+                        if (access.Actions.Find(i).Password == pass)
+                        {
+                            access.Actions.Find(i).Email = "safsfda";
+                            int k = access.SaveChanges();
 
-                if (i > 0)
-                    return true;
-                return false;
+                            if (k > 0)
+                                return true;
+                        }
+                    }
+                }
             }
-        }*/
+
+            return false;
+        }
     }
 }

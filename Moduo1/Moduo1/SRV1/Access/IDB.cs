@@ -11,5 +11,6 @@ namespace SRV1.Access
     {
         bool AddUser(User action);
         bool CheckUser(string username, string pass);
+        bool EditUser(string username, string pass);
     }
 }
