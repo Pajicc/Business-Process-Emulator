@@ -6,24 +6,35 @@ using System.Threading.Tasks;
 
 namespace Common
 {
-    public enum Uloge
+    public enum Roles
     {
         CEO = 0,
         HR = 1,
         PO = 2,
         SM = 3,
-        Radnik = 4
+        Employee = 4
     }
 
     public class User
     {
-        private string username;
-        private string password;
-        private string email;
+        private string username = string.Empty;
+        private string password = string.Empty;
+        private string email = string.Empty;
         private bool loggedIn = false;
-        private double radnoVremePoc;
-        private double radnoVremeKraj;
-        private Uloge uloga;
+        private double workTimeStart = 0;
+        private double workTimeEnd = 0;
+        private Roles role;
+
+        public User() { }
+        public User(string name, string pass, string email, double start, double end, Roles role)
+        {
+            this.username = name;
+            this.password = pass;
+            this.email = email;
+            this.workTimeStart = start;
+            this.workTimeEnd = end;
+            this.role = role;
+        }
 
         public string Username
         {
@@ -45,15 +56,20 @@ namespace Common
             get { return loggedIn; }
             set { this.loggedIn = value; }
         }
-        public double RadnoVremePoc
+        public double WorkTimeStart
         {
-            get { return radnoVremePoc; }
-            set { this.radnoVremePoc = value; }
+            get { return workTimeStart; }
+            set { this.workTimeStart = value; }
         }
-        public double RadnoVremeKraj
+        public double WorkTimeEnd
         {
-            get { return radnoVremeKraj; }
-            set { this.radnoVremeKraj = value; }
+            get { return workTimeEnd; }
+            set { this.workTimeEnd = value; }
+        }
+        public Roles Role
+        {
+            get { return role; }
+            set { role = value; }
         }
 
         public void Login()

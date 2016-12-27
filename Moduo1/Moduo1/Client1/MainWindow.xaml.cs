@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.ServiceModel;
 
 namespace Client1
 {
@@ -20,9 +21,16 @@ namespace Client1
     /// </summary>
     public partial class MainWindow : Window
     {
+        
         public MainWindow()
         {
             InitializeComponent();
+
+            NetTcpBinding binding = new NetTcpBinding();
+            string address = "net.tcp://localhost:9999/CompanyService";
+
+            LoginForm win = new LoginForm();
+            win.ShowDialog();
         }
     }
 }
