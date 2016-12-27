@@ -12,15 +12,25 @@ namespace SRV1
     {
         public bool Login(string username, string pass)
         {
-            Console.WriteLine("Username: "+username+"\nPassword: "+pass);
+            //Console.WriteLine("Username: "+username+"\nPassword: "+pass);
 
+            
+            if (DB.Instance.CheckUser(username, pass))
+            {
+                Console.WriteLine("Username: " + username + "\nPassword: " + pass);
+                return true;
+            }
+            
+            /*
             DB.Instance.AddUser(new User
             {
                 Username = username,
                 Password = pass,
             });
+             */
+            
 
-            return true;
+            return false;
 
         }
 

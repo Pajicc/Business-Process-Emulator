@@ -10,5 +10,6 @@ namespace SRV1.Access
     public interface IDB
     {
         bool AddUser(User action);
+        bool CheckUser(string username, string pass);
     }
 }

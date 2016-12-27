@@ -40,19 +40,29 @@ namespace SRV1.Access
             }
         }
 
-       /* public bool CheckUser(string username, string pass)
+        public bool CheckUser(string username, string pass)
         {
             using (var access = new AccessDB())
             {
-                access.Actions.Add(action);
-                int i = access.SaveChanges();
+                int aa = access.Actions.Count();
 
-                if (i > 0)
-                    return true;
-                return false;
+                
+                for(int i=1; i<=access.Actions.Count(); i++)
+                {
+                    if(access.Actions.Find(i).Username == username)
+                    {
+                        if(access.Actions.Find(i).Password == pass)
+                        {
+                            return true;
+                        }
+                    }
+                }
             }
+                
+            return false;
+            
         }
-
+        /*
         public bool EditUser(User action)
         {
             using (var access = new AccessDB())
