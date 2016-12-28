@@ -34,5 +34,23 @@ namespace Client1
 
             return u;
         }
+
+        public bool AddUser(User u)
+        {
+            bool allowed = false;
+
+            try
+            {            
+                //factory.AddUser(u);
+                Console.WriteLine("AddUser() >> succeded");
+                allowed = true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while trying to AddUser(). {0}", e.Message);
+            }
+
+            return allowed;
+        }
     }
 }

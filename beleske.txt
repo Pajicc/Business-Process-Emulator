@@ -1,3 +1,6 @@
+
+
+
 Klase:
   User - unosicemo ih u bazu
 	ime, prz, password, email
