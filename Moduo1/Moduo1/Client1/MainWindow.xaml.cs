@@ -47,14 +47,14 @@ namespace Client1
                 {
                     if (u.Role == Roles.CEO || u.Role == Roles.HR)
                     {
-                        Window1 win1 = new Window1();
-                        win1.Show();
+                        AdminWindow adminWin = new AdminWindow();
+                        adminWin.Show();
                         this.Close();
                     }
                     if (u.Role == Roles.Employee)
                     {
-                        Window2 win2 = new Window2();
-                        win2.Show();
+                        EmployeeWindow empWin = new EmployeeWindow();
+                        empWin.Show();
                         this.Close();
                     }
                 }
