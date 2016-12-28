@@ -9,8 +9,9 @@ namespace SRV1.Access
 {
     public interface IDB
     {
-        bool AddUser(User action);
+        bool AddUser(User user);
         User CheckUser(string username, string pass);
-        bool EditUser(string username, string pass);
+        bool EditUser(User userMain, User userEdit);
+        List<User> GetAllEmployees();
     }
 }
