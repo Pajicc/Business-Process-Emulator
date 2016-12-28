@@ -36,5 +36,40 @@ namespace SRV1
             return done;
         }
 
+        public bool EditUser(User userMain, User editUser)
+        {
+            bool done = false;
+
+            Console.WriteLine("Editovan User!");
+            Console.WriteLine("Username: " + editUser.Username + "\nPassword: " + editUser.Password);
+
+            done = DB.Instance.EditUser(userMain, editUser);
+
+            return done;
+        }
+
+        public List<User> GetAllEmployees()
+        {
+            Console.WriteLine("Ucitana lista Usera!");
+
+            List<User> lista = new List<User>();
+
+            lista = DB.Instance.GetAllEmployees();
+
+            return lista;
+        }
+
+        public User GetUser(string username)
+        {
+            Console.WriteLine("GetUsername: " + username);
+
+            User u = new User();
+            u = DB.Instance.GetUser(username);
+
+            if (u != null)
+                return u;
+            else
+                return null;
+        }
     }
 }
