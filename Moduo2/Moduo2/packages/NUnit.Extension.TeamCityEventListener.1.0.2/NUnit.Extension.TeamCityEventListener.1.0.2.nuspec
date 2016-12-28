@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>NUnit.Extension.TeamCityEventListener</id>
+    <version>1.0.2</version>
+    <title>NUnit 3 - Team City Event Listener Extension</title>
+    <authors>Charlie Poole</authors>
+    <owners>Charlie Poole</owners>
+    <licenseUrl>http://nunit.org/nuget/nunit3-license.txt</licenseUrl>
+    <projectUrl>http://nunit.org/</projectUrl>
+    <iconUrl>http://nunit.org/nuget/nunitv3_32x32.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>This extension sends specially formatted messages about test progress to TeamCity as each test executes, allowing TeamCity to monitor progress.</description>
+    <summary>NUnit Team City Event Listener extension for TeamCity.</summary>
+    <copyright>Copyright (c) 2016 Charlie Poole</copyright>
+    <language>en-US</language>
+    <tags>nunit test testing tdd runner</tags>
+  </metadata>
+</package>

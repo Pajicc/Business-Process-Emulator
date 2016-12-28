@@ -1,13 +1,22 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRV2", "SRV1\SRV2.csproj", "{19A41C1F-E2E8-4A1F-B100-172810A39D6F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client2", "Client1\Client2.csproj", "{0C6BE279-CC04-467C-8D13-91478DFD1CDA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{91C4216C-F5C3-4FD6-B5D1-200B13645748}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testovi", "Testovi", "{3184C3F0-7B03-4686-9E3E-02DAFBE8B94A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectTest", "ProjectTest\ProjectTest.csproj", "{E519F8DB-40D9-4A2E-A536-A4075930E1BE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{4101A410-FEDF-436C-9F60-0F268D02DD7E}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,8 +36,15 @@ Global
 		{91C4216C-F5C3-4FD6-B5D1-200B13645748}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91C4216C-F5C3-4FD6-B5D1-200B13645748}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91C4216C-F5C3-4FD6-B5D1-200B13645748}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E519F8DB-40D9-4A2E-A536-A4075930E1BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E519F8DB-40D9-4A2E-A536-A4075930E1BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E519F8DB-40D9-4A2E-A536-A4075930E1BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E519F8DB-40D9-4A2E-A536-A4075930E1BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E519F8DB-40D9-4A2E-A536-A4075930E1BE} = {3184C3F0-7B03-4686-9E3E-02DAFBE8B94A}
 	EndGlobalSection
 EndGlobal
