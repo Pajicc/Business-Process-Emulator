@@ -79,7 +79,8 @@ namespace SRV1.Access
                 {
                     if (access.Actions.Find(userMain.Username).Password == userMain.Password)
                     {
-                        access.Actions.Find(userMain.Username).Username = userEdit.Username;
+                        access.Actions.Find(userMain.Username).Name = userEdit.Name;
+                        access.Actions.Find(userMain.Username).LastName = userEdit.LastName;
                         access.Actions.Find(userMain.Username).Password = userEdit.Password;
                         access.Actions.Find(userMain.Username).Email = userEdit.Email;
                         access.Actions.Find(userMain.Username).Role = userEdit.Role;
