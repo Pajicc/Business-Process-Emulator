@@ -47,5 +47,29 @@ namespace SRV1
 
             return done;
         }
+
+        public List<User> GetAllEmployees()
+        {
+            Console.WriteLine("Ucitana lista Usera!");
+
+            List<User> lista = new List<User>();
+
+            lista = DB.Instance.GetAllEmployees();
+
+            return lista;
+        }
+
+        public User GetUser(string username)
+        {
+            Console.WriteLine("GetUsername: " + username);
+
+            User u = new User();
+            u = DB.Instance.GetUser(username);
+
+            if (u != null)
+                return u;
+            else
+                return null;
+        }
     }
 }

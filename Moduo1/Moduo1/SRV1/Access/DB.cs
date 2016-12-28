@@ -56,6 +56,19 @@ namespace SRV1.Access
             }
         }
 
+        public User GetUser(string username)
+        {
+            using (var access = new AccessDB())
+            {
+                if (access.Actions.Find(username).Username == username)
+                {
+                    return access.Actions.Find(username);
+                }
+
+                return null;
+            }
+        }
+
         public bool EditUser(User userMain, User userEdit)
         {
             User usr = new User();

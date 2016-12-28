@@ -18,6 +18,11 @@ namespace Common
 
         [OperationContract]
         bool EditUser(User userMain, User editUser);
-   
+
+        [OperationContract]
+        List<User> GetAllEmployees();
+
+        [OperationContract]
+        User GetUser(string username);
     }
 }

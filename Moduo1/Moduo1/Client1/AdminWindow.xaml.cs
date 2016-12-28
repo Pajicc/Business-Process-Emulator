@@ -34,6 +34,11 @@ namespace Client1
             textBox_Copy1.Text = u.Email;
 
             roleComboBox.ItemsSource = Enum.GetNames(typeof(Roles));    //add employee
+
+            foreach (User usr in MainWindow.proxy.GetAllEmployees())
+            {
+                listOfEmployees.Items.Add(usr.Username);
+            }           
         }
 
         private void addEmployee_Click(object sender, RoutedEventArgs e)    
@@ -44,10 +49,7 @@ namespace Client1
             u1.Email = textBox3_Copy1.Text;
             u1.Role = (Roles)roleComboBox.SelectedIndex;
 
-            using (Client1Proxy proxy = new Client1Proxy(MainWindow.binding, new EndpointAddress(new Uri(MainWindow.address))))
-            {
-               proxy.AddUser(u1);
-            }
+            MainWindow.proxy.AddUser(u1);   
         }
 
         private void editPersonalInfo_Click(object sender, RoutedEventArgs e)
@@ -58,13 +60,18 @@ namespace Client1
             userEdit.Password = textBox_Copy.Text;
             userEdit.Email = textBox_Copy1.Text;
 
-            using (Client1Proxy proxy = new Client1Proxy(MainWindow.binding, new EndpointAddress(new Uri(MainWindow.address))))
-            {
-                proxy.EditUser(user, userEdit);
-                
-            }
+            MainWindow.proxy.EditUser(user, userEdit);
         }
 
-        
+        private void listOfEmployees_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            User u = new User();
+            u = MainWindow.proxy.GetUser(listOfEmployees.SelectedItem.ToString());
+            textBox2.Text = u.Username;
+            textBox2_Copy.Text = u.Password;
+            textBox2_Copy1.Text = u.Email;
+            textBox2_Copy2.Text = u.Role.ToString();
+        }
+  
     }
 }

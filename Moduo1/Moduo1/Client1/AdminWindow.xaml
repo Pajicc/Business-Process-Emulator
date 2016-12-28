@@ -30,7 +30,7 @@
                     <Button x:Name="button2" Content="Edit" HorizontalAlignment="Left" Margin="165,257,0,0" VerticalAlignment="Top" Width="76"/>
                     <TextBox x:Name="textBox2_Copy2" HorizontalAlignment="Left" Height="23" Margin="150,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
                     <Label x:Name="label2_Copy5" Content="Role:" HorizontalAlignment="Left" Margin="67,201,0,0" VerticalAlignment="Top"/>
-                    <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="179,31,0,0" VerticalAlignment="Top" Width="183"/>
+                    <ComboBox x:Name="listOfEmployees" HorizontalAlignment="Left" Margin="179,31,0,0" VerticalAlignment="Top" Width="183" SelectionChanged="listOfEmployees_SelectionChanged"/>
                     <Label x:Name="label2_Copy2" Content="Select employee to edit:" HorizontalAlignment="Left" Margin="21,27,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
