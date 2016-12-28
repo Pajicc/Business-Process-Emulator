@@ -1,0 +1,64 @@
+﻿<Window x:Class="Client2.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client2"
+        mc:Ignorable="d"
+        Title="AdminWindow" Height="347" Width="397">
+    <Grid Margin="0,0,2,4">
+        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="312" VerticalAlignment="Top" Width="387">
+            <TabItem Header="Personal Info" Margin="-2,-2,-11,0">
+                <Grid Background="#FFE5E5E5" Margin="-10,-2,-1,-1">
+                    <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="132,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
+                    <Label x:Name="label" Content="Name:" HorizontalAlignment="Left" Margin="49,34,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" Height="23" Margin="132,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
+                    <Label x:Name="label_Copy" Content="Password:" HorizontalAlignment="Left" Margin="49,83,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBox_Copy1" HorizontalAlignment="Left" Height="23" Margin="132,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
+                    <Label x:Name="label_Copy1" Content="Email:" HorizontalAlignment="Left" Margin="49,129,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="label_Copy2" Content="Work time:" HorizontalAlignment="Left" Margin="49,179,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBox_Copy3" HorizontalAlignment="Left" Height="23" Margin="255,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60"/>
+                    <Label x:Name="label_Copy3" Content="from:" HorizontalAlignment="Left" Margin="127,179,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="label_Copy4" Content="to:" HorizontalAlignment="Left" Margin="231,179,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBox_Copy4" HorizontalAlignment="Left" Height="23" Margin="165,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60"/>
+                    <Button x:Name="button" Content="Edit Info" HorizontalAlignment="Left" Margin="155,240,0,0" VerticalAlignment="Top" Width="76"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Edit employee" Margin="109,-2,-122,2">
+                <Grid Background="#FFE5E5E5" Margin="-10,-2,-1,-1">
+                    <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="23" Margin="150,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
+                    <Label x:Name="label2" Content="Name:" HorizontalAlignment="Left" Margin="67,77,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBox2_Copy" HorizontalAlignment="Left" Height="23" Margin="150,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
+                    <Label x:Name="label2_Copy" Content="Password:" HorizontalAlignment="Left" Margin="67,121,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBox2_Copy1" HorizontalAlignment="Left" Height="23" Margin="150,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
+                    <Label x:Name="label2_Copy1" Content="Email:" HorizontalAlignment="Left" Margin="67,161,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="button2" Content="Edit" HorizontalAlignment="Left" Margin="165,257,0,0" VerticalAlignment="Top" Width="76"/>
+                    <TextBox x:Name="textBox2_Copy2" HorizontalAlignment="Left" Height="23" Margin="150,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
+                    <Label x:Name="label2_Copy5" Content="Role:" HorizontalAlignment="Left" Margin="67,201,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="179,31,0,0" VerticalAlignment="Top" Width="183"/>
+                    <Label x:Name="label2_Copy2" Content="Select employee to edit:" HorizontalAlignment="Left" Margin="21,27,0,0" VerticalAlignment="Top"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Add employee" Margin="-76,-3,67,1">
+                <Grid Background="#FFE5E5E5" Margin="-10,-2,-1,-1">
+                    <TextBox x:Name="textBox3" HorizontalAlignment="Left" Height="23" Margin="132,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
+                    <Label x:Name="label3" Content="Name:" HorizontalAlignment="Left" Margin="49,20,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBox3_Copy" HorizontalAlignment="Left" Height="23" Margin="132,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
+                    <Label x:Name="label3_Copy" Content="Password:" HorizontalAlignment="Left" Margin="49,60,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBox3_Copy1" HorizontalAlignment="Left" Height="23" Margin="132,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
+                    <Label x:Name="label3_Copy1" Content="Email:" HorizontalAlignment="Left" Margin="49,104,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="addEmployee" Content="Add" HorizontalAlignment="Left" Margin="161,248,0,0" VerticalAlignment="Top" Width="76" Click="addEmployee_Click"/>
+                    <Label x:Name="label3_Copy5" Content="Role:" HorizontalAlignment="Left" Margin="49,148,0,0" VerticalAlignment="Top"/>
+                    <ComboBox HorizontalAlignment="Left" Margin="132,152,0,0" VerticalAlignment="Top" Width="183" Name="roleComboBox"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="All employees" Margin="33,-2,-42,3">
+                <Grid Background="#FFE5E5E5" Margin="0,-2,-11,-15">
+                    <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="168" Margin="10,10,0,0" VerticalAlignment="Top" Width="280"/>
+                    <Button x:Name="button1" Content="Load all employees" HorizontalAlignment="Left" Margin="10,194,0,0" VerticalAlignment="Top" Width="109"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>

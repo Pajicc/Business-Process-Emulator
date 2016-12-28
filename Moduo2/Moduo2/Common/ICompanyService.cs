@@ -11,7 +11,11 @@ namespace Common
     public interface ICompanyService
     {
         [OperationContract]
-        bool Login(string username, string pass);
+        User Login(string username, string pass);
+
+        [OperationContract]
+        bool AddUser(User user);
+
 
         /*[OperationContract]
         void Login(string username, string pass);
