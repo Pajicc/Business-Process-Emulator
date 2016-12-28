@@ -10,28 +10,37 @@ namespace SRV2
 {
     public class CompanyService : ICompanyService
     {
-        public bool Login(string username, string pass)
+        public User Login(string username, string pass)
         {
-            //Console.WriteLine("Username: "+username+"\nPassword: "+pass);
+            Console.WriteLine("Username: " + username + "\nPassword: " + pass);
 
-            
-           /* if (DB.Instance.CheckUser(username, pass))
-            {
-                Console.WriteLine("Username: " + username + "\nPassword: " + pass);
-                return true;
-            }*/
-            
-            
-            DB.Instance.AddUser(new User
+           User u = new User();
+            u = DB.Instance.CheckUser(username, pass);
+
+            if (u != null)
+                return u;
+            else
+                return null;
+
+            /*DB.Instance.AddUser(new User
             {
                 Username = username,
                 Password = pass,
             });
-             
-            
+            return null;*/
 
-            return false;
+        }
 
+        public bool AddUser(User user)
+        {
+            bool done = false;
+
+            Console.WriteLine("Dodat nov User!");
+            Console.WriteLine("Username: " + user.Username + "\nPassword: " + user.Password);
+
+            done = DB.Instance.AddUser(user);
+
+            return done;
         }
 
     }

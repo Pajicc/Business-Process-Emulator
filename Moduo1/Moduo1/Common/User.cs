@@ -18,8 +18,7 @@ namespace Common
     }
 
     public class User
-    {
-        private int id;       
+    {   
         private string username = string.Empty;
         private string password = string.Empty;
         private string email = string.Empty;
@@ -29,9 +28,8 @@ namespace Common
         private Roles role;
 
         public User() { }
-        public User(int ID, string name, string pass, string mail, double start, double end, Roles r)
+        public User(string name, string pass, string mail, double start, double end, Roles r)
         {
-            this.id = ID;
             this.username = name;
             this.password = pass;
             this.email = mail;
@@ -41,12 +39,6 @@ namespace Common
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id
-        {
-            get { return id; }
-            set { id = value; }
-        }
         public string Username
         {
             get { return username; }
