@@ -35,9 +35,11 @@ namespace Client1
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             User u = new User();
-            /*u.Username = textbox1.Text;       Dodavanje usera - za punjenje baze
+            /*
+            u.Username = textbox1.Text;       //Dodavanje usera - za punjenje baze
             u.Password = textbox2.Password;
-            proxy.AddUser(u);*/
+            proxy.AddUser(u);
+            */
 
             u = proxy.Login(textbox1.Text, textbox2.Password);
 
@@ -55,7 +57,7 @@ namespace Client1
                 }
                 else if (u.Role == Roles.Employee)
                 {
-                    EmployeeWindow empWin = new EmployeeWindow();
+                    EmployeeWindow empWin = new EmployeeWindow(u);
                     empWin.Show();
                     this.Close();
                 }
