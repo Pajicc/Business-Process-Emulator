@@ -31,5 +31,17 @@ namespace SRV2
 
         }
 
+        public bool AddUser(User user)
+        {
+            bool done = false;
+
+            Console.WriteLine("Dodat nov User!");
+            Console.WriteLine("Username: " + user.Username + "\nPassword: " + user.Password);
+
+            done = DB.Instance.AddUser(user);
+
+            return done;
+        }
+
     }
 }

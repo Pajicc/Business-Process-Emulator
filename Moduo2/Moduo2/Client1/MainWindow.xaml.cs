@@ -23,17 +23,17 @@ namespace Client2
     /// </summary>
     public partial class MainWindow : Window
     {
-        
+        public static NetTcpBinding binding = new NetTcpBinding();
+        public static string address = "net.tcp://localhost:9999/CompanyService";
+
         public MainWindow()
         {
             InitializeComponent();
-            LoginForm win = new LoginForm();
-            win.ShowDialog();
+        
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            NetTcpBinding binding = new NetTcpBinding();
-            string address = "net.tcp://localhost:9999/CompanyService";
+           
 
             using (Client1Proxy proxy = new Client1Proxy(binding, new EndpointAddress(new Uri(address))))
             {
@@ -48,7 +48,7 @@ namespace Client2
                 {
                     if (u.Role == Roles.CEO || u.Role == Roles.HR)
                     {
-                        AdminWindow adminWin = new AdminWindow();
+                        AdminWindow adminWin = new AdminWindow(u);
                         adminWin.Show();
                         this.Close();
                     }
