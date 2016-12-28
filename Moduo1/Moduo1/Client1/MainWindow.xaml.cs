@@ -68,5 +68,11 @@ namespace Client1
         {
             this.Close();
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            AddUsers addUsers = new AddUsers();
+            addUsers.Show();
+        }
     }
 }
