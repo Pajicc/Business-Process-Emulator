@@ -30,6 +30,8 @@ namespace Client1
             user = u;
 
             textBox.Text = u.Username;          //personal info
+            textBox_Copy2.Text = u.Name;
+            textBox_Copy3.Text = u.LastName;
             textBox_Copy.Text = u.Password;
             textBox_Copy1.Text = u.Email;
 
@@ -45,6 +47,8 @@ namespace Client1
         {
             User u1 = new User();
             u1.Username = textBox3.Text;
+            u1.Name = textBox3_Copy2.Text;
+            u1.LastName = textBox3_Copy3.Text;
             u1.Password = textBox3_Copy.Text;
             u1.Email = textBox3_Copy1.Text;
             u1.Role = (Roles)roleComboBox.SelectedIndex;
@@ -56,7 +60,8 @@ namespace Client1
         {
             User userEdit = new User();
 
-            userEdit.Username = textBox.Text;
+            userEdit.Name = textBox_Copy2.Text;
+            userEdit.LastName = textBox_Copy3.Text;
             userEdit.Password = textBox_Copy.Text;
             userEdit.Email = textBox_Copy1.Text;
 
@@ -68,9 +73,24 @@ namespace Client1
             User u = new User();
             u = MainWindow.proxy.GetUser(listOfEmployees.SelectedItem.ToString());
             textBox2.Text = u.Username;
+            textBox2_Copy3.Text = u.Name;
+            textBox2_Copy4.Text = u.LastName;
             textBox2_Copy.Text = u.Password;
             textBox2_Copy1.Text = u.Email;
             textBox2_Copy2.Text = u.Role.ToString();
+        }
+
+        private void EditEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            User userEdit = new User();
+
+            userEdit.Username = textBox2.Text;
+            userEdit.Name = textBox2_Copy3.Text;
+            userEdit.LastName = textBox2_Copy4.Text;
+            userEdit.Password = textBox2_Copy.Text;
+            userEdit.Email = textBox2_Copy1.Text;
+
+            MainWindow.proxy.EditUser(user, userEdit);
         }
   
     }

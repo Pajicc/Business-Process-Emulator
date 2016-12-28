@@ -18,9 +18,11 @@ namespace Common
     }
 
     public class User
-    {   
+    {
         private string username = string.Empty;
         private string password = string.Empty;
+        private string name = string.Empty;
+        private string lastName = string.Empty;
         private string email = string.Empty;
         private bool loggedIn = false;
         private double workTimeStart = 0;
@@ -37,7 +39,7 @@ namespace Common
             this.workTimeEnd = end;
             this.role = r;
         }
-
+       
         [Key]
         public string Username
         {
@@ -49,7 +51,16 @@ namespace Common
             get { return password; }
             set { password = value; }
         }
-
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+        public string LastName
+        {
+            get { return lastName; }
+            set { lastName = value; }
+        }
         public string Email
         {
             get { return email; }
