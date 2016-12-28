@@ -41,7 +41,7 @@ namespace Client1
 
             try
             {            
-                //factory.AddUser(u);
+                factory.AddUser(u);
                 Console.WriteLine("AddUser() >> succeded");
                 allowed = true;
             }

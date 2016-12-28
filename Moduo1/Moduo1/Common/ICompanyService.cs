@@ -13,6 +13,9 @@ namespace Common
         [OperationContract]
         User Login(string username, string pass);
 
+        [OperationContract]
+        bool AddUser(User user);
+
         /*[OperationContract]
         void Login(string username, string pass);
 

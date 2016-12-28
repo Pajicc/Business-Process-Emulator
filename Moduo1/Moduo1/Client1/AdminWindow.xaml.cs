@@ -39,7 +39,7 @@ namespace Client1
             u.Username = textBox3.Text;
             u.Password = textBox3_Copy.Text;
             u.Email = textBox3_Copy1.Text;
-            u.Role = (Roles)roleComboBox.SelectedItem;
+            //u.Role = (Roles)roleComboBox.SelectedItem;
 
 
             using (Client1Proxy proxy = new Client1Proxy(MainWindow.binding, new EndpointAddress(new Uri(MainWindow.address))))
