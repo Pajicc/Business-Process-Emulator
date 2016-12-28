@@ -77,19 +77,19 @@ namespace SRV1.Access
             {
                 if (access.Actions.Find(userMain.Username).Username == userMain.Username)
                 {
-                    if (access.Actions.Find(userMain.Username).Password == userMain.Password)
-                    {
-                        access.Actions.Find(userMain.Username).Name = userEdit.Name;
-                        access.Actions.Find(userMain.Username).LastName = userEdit.LastName;
-                        access.Actions.Find(userMain.Username).Password = userEdit.Password;
-                        access.Actions.Find(userMain.Username).Email = userEdit.Email;
-                        access.Actions.Find(userMain.Username).Role = userEdit.Role;
+                    access.Actions.Find(userMain.Username).Name = userEdit.Name;
+                    access.Actions.Find(userMain.Username).LastName = userEdit.LastName;
+                    access.Actions.Find(userMain.Username).Password = userEdit.Password;
+                    access.Actions.Find(userMain.Username).Email = userEdit.Email;
+                    access.Actions.Find(userMain.Username).Role = userEdit.Role;
+                    access.Actions.Find(userMain.Username).WorkTimeStart = userEdit.WorkTimeStart;
+                    access.Actions.Find(userMain.Username).WorkTimeEnd = userEdit.WorkTimeEnd;
 
-                        int k = access.SaveChanges();
+                    int k = access.SaveChanges();
 
-                        if (k > 0)
-                            return true;
-                    }
+                    if (k > 0)
+                        return true;
+
                 }
             }
 

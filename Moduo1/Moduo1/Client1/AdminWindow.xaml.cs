@@ -77,20 +77,26 @@ namespace Client1
             textBox2_Copy4.Text = u.LastName;
             textBox2_Copy.Text = u.Password;
             textBox2_Copy1.Text = u.Email;
-            textBox2_Copy2.Text = u.Role.ToString();
+
+            listOfRolesChange.ItemsSource = Enum.GetNames(typeof(Roles));
+            listOfRolesChange.SelectedIndex = 4;
         }
 
         private void EditEmployee_Click(object sender, RoutedEventArgs e)
         {
             User userEdit = new User();
 
+            User u = new User();
+            u = MainWindow.proxy.GetUser(listOfEmployees.SelectedItem.ToString());
+
             userEdit.Username = textBox2.Text;
             userEdit.Name = textBox2_Copy3.Text;
             userEdit.LastName = textBox2_Copy4.Text;
             userEdit.Password = textBox2_Copy.Text;
             userEdit.Email = textBox2_Copy1.Text;
+            userEdit.Role = (Roles)listOfRolesChange.SelectedIndex;
 
-            MainWindow.proxy.EditUser(user, userEdit);
+            MainWindow.proxy.EditUser(u, userEdit);
         }
   
     }

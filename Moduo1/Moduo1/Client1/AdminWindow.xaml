@@ -28,14 +28,13 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="23" Margin="150,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
+                    <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="23" Margin="150,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" IsReadOnly="True"/>
                     <Label x:Name="label2" Content="Username:" HorizontalAlignment="Left" Margin="67,50,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="textBox2_Copy" HorizontalAlignment="Left" Height="23" Margin="150,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
                     <Label x:Name="label2_Copy" Content="Password:" HorizontalAlignment="Left" Margin="67,146,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="textBox2_Copy1" HorizontalAlignment="Left" Height="23" Margin="150,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
                     <Label x:Name="label2_Copy1" Content="Email:" HorizontalAlignment="Left" Margin="67,177,0,0" VerticalAlignment="Top"/>
                     <Button x:Name="EditEmployee" Content="Edit" HorizontalAlignment="Left" Margin="166,257,0,0" VerticalAlignment="Top" Width="76" Click="EditEmployee_Click"/>
-                    <TextBox x:Name="textBox2_Copy2" HorizontalAlignment="Left" Height="23" Margin="150,211,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" IsReadOnly="True"/>
                     <Label x:Name="label2_Copy5" Content="Role:" HorizontalAlignment="Left" Margin="67,208,0,0" VerticalAlignment="Top"/>
                     <ComboBox x:Name="listOfEmployees" HorizontalAlignment="Left" Margin="180,10,0,0" VerticalAlignment="Top" Width="183" SelectionChanged="listOfEmployees_SelectionChanged"/>
                     <Label x:Name="label2_Copy2" Content="Select employee to edit:" HorizontalAlignment="Left" Margin="22,6,0,0" VerticalAlignment="Top"/>
@@ -43,6 +42,7 @@
                     <Label x:Name="label2_Copy3" Content="Name:" HorizontalAlignment="Left" Margin="67,81,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="textBox2_Copy4" HorizontalAlignment="Left" Height="23" Margin="150,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
                     <Label x:Name="label2_Copy4" Content="Last name:" HorizontalAlignment="Left" Margin="67,112,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="listOfRolesChange" HorizontalAlignment="Left" Margin="150,212,0,0" VerticalAlignment="Top" Width="183"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Add employee" Margin="-76,-3,67,1">

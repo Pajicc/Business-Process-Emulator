@@ -40,7 +40,7 @@ namespace Client1
             u.Password = textbox2.Password;
             proxy.AddUser(u);
             */
-
+            
             u = proxy.Login(textbox1.Text, textbox2.Password);
 
             if (u == null)
