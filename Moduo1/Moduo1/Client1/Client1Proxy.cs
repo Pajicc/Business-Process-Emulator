@@ -52,5 +52,23 @@ namespace Client1
 
             return allowed;
         }
+
+        public bool EditUser(User userMain, User editUser)
+        {
+            bool allowed = false;
+
+            try
+            {
+                factory.EditUser(userMain, editUser);
+                Console.WriteLine("EditUser() >> succeded");
+                allowed = true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while trying to EditUser(). {0}", e.Message);
+            }
+
+            return allowed;
+        }
     }
 }

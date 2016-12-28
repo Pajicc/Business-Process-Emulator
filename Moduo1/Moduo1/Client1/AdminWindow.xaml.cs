@@ -21,31 +21,50 @@ namespace Client1
     /// </summary>
     public partial class AdminWindow : Window
     {
+        User user = new User();
+
         public AdminWindow(User u)
         {
             InitializeComponent();
 
-            textBox.Text = u.Username;
+            user = u;
+
+            textBox.Text = u.Username;          //personal info
             textBox_Copy.Text = u.Password;
             textBox_Copy1.Text = u.Email;
-            textBox_Copy4.Text = u.WorkTimeStart.ToString();
-            textBox_Copy3.Text = u.WorkTimeEnd.ToString();
-            roleComboBox.DataContext = Enum.GetNames(typeof(Roles));
+
+            roleComboBox.ItemsSource = Enum.GetNames(typeof(Roles));    //add employee
         }
 
-        private void addEmployee_Click(object sender, RoutedEventArgs e)
+        private void addEmployee_Click(object sender, RoutedEventArgs e)    
         {
-            User u = new User();
-            u.Username = textBox3.Text;
-            u.Password = textBox3_Copy.Text;
-            u.Email = textBox3_Copy1.Text;
-            //u.Role = (Roles)roleComboBox.SelectedItem;
-
+            User u1 = new User();
+            u1.Username = textBox3.Text;
+            u1.Password = textBox3_Copy.Text;
+            u1.Email = textBox3_Copy1.Text;
+            u1.Role = (Roles)roleComboBox.SelectedIndex;
 
             using (Client1Proxy proxy = new Client1Proxy(MainWindow.binding, new EndpointAddress(new Uri(MainWindow.address))))
             {
-               proxy.AddUser(u);
-           }
+               proxy.AddUser(u1);
+            }
         }
+
+        private void editPersonalInfo_Click(object sender, RoutedEventArgs e)
+        {
+            User userEdit = new User();
+
+            userEdit.Username = textBox.Text;
+            userEdit.Password = textBox_Copy.Text;
+            userEdit.Email = textBox_Copy1.Text;
+
+            using (Client1Proxy proxy = new Client1Proxy(MainWindow.binding, new EndpointAddress(new Uri(MainWindow.address))))
+            {
+                proxy.EditUser(user, userEdit);
+                
+            }
+        }
+
+        
     }
 }

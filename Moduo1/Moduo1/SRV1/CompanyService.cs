@@ -36,5 +36,16 @@ namespace SRV1
             return done;
         }
 
+        public bool EditUser(User userMain, User editUser)
+        {
+            bool done = false;
+
+            Console.WriteLine("Editovan User!");
+            Console.WriteLine("Username: " + editUser.Username + "\nPassword: " + editUser.Password);
+
+            done = DB.Instance.EditUser(userMain, editUser);
+
+            return done;
+        }
     }
 }

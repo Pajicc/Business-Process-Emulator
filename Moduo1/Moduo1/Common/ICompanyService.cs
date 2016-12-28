@@ -16,13 +16,8 @@ namespace Common
         [OperationContract]
         bool AddUser(User user);
 
-        /*[OperationContract]
-        void Login(string username, string pass);
-
         [OperationContract]
-        bool Azuriranje(Baza podaci, int id);
-
-        [OperationContract]
-        bool Modify();*/        
+        bool EditUser(User userMain, User editUser);
+   
     }
 }
