@@ -13,17 +13,19 @@ namespace Common
         CEO = 0,
         HR = 1,
         TL = 2,
-        Employee = 3,
-        SM = 4
+        SM = 3,
+        Employee = 4
 
 
     }
 
     public class User
     {
-        private int id;       
+          
         private string username = string.Empty;
         private string password = string.Empty;
+        private string name = string.Empty;
+        private string lastName = string.Empty;
         private string email = string.Empty;
         private bool loggedIn = false;
         private double workTimeStart = 0;
@@ -31,9 +33,9 @@ namespace Common
         private Roles role;
 
         public User() { }
-        public User(int id, string name, string pass, string email, double start, double end, Roles role)
+        public User( string name, string pass, string email, double start, double end, Roles role)
         {
-            this.id = id;
+            
             this.username = name;
             this.password = pass;
             this.email = email;
@@ -43,12 +45,6 @@ namespace Common
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id
-        {
-            get { return id; }
-            set { id = value; }
-        }
         public string Username
         {
             get { return username; }
@@ -58,6 +54,17 @@ namespace Common
         {
             get { return password; }
             set { password = value; }
+        }
+
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+        public string LastName
+        {
+            get { return lastName; }
+            set { lastName = value; }
         }
 
         public string Email
