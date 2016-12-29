@@ -15,57 +15,64 @@ using System.Windows.Shapes;
 using System.ServiceModel;
 using Common;
 
-
 namespace Client2
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {
-        public static NetTcpBinding binding = new NetTcpBinding();
-        public static string address = "net.tcp://localhost:9999/CompanyService";
+    {        
+        public static Client1Proxy proxy;
 
         public MainWindow()
         {
             InitializeComponent();
-        
+
+            NetTcpBinding binding = new NetTcpBinding();
+            string address = "net.tcp://localhost:9999/CompanyService";
+            proxy = new Client1Proxy(binding, new EndpointAddress(new Uri(address)));
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-           
+            User u = new User();
+            /*
+            u.Username = textbox1.Text;       //Dodavanje usera - za punjenje baze
+            u.Password = textbox2.Password;
+            proxy.AddUser(u);
+            */
+            
+            u = proxy.Login(textbox1.Text, textbox2.Password);
 
-            using (Client1Proxy proxy = new Client1Proxy(binding, new EndpointAddress(new Uri(address))))
+            if (u == null)
             {
-                User u = new User();
-                u = proxy.Login(textbox1.Text, textbox2.Password);
-
-                if (u == null)
+                this.Close();
+            }
+            else
+            {
+                if (u.Role == Roles.CEO || u.Role == Roles.HR)
                 {
+                    AdminWindow adminWin = new AdminWindow(u);
+                    adminWin.Show();
                     this.Close();
                 }
-                else
+                else if (u.Role == Roles.Employee)
                 {
-                    if (u.Role == Roles.CEO || u.Role == Roles.HR)
-                    {
-                        AdminWindow adminWin = new AdminWindow(u);
-                        adminWin.Show();
-                        this.Close();
-                    }
-                    if (u.Role == Roles.Employee)
-                    {
-                        EmployeeWindow empWin = new EmployeeWindow();
-                        empWin.Show();
-                        this.Close();
-                    }
+                    EmployeeWindow empWin = new EmployeeWindow(u);
+                    empWin.Show();
+                    this.Close();
                 }
             }
-
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            AddUsers addUsers = new AddUsers();
+            addUsers.Show();
         }
     }
 }

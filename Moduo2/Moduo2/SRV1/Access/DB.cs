@@ -44,17 +44,27 @@ namespace SRV2.Access
         {
             using (var access = new AccessDB())
             {
-
-                for (int i = 1; i <= access.Actions.Count(); i++)
+                if (access.Actions.Find(username).Username == username)
                 {
-                    if (access.Actions.Find(i).Username == username)
+                    if (access.Actions.Find(username).Password == pass)
                     {
-                        if (access.Actions.Find(i).Password == pass)
-                        {
-                            return access.Actions.Find(i);
-                        }
+                        return access.Actions.Find(username);
                     }
                 }
+
+                return null;
+            }
+        }
+
+        public User GetUser(string username)
+        {
+            using (var access = new AccessDB())
+            {
+                if (access.Actions.Find(username).Username == username)
+                {
+                    return access.Actions.Find(username);
+                }
+
                 return null;
             }
         }
@@ -65,23 +75,21 @@ namespace SRV2.Access
 
             using (var access = new AccessDB())
             {
-                for (int i = 1; i <= access.Actions.Count(); i++)
+                if (access.Actions.Find(userMain.Username).Username == userMain.Username)
                 {
-                    if (access.Actions.Find(i).Username == userMain.Username)
-                    {
-                        if (access.Actions.Find(i).Password == userMain.Password)
-                        {
-                            access.Actions.Find(i).Username = userEdit.Username;
-                            access.Actions.Find(i).Password = userEdit.Password;
-                            access.Actions.Find(i).Email = userEdit.Email;
-                            access.Actions.Find(i).Role = userEdit.Role;
+                    access.Actions.Find(userMain.Username).Name = userEdit.Name;
+                    access.Actions.Find(userMain.Username).LastName = userEdit.LastName;
+                    access.Actions.Find(userMain.Username).Password = userEdit.Password;
+                    access.Actions.Find(userMain.Username).Email = userEdit.Email;
+                    access.Actions.Find(userMain.Username).Role = userEdit.Role;
+                    access.Actions.Find(userMain.Username).WorkTimeStart = userEdit.WorkTimeStart;
+                    access.Actions.Find(userMain.Username).WorkTimeEnd = userEdit.WorkTimeEnd;
 
-                            int k = access.SaveChanges();
+                    int k = access.SaveChanges();
 
-                            if (k > 0)
-                                return true;
-                        }
-                    }
+                    if (k > 0)
+                        return true;
+
                 }
             }
 
@@ -92,17 +100,21 @@ namespace SRV2.Access
         {
             List<User> usrs = new List<User>();
 
+            List<User> usrEmpl = new List<User>();
+
             using (var access = new AccessDB())
             {
-                for (int i = 1; i <= access.Actions.Count(); i++)
+                usrs = access.Actions.ToList();
+
+                foreach (User uu in usrs)
                 {
-                    if (access.Actions.Find(i).Role == Roles.Employee)
+                    if (uu.Role == Roles.Employee)
                     {
-                        usrs.Add(access.Actions.Find(i));
+                        usrEmpl.Add(uu);
                     }
                 }
 
-                return usrs;
+                return usrEmpl;
             }
         }
 

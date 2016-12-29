@@ -53,10 +53,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="DataTest\OutSourcingCompanyTest.cs" />
-    <Compile Include="DataTest\ProjectTest.cs" />
-    <Compile Include="DataTest\UserStoryTest.cs" />
-    <Compile Include="DataTest\UserTest.cs" />
+    <Compile Include="Common\OutSourcingCompanyTest.cs" />
+    <Compile Include="Common\ProjectTest.cs" />
+    <Compile Include="Common\UserStoryTest.cs" />
+    <Compile Include="Common\UserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -67,6 +67,10 @@
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{91c4216c-f5c3-4fd6-b5d1-200b13645748}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SRV1\SRV2.csproj">
+      <Project>{19a41c1f-e2e8-4a1f-b100-172810a39d6f}</Project>
+      <Name>SRV2</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

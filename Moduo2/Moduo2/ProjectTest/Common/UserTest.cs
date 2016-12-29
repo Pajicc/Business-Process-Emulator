@@ -16,6 +16,8 @@ namespace ProjectTest.DataTest.UserTest
          #region Declarations
 
         private User user;
+        private string name = "name";
+        private string prezime = "prz";
         private string username = "flasica";
         private string password = "123";
         private string email = "flasica123";
@@ -52,18 +54,29 @@ namespace ProjectTest.DataTest.UserTest
         [Test]
         public void UserConstructorTestSaParametrima()
         {
-            int id = 1;
-            Assert.DoesNotThrow(() => new User(id, username, password, email, workTimeStart, workTimeEnd,role));
+            
+            Assert.DoesNotThrow(() => new User(username, password, email, workTimeStart, workTimeEnd,role));
         }
 
         [Test]
-        public void UserIdTest()
+        public void Name()
         {
-            int id = 1;
-            user.Id = id;
+         
+            user.Name = name;
 
-            Assert.AreEqual(id, user.Id);
+            Assert.AreEqual(name, user.Name);
         }
+
+
+        [Test]
+        public void Prezime()
+        {
+
+            user.LastName = prezime;
+
+            Assert.AreEqual(prezime, user.LastName);
+        }
+
 
         [Test]
         public void UserUsername()
