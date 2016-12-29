@@ -12,6 +12,7 @@ namespace Common
         private string description = string.Empty;        
         private double startTime = 0;
         private double endTime = 0;
+        private bool active = false;
         private User po = new User();
         private List<UserStory> userStories = new List<UserStory>();
 
@@ -26,6 +27,11 @@ namespace Common
             this.userStories = userStories;
         }
 
+        public bool Active
+        {
+            get { return active; }
+            set { active = value; }
+        }
         public string Name
         {
             get { return name; }

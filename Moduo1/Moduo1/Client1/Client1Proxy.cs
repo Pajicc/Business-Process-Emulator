@@ -35,6 +35,24 @@ namespace Client1
             return u;
         }
 
+        public bool LogOut(string username, string pass)
+        {
+            bool done = false;
+
+            try
+            {
+                factory.LogOut(username, pass);
+                Console.WriteLine("LogOut() >> succeded");
+                done = true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while trying to LogOut(). {0}", e.Message);
+            }
+
+            return done;
+        }
+
         public bool AddUser(User u)
         {
             bool allowed = false;
@@ -103,6 +121,23 @@ namespace Client1
             }
 
             return u;
+        }
+
+        public List<User> GetOnlineUsers()
+        {
+            List<User> onlineUsers = new List<User>();
+
+            try
+            {
+                onlineUsers = factory.GetOnlineUsers();
+                Console.WriteLine("GetOnlineUsers() >> succeded");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while trying to GetOnlineUsers(). {0}", e.Message);
+            }
+
+            return onlineUsers;
         }
 
     }

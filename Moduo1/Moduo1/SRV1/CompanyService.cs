@@ -10,6 +10,8 @@ namespace SRV1
 {
     public class CompanyService : ICompanyService
     {
+        public List<User> onlineUsers = new List<User>();
+
         public User Login(string username, string pass)
         {
             Console.WriteLine("Username: " + username + "\nPassword: " + pass);
@@ -17,11 +19,35 @@ namespace SRV1
             User u = new User();
             u = DB.Instance.CheckUser(username, pass);
 
+            u.LoggedIn = true;
+
             if (u != null)
+            {
+                onlineUsers.Add(u);
                 return u;
+            }   
             else
                 return null;
+        }
 
+        public bool LogOut(string username, string pass)
+        {
+            bool done = false;
+            Console.WriteLine("User: " + username + " is now logged out.");
+
+            User u = new User();
+            u = DB.Instance.CheckUser(username, pass);
+
+            u.LoggedIn = false;
+
+            done = DB.Instance.LogOut(username, pass);
+
+            if (done)
+            {
+                onlineUsers.Remove(u);
+            }
+
+            return done;
         }
 
         public bool AddUser(User user)
@@ -70,6 +96,13 @@ namespace SRV1
                 return u;
             else
                 return null;
+        }
+
+        public List<User> GetOnlineUsers()
+        {
+            Console.WriteLine("Pozvana funkcija za GetOnlineUsers!");
+
+            return onlineUsers;
         }
     }
 }
