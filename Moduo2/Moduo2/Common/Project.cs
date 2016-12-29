@@ -12,8 +12,14 @@ namespace Common
         private string description = string.Empty;        
         private double startTime = 0;
         private double endTime = 0;
-        private User po = new User();
+        private User tl = new User();
         private List<UserStory> userStories = new List<UserStory>();
+        private Tim tim = new Tim();
+        private int tezina = 0;
+        private List<string> tasks = new List<string>();
+        
+       
+
 
         public Project() { }
         public Project(string name, string desc, double start, double end, User po, List<UserStory> userStories)
@@ -22,7 +28,7 @@ namespace Common
             this.description = desc;
             this.startTime = start;
             this.endTime = end;
-            this.po = po;
+            this.tl = po;
             this.userStories = userStories;
         }
 
@@ -30,6 +36,24 @@ namespace Common
         {
             get { return name; }
             set { name = value; }
+        }
+
+        public List<string> Tasks
+        {
+            get { return tasks; }
+            set { tasks = value; }
+        }
+
+        public Tim Tim
+        {
+            get { return tim; }
+            set { tim = value; }
+        }
+
+        public int  Tezina
+        {
+            get { return tezina; }
+            set { tezina = value; }
         }
         public string Description
         {
@@ -46,10 +70,10 @@ namespace Common
             get { return endTime; }
             set { endTime = value; }
         }
-        public User Po
+        public User Tl
         {
-            get { return po; }
-            set { po = value; }
+            get { return tl; }
+            set { tl = value; }
         }
         public List<UserStory> UserStories
         {

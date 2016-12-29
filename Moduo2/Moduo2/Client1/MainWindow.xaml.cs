@@ -49,15 +49,29 @@ namespace Client2
             }
             else
             {
-                if (u.Role == Roles.CEO || u.Role == Roles.HR)
+                if ( u.Role == Roles.HR)
                 {
                     AdminWindow adminWin = new AdminWindow(u);
                     adminWin.Show();
                     this.Close();
                 }
+                else if (u.Role == Roles.CEO)
+                {
+                    CeoWindow CeoWin = new CeoWindow(u);
+                    CeoWin.Show();
+                    this.Close();
+
+
+                }
                 else if (u.Role == Roles.Employee)
                 {
                     EmployeeWindow empWin = new EmployeeWindow(u);
+                    empWin.Show();
+                    this.Close();
+                }
+                else if (u.Role == Roles.TL)
+                {
+                    TeamLeader empWin = new TeamLeader(u);
                     empWin.Show();
                     this.Close();
                 }

@@ -1,15 +1,19 @@
-﻿<Window x:Class="Client2.AdminWindow"
+﻿<Window x:Class="Client2.CeoWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client2"
         mc:Ignorable="d"
-        Title="AdminWindow" Height="347" Width="397">
+        Title="CeoWindow" Height="347" Width="500">
     <Grid Margin="0,0,2,4">
-        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="312" VerticalAlignment="Top" Width="387">
+        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="312" VerticalAlignment="Top" Width="580">
             <TabItem Header="Personal Info" Margin="-2,-2,-11,0">
-                <Grid Background="#FFE5E5E5" Margin="-10,-2,-1,-1">
+                <Grid Background="#FFE5E5E5" Margin="0,-2,-3,-1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="401*"/>
+                        <ColumnDefinition Width="76*"/>
+                    </Grid.ColumnDefinitions>
                     <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="132,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" IsReadOnly="True"/>
                     <Label x:Name="label" Content="Username:" HorizontalAlignment="Left" Margin="49,34,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" Height="23" Margin="132,139,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
@@ -73,6 +77,33 @@
                     </Grid.ColumnDefinitions>
                     <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="168" Margin="10,10,0,0" VerticalAlignment="Top" Width="280" Grid.ColumnSpan="2"/>
                     <Button x:Name="button1" Content="Load all employees" HorizontalAlignment="Left" Margin="10,194,0,0" VerticalAlignment="Top" Width="109" Grid.ColumnSpan="2"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Projekti" Margin="33,-2,-42,3">
+                <Grid Background="#FFE5E5E5" Margin="0,-3,-4,-14">
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="278*"/>
+
+                    </Grid.ColumnDefinitions>
+                    <ComboBox HorizontalAlignment="Left" Margin="100,55,0,0" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="Projekti:" HorizontalAlignment="Left" Margin="42,51,0,0" VerticalAlignment="Top"/>
+                    <Button Content="Accept" HorizontalAlignment="Left" Margin="291,57,0,0" VerticalAlignment="Top" Width="75"/>
+                    <Button Content="Decline" HorizontalAlignment="Left" Margin="291,103,0,0" VerticalAlignment="Top" Width="75"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Timovi" Margin="0,-2,-42,3" HorizontalAlignment="Right" Width="56">
+                <Grid Background="#FFE5E5E5" Margin="0,-9,-11,-8">
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="278*"/>
+
+                    </Grid.ColumnDefinitions>
+                    <ComboBox HorizontalAlignment="Left" Margin="158,51,0,0" VerticalAlignment="Top" Width="120"/>
+                    <ComboBox HorizontalAlignment="Left" Margin="158,122,0,0" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="Prihvaceni projekti:" HorizontalAlignment="Left" Margin="33,51,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Timovi:" HorizontalAlignment="Left" Margin="33,118,0,0" VerticalAlignment="Top" Width="110"/>
+                    <Button Content="Set" HorizontalAlignment="Left" Margin="328,87,0,0" VerticalAlignment="Top" Width="75"/>
                 </Grid>
             </TabItem>
         </TabControl>

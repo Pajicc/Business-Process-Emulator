@@ -48,11 +48,26 @@ namespace SRV2.Access
                 {
                     if (access.Actions.Find(username).Password == pass)
                     {
+                        access.Actions.Find(username).LoggedIn = true;
                         return access.Actions.Find(username);
                     }
                 }
 
                 return null;
+            }
+        }
+
+        public bool LogOut(string username, string pass)
+        {
+            using (var access = new AccessDB())
+            {
+                if (access.Actions.Find(username).Username == username)
+                {
+                    access.Actions.Find(username).LoggedIn = false;
+                    return true;
+                }
+
+                return false;
             }
         }
 

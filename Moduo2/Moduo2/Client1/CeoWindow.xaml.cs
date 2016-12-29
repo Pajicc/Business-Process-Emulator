@@ -19,11 +19,11 @@ namespace Client2
     /// <summary>
     /// Interaction logic for AdminWindow.xaml
     /// </summary>
-    public partial class AdminWindow : Window
+    public partial class CeoWindow : Window
     {
         User user = new User();
 
-        public AdminWindow(User u)
+        public CeoWindow(User u)
         {
             InitializeComponent();
 
@@ -40,10 +40,10 @@ namespace Client2
             foreach (User usr in MainWindow.proxy.GetAllEmployees())
             {
                 listOfEmployees.Items.Add(usr.Username);
-            }           
+            }
         }
 
-        private void addEmployee_Click(object sender, RoutedEventArgs e)    
+        private void addEmployee_Click(object sender, RoutedEventArgs e)
         {
             User u1 = new User();
             u1.Username = textBox3.Text;
@@ -53,7 +53,7 @@ namespace Client2
             u1.Email = textBox3_Copy1.Text;
             u1.Role = (Roles)roleComboBox.SelectedIndex;
 
-            MainWindow.proxy.AddUser(u1);   
+            MainWindow.proxy.AddUser(u1);
         }
 
         private void editPersonalInfo_Click(object sender, RoutedEventArgs e)
@@ -101,9 +101,9 @@ namespace Client2
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-           
+
 
         }
-  
+
     }
 }
