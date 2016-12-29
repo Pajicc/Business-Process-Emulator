@@ -14,6 +14,9 @@ namespace Common
         User Login(string username, string pass);
 
         [OperationContract]
+        bool LogOut(string username, string pass);
+
+        [OperationContract]
         bool AddUser(User user);
 
         [OperationContract]
@@ -24,5 +27,8 @@ namespace Common
 
         [OperationContract]
         User GetUser(string username);
+
+        [OperationContract]
+        List<User> GetOnlineUsers();
     }
 }

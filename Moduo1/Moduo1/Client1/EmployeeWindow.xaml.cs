@@ -56,8 +56,8 @@ namespace Client1
             userEdit.Password = textBox_Copy.Text;
             userEdit.Email = textBox_Copy1.Text;
             userEdit.Role = Roles.Employee;
-            userEdit.WorkTimeStart = double.Parse(textBox_Copy4.Text, CultureInfo.InvariantCulture);
-            userEdit.WorkTimeEnd = double.Parse(textBox_Copy3.Text, CultureInfo.InvariantCulture);
+            userEdit.WorkTimeStart = textBox_Copy4.Text;
+            userEdit.WorkTimeEnd = textBox_Copy3.Text;
 
 
             MainWindow.proxy.EditUser(user, userEdit);

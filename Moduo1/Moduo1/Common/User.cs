@@ -25,12 +25,12 @@ namespace Common
         private string lastName = string.Empty;
         private string email = string.Empty;
         private bool loggedIn = false;
-        private double workTimeStart = 0;
-        private double workTimeEnd = 0;
+        private string workTimeStart = string.Empty;
+        private string workTimeEnd = string.Empty;
         private Roles role;
 
         public User() { }
-        public User(string name, string pass, string mail, double start, double end, Roles r)
+        public User(string name, string pass, string mail, string start, string end, Roles r)
         {
             this.username = name;
             this.password = pass;
@@ -71,12 +71,12 @@ namespace Common
             get { return loggedIn; }
             set { this.loggedIn = value; }
         }
-        public double WorkTimeStart
+        public string WorkTimeStart
         {
             get { return workTimeStart; }
             set { this.workTimeStart = value; }
         }
-        public double WorkTimeEnd
+        public string WorkTimeEnd
         {
             get { return workTimeEnd; }
             set { this.workTimeEnd = value; }
