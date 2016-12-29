@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Common;
 using SRV1.Access;
+using System.Net.Mail;
+using System.Net;
 
 namespace SRV1
 {
@@ -24,7 +26,7 @@ namespace SRV1
             DateTime dt = DateTime.Now;
             if (ProveriDaLiKasni(dt, u.WorkTimeStart))
             {
-                //poslati poruku Useru da kasni na posao!
+                //SendMail(u);
             }
 
             if (u != null)
@@ -127,6 +129,24 @@ namespace SRV1
             }
 
             return false;
+        }
+
+        public void SendMail(User u)
+        {
+            SmtpClient client = new SmtpClient();
+            client.Port = 587;
+            client.Host = "smtp-mail.outlook.com";
+            client.EnableSsl = true;
+            client.Timeout = 10000;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.UseDefaultCredentials = false;
+            client.Credentials = new System.Net.NetworkCredential("email", "pass"); //ko salje
+
+            MailMessage mm = new MailMessage("CEO@hiringcompany.com", u.Email, "Obavestenje!", "KASNIS NA POSO DRUZE!");
+            mm.BodyEncoding = UTF8Encoding.UTF8;
+            mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
+
+            client.Send(mm);
         }
     }
 }
