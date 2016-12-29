@@ -21,6 +21,12 @@ namespace SRV1
 
             u.LoggedIn = true;
 
+            DateTime dt = DateTime.Now;
+            if (ProveriDaLiKasni(dt, u.WorkTimeStart))
+            {
+                //poslati poruku Useru da kasni na posao!
+            }
+
             if (u != null)
             {
                 onlineUsers.Add(u);
@@ -103,6 +109,58 @@ namespace SRV1
             Console.WriteLine("Pozvana funkcija za GetOnlineUsers!");
 
             return onlineUsers;
+        }
+
+        public bool ProveriDaLiKasni(DateTime ulogovao, string timestart)
+        {
+            //{0:HH:mm:ss}
+            //string ulogovao = string.Format("{0:HH:mm:ss}", DateTime.Now);
+            /*
+            string[] vreme = ulogovao.Split(':');
+            int[] intVr = new int[3];
+            int[] intVr2 = new int[3];
+
+            try
+            {
+                intVr[0] = Int32.Parse(vreme[0]);
+                intVr[1] = Int32.Parse(vreme[1]);
+                intVr[2] = Int32.Parse(vreme[2]);
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            string[] definisanoVreme = timestart.Split(':');
+            try
+            {
+                intVr2[0] = Int32.Parse(definisanoVreme[0]);
+                intVr2[1] = Int32.Parse(definisanoVreme[1]);
+                intVr2[2] = Int32.Parse(definisanoVreme[2]);
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            if ((intVr2[0] - intVr[0]) == 0)
+            {
+
+            }
+             * */
+            DateTime definisanoVreme = Convert.ToDateTime(timestart);
+
+            TimeSpan span = ulogovao.Subtract(definisanoVreme);
+
+            double minutes = span.TotalMinutes;
+            int minutesRounded = (int)Math.Round(span.TotalMinutes);
+
+            if (minutesRounded > 15)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }
