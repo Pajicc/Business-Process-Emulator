@@ -5,11 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client1"
         mc:Ignorable="d"
-        Title="AdminWindow" Height="347" Width="397">
+        Title="AdminWindow" Height="347" Width="579.5">
     <Grid Margin="0,0,2,4">
-        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="312" VerticalAlignment="Top" Width="387">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="312" VerticalAlignment="Top" Width="570">
             <TabItem Header="Personal Info" Margin="-2,-2,-11,0">
-                <Grid Background="#FFE5E5E5" Margin="-10,-2,-1,-1">
+                <Grid Background="#FFE5E5E5" Margin="-10,-2,1,-1">
                     <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="132,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" IsReadOnly="True"/>
                     <Label x:Name="label" Content="Username:" HorizontalAlignment="Left" Margin="49,34,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" Height="23" Margin="132,139,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
@@ -24,7 +27,7 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Edit employee" Margin="109,-2,-122,2">
-                <Grid Background="#FFE5E5E5" Margin="-10,-2,-1,-1">
+                <Grid Background="#FFE5E5E5" Margin="0,-2,-1,-1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
@@ -46,7 +49,7 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Add employee" Margin="-76,-3,67,1">
-                <Grid Background="#FFE5E5E5" Margin="-10,-2,-1,-1">
+                <Grid Background="#FFE5E5E5" Margin="0,-2,-1,-1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
@@ -66,9 +69,34 @@
                 </Grid>
             </TabItem>
             <TabItem Header="All employees" Margin="33,-2,-42,3">
-                <Grid Background="#FFE5E5E5" Margin="0,-2,-11,-15">
+                <Grid Background="#FFE5E5E5" Margin="0,-2,-2,-8">
                     <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="168" Margin="10,10,0,0" VerticalAlignment="Top" Width="280"/>
                     <Button x:Name="button1" Content="Load all employees" HorizontalAlignment="Left" Margin="10,194,0,0" VerticalAlignment="Top" Width="109"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Outsourcing" Margin="42,-2,-64,3">
+                <Grid Background="#FFE5E5E5" Margin="0,-2,-2,-8">
+                    <ComboBox Name="outsourcingCompanies" HorizontalAlignment="Left" Margin="39,55,0,0" VerticalAlignment="Top" Width="167" Height="22"/>
+                    <Label Content="Outsourcing companies:" HorizontalAlignment="Left" Margin="36,20,0,0" VerticalAlignment="Top" FontSize="15"/>
+                    <Label Content="Partner companies:" HorizontalAlignment="Left" Margin="51,137,0,0" VerticalAlignment="Top" FontSize="15"/>
+                    <Button Name="sendReqButton" Content="Send request" HorizontalAlignment="Left" Margin="76,91,0,0" VerticalAlignment="Top" Width="89" Height="26"/>
+                    <ListBox HorizontalAlignment="Left" Height="142" Margin="239,20,0,0" VerticalAlignment="Top" Width="110"/>
+                    <Button Content="&gt;&gt;" HorizontalAlignment="Left" Margin="368,50,0,0" VerticalAlignment="Top" Width="49" Height="26" FontSize="18" FontWeight="Bold"/>
+                    <Button Content="&gt;&gt;" HorizontalAlignment="Left" Margin="368,93,0,0" VerticalAlignment="Top" Width="49" Height="26" FontSize="18" RenderTransformOrigin="0.5,0.5" FontWeight="Bold">
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="180"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
+                    <Label Content="Available Projects" HorizontalAlignment="Left" Margin="239,167,0,0" VerticalAlignment="Top" Height="27" Width="110"/>
+                    <Label Content="Approved Projects" HorizontalAlignment="Left" Margin="437,167,0,0" VerticalAlignment="Top" Height="27" Width="110"/>
+                    <ListBox HorizontalAlignment="Left" Height="142" Margin="437,20,0,0" VerticalAlignment="Top" Width="110"/>
+                    <ComboBox Name="partnerCompanies" HorizontalAlignment="Left" Margin="39,167,0,0" VerticalAlignment="Top" Width="167" Height="22"/>
+                    <Button Name="sendProjectButton" Content="Send project" HorizontalAlignment="Left" Margin="322,216,0,0" VerticalAlignment="Top" Width="129" Height="30"/>
                 </Grid>
             </TabItem>
         </TabControl>

@@ -35,11 +35,6 @@ namespace Client1
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             User u = new User();
-            /*
-            u.Username = textbox1.Text;       //Dodavanje usera - za punjenje baze
-            u.Password = textbox2.Password;
-            proxy.AddUser(u);
-            */
             
             u = proxy.Login(textbox1.Text, textbox2.Password);
 
@@ -49,17 +44,21 @@ namespace Client1
             }
             else
             {
-                if (u.Role == Roles.CEO || u.Role == Roles.HR)
+                switch (u.Role)
                 {
-                    AdminWindow adminWin = new AdminWindow(u);
-                    adminWin.Show();
-                    this.Close();
-                }
-                else if (u.Role == Roles.Employee)
-                {
-                    EmployeeWindow empWin = new EmployeeWindow(u);
-                    empWin.Show();
-                    this.Close();
+                    case Roles.CEO:
+                        AdminWindow adminWin = new AdminWindow(u);
+                        adminWin.Show();
+                        this.Close();
+                        break;
+                    case Roles.HR:
+                    case Roles.PO:
+                        break;
+                    case Roles.SM:
+                        EmployeeWindow empWin = new EmployeeWindow(u);
+                        empWin.Show();
+                        this.Close();
+                        break;
                 }
             }
         }

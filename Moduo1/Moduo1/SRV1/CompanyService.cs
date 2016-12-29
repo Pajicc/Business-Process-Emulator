@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Common;
 using SRV1.Access;
+using System.Net.Mail;
+using System.Net;
 
 namespace SRV1
 {
@@ -20,6 +22,12 @@ namespace SRV1
             u = DB.Instance.CheckUser(username, pass);
 
             u.LoggedIn = true;
+
+            DateTime dt = DateTime.Now;
+            if (ProveriDaLiKasni(dt, u.WorkTimeStart))
+            {
+                //SendMail(u);
+            }
 
             if (u != null)
             {
@@ -53,6 +61,7 @@ namespace SRV1
         public bool AddUser(User user)
         {
             bool done = false;
+            user.WorkTimeStart = "09:00:00";
 
             Console.WriteLine("Dodat nov User!");
             Console.WriteLine("Username: " + user.Username + "\nPassword: " + user.Password);
@@ -103,6 +112,41 @@ namespace SRV1
             Console.WriteLine("Pozvana funkcija za GetOnlineUsers!");
 
             return onlineUsers;
+        }
+
+        public bool ProveriDaLiKasni(DateTime ulogovao, string timestart)
+        {
+            DateTime definisanoVreme = Convert.ToDateTime(timestart);
+
+            TimeSpan span = ulogovao.Subtract(definisanoVreme);
+
+            double minutes = span.TotalMinutes;
+            int minutesRounded = (int)Math.Round(span.TotalMinutes);
+
+            if (minutesRounded > 15)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public void SendMail(User u)
+        {
+            SmtpClient client = new SmtpClient();
+            client.Port = 587;
+            client.Host = "smtp-mail.outlook.com";
+            client.EnableSsl = true;
+            client.Timeout = 10000;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.UseDefaultCredentials = false;
+            client.Credentials = new System.Net.NetworkCredential("email", "pass"); //ko salje
+
+            MailMessage mm = new MailMessage("CEO@hiringcompany.com", u.Email, "Obavestenje!", "KASNIS NA POSO DRUZE!");
+            mm.BodyEncoding = UTF8Encoding.UTF8;
+            mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
+
+            client.Send(mm);
         }
     }
 }
