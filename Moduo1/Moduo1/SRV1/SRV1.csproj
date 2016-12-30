@@ -102,6 +102,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="DB\Database1.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
