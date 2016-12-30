@@ -27,25 +27,25 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Edit employee" Margin="109,-2,-122,2">
-                <Grid Background="#FFE5E5E5" Margin="0,-2,-1,-1">
+                <Grid Background="#FFE5E5E5" Margin="0,-2,-1,-1" Name="EditGrid">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="23" Margin="150,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" IsReadOnly="True"/>
+                    <TextBox x:Name="ee_username_admin" HorizontalAlignment="Left" Height="23" Margin="150,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" IsReadOnly="True" Text="{Binding EeUsernameAdmin}"/>
                     <Label x:Name="label2" Content="Username:" HorizontalAlignment="Left" Margin="67,50,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="textBox2_Copy" HorizontalAlignment="Left" Height="23" Margin="150,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
+                    <TextBox x:Name="ee_password_admin" HorizontalAlignment="Left" Height="23" Margin="150,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"  Text="{Binding EePasswordAdmin}"/>
                     <Label x:Name="label2_Copy" Content="Password:" HorizontalAlignment="Left" Margin="67,146,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="textBox2_Copy1" HorizontalAlignment="Left" Height="23" Margin="150,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
+                    <TextBox x:Name="ee_email_admin" HorizontalAlignment="Left" Height="23" Margin="150,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"  Text="{Binding EeEmailAdmin}"/>
                     <Label x:Name="label2_Copy1" Content="Email:" HorizontalAlignment="Left" Margin="67,177,0,0" VerticalAlignment="Top"/>
-                    <Button x:Name="EditEmployee" Content="Edit" HorizontalAlignment="Left" Margin="166,257,0,0" VerticalAlignment="Top" Width="76" Click="EditEmployee_Click"/>
+                    <Button x:Name="EditEmployee" Content="Edit" HorizontalAlignment="Left" Margin="166,257,0,0" VerticalAlignment="Top" Width="76" Command="{Binding AdminEditUser}"/>
                     <Label x:Name="label2_Copy5" Content="Role:" HorizontalAlignment="Left" Margin="67,208,0,0" VerticalAlignment="Top"/>
-                    <ComboBox x:Name="listOfEmployees" HorizontalAlignment="Left" Margin="180,10,0,0" VerticalAlignment="Top" Width="183" SelectionChanged="listOfEmployees_SelectionChanged"/>
+                    <ComboBox x:Name="ee_listOfEmployees_admin" HorizontalAlignment="Left" Margin="180,10,0,0" VerticalAlignment="Top" Width="183" SelectedItem="{Binding EeEmployeeAdmin}" SelectedIndex="{Binding EeEmployeeAdminIdx}" ItemsSource="{Binding EmployeeListAdmin}" SelectionChanged="ee_listOfEmployees_admin_SelectionChanged"/>
                     <Label x:Name="label2_Copy2" Content="Select employee to edit:" HorizontalAlignment="Left" Margin="22,6,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="textBox2_Copy3" HorizontalAlignment="Left" Height="23" Margin="150,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
+                    <TextBox x:Name="ee_name_admin" HorizontalAlignment="Left" Height="23" Margin="150,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding EeNameAdmin}"/>
                     <Label x:Name="label2_Copy3" Content="Name:" HorizontalAlignment="Left" Margin="67,81,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="textBox2_Copy4" HorizontalAlignment="Left" Height="23" Margin="150,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
+                    <TextBox x:Name="ee_lastname_admin" HorizontalAlignment="Left" Height="23" Margin="150,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding EeLastnameAdmin}"/>
                     <Label x:Name="label2_Copy4" Content="Last name:" HorizontalAlignment="Left" Margin="67,112,0,0" VerticalAlignment="Top"/>
-                    <ComboBox x:Name="listOfRolesChange" HorizontalAlignment="Left" Margin="150,212,0,0" VerticalAlignment="Top" Width="183"/>
+                    <ComboBox x:Name="ee_roleComboBox_admin" HorizontalAlignment="Left" Margin="150,212,0,0" VerticalAlignment="Top" Width="183" SelectedItem="{Binding EeRoleAdmin}" SelectedIndex="{Binding EeRoleAdminIdx}" ItemsSource="{Binding RoleList}"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Add employee" Margin="-76,-3,67,1">
@@ -53,18 +53,18 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <TextBox x:Name="textBox3" HorizontalAlignment="Left" Height="23" Margin="132,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
+                    <TextBox x:Name="ae_username_admin" HorizontalAlignment="Left" Height="23" Margin="132,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding AeUsernameAdmin}"/>
                     <Label x:Name="label3" Content="Username:" HorizontalAlignment="Left" Margin="49,20,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="textBox3_Copy" HorizontalAlignment="Left" Height="23" Margin="132,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
+                    <TextBox x:Name="ae_password_admin" HorizontalAlignment="Left" Height="23" Margin="132,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding AePasswordAdmin}"/>
                     <Label x:Name="label3_Copy" Content="Password:" HorizontalAlignment="Left" Margin="49,114,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="textBox3_Copy1" HorizontalAlignment="Left" Height="23" Margin="132,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
+                    <TextBox x:Name="ae_email_admin" HorizontalAlignment="Left" Height="23" Margin="132,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding AeEmailAdmin}"/>
                     <Label x:Name="label3_Copy1" Content="Email:" HorizontalAlignment="Left" Margin="49,158,0,0" VerticalAlignment="Top"/>
-                    <Button x:Name="addEmployee" Content="Add" HorizontalAlignment="Left" Margin="161,248,0,0" VerticalAlignment="Top" Width="76" Click="addEmployee_Click"/>
+                    <Button x:Name="addEmployee" Content="Add" HorizontalAlignment="Left" Margin="161,248,0,0" VerticalAlignment="Top" Width="76" Command="{Binding AdminAddUser}"/>
                     <Label x:Name="label3_Copy5" Content="Role:" HorizontalAlignment="Left" Margin="49,202,0,0" VerticalAlignment="Top"/>
-                    <ComboBox HorizontalAlignment="Left" Margin="132,206,0,0" VerticalAlignment="Top" Width="183" Name="roleComboBox"/>
-                    <TextBox x:Name="textBox3_Copy2" HorizontalAlignment="Left" Height="23" Margin="132,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
+                    <ComboBox HorizontalAlignment="Left" Margin="132,206,0,0" VerticalAlignment="Top" Width="183" Name="ae_roleComboBox_admin" SelectedItem="{Binding AeRoleAdmin}" SelectedIndex="{Binding AeRoleAdminIdx}" ItemsSource="{Binding RoleList}"/>
+                    <TextBox x:Name="ae_name_admin" HorizontalAlignment="Left" Height="23" Margin="132,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding AeNameAdmin}"/>
                     <Label x:Name="label3_Copy2" Content="Name:" HorizontalAlignment="Left" Margin="49,51,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="textBox3_Copy3" HorizontalAlignment="Left" Height="23" Margin="132,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
+                    <TextBox x:Name="ae_lastname_admin" HorizontalAlignment="Left" Height="23" Margin="132,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"  Text="{Binding AeLastnameAdmin}"/>
                     <Label x:Name="label3_Copy3" Content="Last name:" HorizontalAlignment="Left" Margin="49,82,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
