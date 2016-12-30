@@ -19,7 +19,7 @@
                     <Label x:Name="label_Copy" Content="Password:" HorizontalAlignment="Left" Margin="49,136,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="pi_email_po" HorizontalAlignment="Left" Height="23" Margin="132,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding PiEmailPo}"/>
                     <Label x:Name="label_Copy1" Content="Email:" HorizontalAlignment="Left" Margin="49,182,0,0" VerticalAlignment="Top"/>
-                    <Button x:Name="pi_editInfo_po" Content="Edit Info" HorizontalAlignment="Left" Margin="155,240,0,0" VerticalAlignment="Top" Width="76" Click="editPersonalInfo_Click" Command="{Binding PiEditInfoPo}"/>
+                    <Button x:Name="pi_editInfo_po" Content="Edit Info" HorizontalAlignment="Left" Margin="155,240,0,0" VerticalAlignment="Top" Width="76" Command="{Binding PiEditInfoPo}"/>
                     <TextBox x:Name="pi_name_po" HorizontalAlignment="Left" Height="23" Margin="132,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding PiNamePo}"/>
                     <Label x:Name="label_Copy2" Content="Name:" HorizontalAlignment="Left" Margin="49,74,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="pi_lastname_po" HorizontalAlignment="Left" Height="23" Margin="132,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding PiLastnamePo}"/>

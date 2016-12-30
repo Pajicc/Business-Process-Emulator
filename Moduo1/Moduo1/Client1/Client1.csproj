@@ -77,8 +77,18 @@
     <Compile Include="EmployeeWindow.xaml.cs">
       <DependentUpon>EmployeeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HumanResourceWindow.xaml.cs">
+      <DependentUpon>HumanResourceWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProductOwnerWindow.xaml.cs">
+      <DependentUpon>ProductOwnerWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\CompanyViewModel.cs" />
     <Page Include="AddUsers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HumanResourceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -100,6 +110,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EmployeeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductOwnerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

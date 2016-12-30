@@ -19,7 +19,7 @@
                     <Label x:Name="label_Copy" Content="Password:" HorizontalAlignment="Left" Margin="49,136,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="pi_email_hr" HorizontalAlignment="Left" Height="23" Margin="132,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding PiEmailHr}"/>
                     <Label x:Name="label_Copy1" Content="Email:" HorizontalAlignment="Left" Margin="49,182,0,0" VerticalAlignment="Top"/>
-                    <Button x:Name="pi_editInfo_hr" Content="Edit Info" HorizontalAlignment="Left" Margin="155,240,0,0" VerticalAlignment="Top" Width="76" Click="editPersonalInfo_Click" Command="{Binding PiEditInfoHr}"/>
+                    <Button x:Name="pi_editInfo_hr" Content="Edit Info" HorizontalAlignment="Left" Margin="155,240,0,0" VerticalAlignment="Top" Width="76" Command="{Binding PiEditInfoHr}"/>
                     <TextBox x:Name="pi_name_hr" HorizontalAlignment="Left" Height="23" Margin="132,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding PiNameHr}"/>
                     <Label x:Name="label_Copy2" Content="Name:" HorizontalAlignment="Left" Margin="49,74,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="pi_lastname_hr" HorizontalAlignment="Left" Height="23" Margin="132,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding PiLastnameHr}"/>
@@ -37,9 +37,9 @@
                     <Label x:Name="label2_Copy" Content="Password:" HorizontalAlignment="Left" Margin="67,146,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="ee_email_hr" HorizontalAlignment="Left" Height="23" Margin="150,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding EeEmailHr}"/>
                     <Label x:Name="label2_Copy1" Content="Email:" HorizontalAlignment="Left" Margin="67,177,0,0" VerticalAlignment="Top"/>
-                    <Button x:Name="ee_editEmploye_hr" Content="Edit" HorizontalAlignment="Left" Margin="166,257,0,0" VerticalAlignment="Top" Width="76" Click="editEmployee_Click" Command="{Binding EeEditEmployeHr}"/>
+                    <Button x:Name="ee_editEmploye_hr" Content="Edit" HorizontalAlignment="Left" Margin="166,257,0,0" VerticalAlignment="Top" Width="76" Command="{Binding EeEditEmployeHr}"/>
                     <Label x:Name="label2_Copy5" Content="Role:" HorizontalAlignment="Left" Margin="67,208,0,0" VerticalAlignment="Top"/>
-                    <ComboBox x:Name="ee_listOfEmployees_hr" HorizontalAlignment="Left" Margin="180,10,0,0" VerticalAlignment="Top" Width="183" SelectionChanged="listOfEmployees_SelectionChanged" Text="{Binding EeListOfEmployeesHr}"/>
+                    <ComboBox x:Name="ee_listOfEmployees_hr" HorizontalAlignment="Left" Margin="180,10,0,0" VerticalAlignment="Top" Width="183" Text="{Binding EeListOfEmployeesHr}"/>
                     <Label x:Name="label2_Copy2" Content="Select employee to edit:" HorizontalAlignment="Left" Margin="22,6,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="ee_name_hr" HorizontalAlignment="Left" Height="23" Margin="150,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding EeNameHr}"/>
                     <Label x:Name="label2_Copy3" Content="Name:" HorizontalAlignment="Left" Margin="67,81,0,0" VerticalAlignment="Top"/>
@@ -59,7 +59,7 @@
                     <Label x:Name="label3_Copy" Content="Password:" HorizontalAlignment="Left" Margin="49,114,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="ae_email_hr" HorizontalAlignment="Left" Height="23" Margin="132,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding AeEmailHr}"/>
                     <Label x:Name="label3_Copy1" Content="Email:" HorizontalAlignment="Left" Margin="49,158,0,0" VerticalAlignment="Top"/>
-                    <Button x:Name="ae_addEmployee_hr" Content="Add" HorizontalAlignment="Left" Margin="161,248,0,0" VerticalAlignment="Top" Width="76" Click="addEmployee_Click" Command="{Binding AeAddEmployeeHr}"/>
+                    <Button x:Name="ae_addEmployee_hr" Content="Add" HorizontalAlignment="Left" Margin="161,248,0,0" VerticalAlignment="Top" Width="76" Command="{Binding AeAddEmployeeHr}"/>
                     <Label x:Name="label3_Copy5" Content="Role:" HorizontalAlignment="Left" Margin="49,202,0,0" VerticalAlignment="Top"/>
                     <ComboBox Name="ae_roleComboBox_hr" HorizontalAlignment="Left" Margin="132,206,0,0" VerticalAlignment="Top" Width="183" Text="{Binding AeRoleComboBoxHr}"/>
                     <TextBox x:Name="ae_name_hr" HorizontalAlignment="Left" Height="23" Margin="132,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding AeNameHr}"/>
