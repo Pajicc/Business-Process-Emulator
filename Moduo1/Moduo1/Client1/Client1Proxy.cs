@@ -140,5 +140,57 @@ namespace Client1
             return onlineUsers;
         }
 
+        public bool CreateProject(Project prj)
+        {
+            bool allowed = false;
+
+            try
+            {
+                factory.CreateProject(prj);
+                Console.WriteLine("CreateProject() >> succeded");
+                allowed = true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while trying to CreateProject(). {0}", e.Message);
+            }
+
+            return allowed;
+        }
+
+        public bool DeleteProject(Project prj)
+        {
+            bool allowed = false;
+
+            try
+            {
+                factory.DeleteProject(prj);
+                Console.WriteLine("DeleteProject() >> succeded");
+                allowed = true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while trying to DeleteProject(). {0}", e.Message);
+            }
+
+            return allowed;
+        }
+
+        public List<Project> GetAllProjects()
+        {
+            List<Project> projekti = new List<Project>();
+
+            try
+            {
+                projekti = factory.GetAllProjects();
+                Console.WriteLine("GetAllProjects() >> succeded");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while trying to GetAllProjects(). {0}", e.Message);
+            }
+
+            return projekti;
+        }
     }
 }

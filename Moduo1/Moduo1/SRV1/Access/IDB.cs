@@ -15,5 +15,8 @@ namespace SRV1.Access
         User GetUser(string username);
         bool EditUser(User userMain, User userEdit);
         List<User> GetAllEmployees();
+        bool CreateProject(Project prj);
+        bool DeleteProject(Project prj);
+        List<Project> GetAllProjects();
     }
 }

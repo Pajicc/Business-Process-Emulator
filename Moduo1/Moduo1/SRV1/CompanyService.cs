@@ -23,6 +23,29 @@ namespace SRV1
 
             u.LoggedIn = true;
 
+            Project prj = new Project();
+            List<UserStory> us = new List<UserStory>();
+
+            prj.Name = "Projekat24411";
+            prj.Active = true;
+            prj.Description = "testProjekat";
+            prj.Po = GetUser("poTest");
+
+            for (int i = 0; i < 5; i++)
+            {
+                UserStory story = new UserStory();
+                story.Ime = "us" + i;
+                story.Criteria = "criteria" + i;
+
+                us.Add(story);
+            }
+
+            prj.UserStories = us;
+
+            //CreateProject(prj);
+
+            DeleteProject(prj);        
+
             DateTime dt = DateTime.Now;
             if (ProveriDaLiKasni(dt, u.WorkTimeStart))
             {
@@ -85,7 +108,7 @@ namespace SRV1
 
         public List<User> GetAllEmployees()
         {
-            Console.WriteLine("Ucitana lista Usera!");
+            Console.WriteLine("Poslata lista Usera!");
 
             List<User> lista = new List<User>();
 
@@ -147,6 +170,40 @@ namespace SRV1
             mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
 
             client.Send(mm);
+        }
+
+        public bool CreateProject(Project prj)
+        {
+            bool done = false;
+
+            Console.WriteLine("Dodat nov Projekat!");
+            Console.WriteLine("Ime projekta: " + prj.Name);
+
+            done = DB.Instance.CreateProject(prj);
+
+            return done;
+        }
+
+        public List<Project> GetAllProjects()
+        {
+            Console.WriteLine("Poslata lista Usera!");
+
+            List<Project> projekti = new List<Project>();
+
+            projekti = DB.Instance.GetAllProjects();
+
+            return projekti;
+        }
+
+        public bool DeleteProject(Project prj)
+        {
+            bool done = false;
+
+            Console.WriteLine("Obrisan Projekat: " + prj.Name);
+
+            done = DB.Instance.DeleteProject(prj);
+
+            return done;
         }
     }
 }

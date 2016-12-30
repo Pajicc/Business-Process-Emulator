@@ -17,6 +17,7 @@ namespace Common
         Employee = 4
     }
 
+    [Table("Users")]
     public class User
     {
         private string username = string.Empty;

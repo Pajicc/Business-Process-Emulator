@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Common
 {
+    [Table("Projects")]
     public class Project
     {
         private string name = string.Empty;    
@@ -13,7 +16,7 @@ namespace Common
         private double startTime = 0;
         private double endTime = 0;
         private bool active = false;
-        private User po = new User();
+        private User po;
         private List<UserStory> userStories = new List<UserStory>();
 
         public Project() { }
@@ -27,15 +30,16 @@ namespace Common
             this.userStories = userStories;
         }
 
-        public bool Active
-        {
-            get { return active; }
-            set { active = value; }
-        }
+        [Key]
         public string Name
         {
             get { return name; }
             set { name = value; }
+        }
+        public bool Active
+        {
+            get { return active; }
+            set { active = value; }
         }
         public string Description
         {
@@ -52,11 +56,14 @@ namespace Common
             get { return endTime; }
             set { endTime = value; }
         }
+
         public User Po
         {
             get { return po; }
             set { po = value; }
         }
+
+        //[Compare("UserStories")]
         public List<UserStory> UserStories
         {
             get { return userStories; }

@@ -30,5 +30,14 @@ namespace Common
 
         [OperationContract]
         List<User> GetOnlineUsers();
+
+        [OperationContract]
+        bool CreateProject(Project prj);
+
+        [OperationContract]
+        bool DeleteProject(Project prj);
+
+        [OperationContract]
+        List<Project> GetAllProjects();
     }
 }
