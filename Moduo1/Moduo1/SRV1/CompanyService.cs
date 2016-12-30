@@ -23,6 +23,8 @@ namespace SRV1
 
             u.LoggedIn = true;
 
+            #region testProjekat(add/remove)
+            /* //testiranje za addovanje i brisanje projekta
             Project prj = new Project();
             List<UserStory> us = new List<UserStory>();
 
@@ -44,7 +46,9 @@ namespace SRV1
 
             //CreateProject(prj);
 
-            DeleteProject(prj);        
+            DeleteProject(prj);    
+            */
+            #endregion
 
             DateTime dt = DateTime.Now;
             if (ProveriDaLiKasni(dt, u.WorkTimeStart))
