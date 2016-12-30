@@ -21,26 +21,14 @@ namespace Client1
     /// </summary>
     public partial class AdminWindow : Window
     {
-        User user = new User();
-
-        public AdminWindow(User u)
+        public AdminWindow()
         {
             InitializeComponent();
 
-            user = u;
-
-            textBox.Text = u.Username;          //personal info
-            textBox_Copy2.Text = u.Name;
-            textBox_Copy3.Text = u.LastName;
-            textBox_Copy.Text = u.Password;
-            textBox_Copy1.Text = u.Email;
-
-            roleComboBox.ItemsSource = Enum.GetNames(typeof(Roles));    //add employee
-
-            foreach (User usr in MainWindow.proxy.GetAllEmployees())
-            {
-                listOfEmployees.Items.Add(usr.Username);
-            }           
+            Context wrapper = Context.getInstance();
+            wrapper.subwin = this;
+            this.DataContext = wrapper.cvm;
+          
         }
 
         private void addEmployee_Click(object sender, RoutedEventArgs e)    
@@ -54,18 +42,6 @@ namespace Client1
             u1.Role = (Roles)roleComboBox.SelectedIndex;
 
             MainWindow.proxy.AddUser(u1);   
-        }
-
-        private void editPersonalInfo_Click(object sender, RoutedEventArgs e)
-        {
-            User userEdit = new User();
-
-            userEdit.Name = textBox_Copy2.Text;
-            userEdit.LastName = textBox_Copy3.Text;
-            userEdit.Password = textBox_Copy.Text;
-            userEdit.Email = textBox_Copy1.Text;
-
-            MainWindow.proxy.EditUser(user, userEdit);
         }
 
         private void listOfEmployees_SelectionChanged(object sender, SelectionChangedEventArgs e)

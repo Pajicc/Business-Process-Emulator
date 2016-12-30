@@ -12,20 +12,5 @@ namespace Client1
         {
             InitializeComponent();
         }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            User u = new User();
-            
-            u.Username = textbox1.Text;       //Dodavanje usera - za punjenje baze
-            u.Password = textbox2.Password;
-
-            MainWindow.proxy.AddUser(u);
-        }
     }
 }

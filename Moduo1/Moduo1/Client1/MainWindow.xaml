@@ -3,13 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Login" Height="311.333" Width="325.94">
     <Grid Margin="0,0,2,0">
-        <TextBox x:Name="textbox1" HorizontalAlignment="Left" Height="23" Margin="136,90,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="username_login" HorizontalAlignment="Left" Height="23" Margin="136,90,0,0" TextWrapping="Wrap" Text="{Binding UsernameLogin}" VerticalAlignment="Top" Width="120" />
         <Label Content="Username:" HorizontalAlignment="Left" Margin="39,87,0,0" VerticalAlignment="Top"/>
         <Label Content="Password:" HorizontalAlignment="Left" Margin="39,138,0,0" VerticalAlignment="Top" />
-        <Button Content="OK" HorizontalAlignment="Left" Margin="42,214,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <Button Content="Cancel" HorizontalAlignment="Left" Margin="181,214,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
-        <PasswordBox HorizontalAlignment="Left" Height="22" Margin="136,138,0,0" VerticalAlignment="Top" Width="120" Name="textbox2"/>
-        <Button Content="Add" HorizontalAlignment="Left" Margin="283,257,0,0" VerticalAlignment="Top" Width="17" Height="11" Click="Button_Click_2"/>
+        <Button Name="login" Content="Login" HorizontalAlignment="Left" Margin="42,214,0,0" VerticalAlignment="Top" Width="75" Command="{Binding Login}"/>
+        <Button Name="cancel" Content="Cancel" HorizontalAlignment="Left" Margin="181,214,0,0" VerticalAlignment="Top" Width="75" Command="{Binding CloseMainWindow}"/>
+        <TextBox HorizontalAlignment="Left" Height="22" Margin="136,138,0,0" VerticalAlignment="Top" Width="120" Name="password_login" Text="{Binding PasswordLogin}"/>
+        <Button Content="Add" HorizontalAlignment="Left" Margin="283,257,0,0" VerticalAlignment="Top" Width="17" Height="11" Click="Button_Click"/>
         <Label Content="Login" HorizontalAlignment="Left" Margin="130,10,0,0" VerticalAlignment="Top" Width="66" FontSize="18"/>
     </Grid>
 </Window>
