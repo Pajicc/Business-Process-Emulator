@@ -10,13 +10,13 @@ namespace Common
 {
 
     [ServiceContract]
-    public interface IWcf
+    public interface ICommonService
     {
         [OperationContract]
-        bool PosaljiZahtev(string naziv);
+        bool PartnershipRequest(string naziv);
 
         [OperationContract]
-        List<string> GetOCompany();
+        List<string> GetAllOutsourcingCompanies();
 
 
     }

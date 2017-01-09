@@ -25,7 +25,7 @@ namespace SRV2
             string address2 = "net.tcp://localhost:9998/CompanyService";
 
             ServiceHost host2 = new ServiceHost(typeof(Wcf));
-            host2.AddServiceEndpoint(typeof(IWcf), binding2, address2);
+            host2.AddServiceEndpoint(typeof(ICommonService), binding2, address2);
 
             host2.Open();
 

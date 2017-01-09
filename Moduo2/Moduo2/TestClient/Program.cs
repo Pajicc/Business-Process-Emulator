@@ -18,8 +18,8 @@ namespace TestClient
             proxy = new TestClientProxy(binding, new EndpointAddress(new Uri(address)));
 
 
-            proxy.PosaljiZahtev("PROJEKAT1");
-            proxy.GetOCompany();
+            proxy.PartnershipRequest("PROJEKAT1");
+            proxy.GetAllOutsourcingCompanies();
             Console.ReadLine();
 
         }

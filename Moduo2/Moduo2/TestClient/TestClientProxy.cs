@@ -9,9 +9,9 @@ using System.ServiceModel;
 using Common;namespace TestClient
 {  
     
-    public class TestClientProxy : ChannelFactory<IWcf>, IWcf, IDisposable
+    public class TestClientProxy : ChannelFactory<ICommonService>, ICommonService, IDisposable
     {
-         IWcf factory;
+         ICommonService factory;
          List<string> kompanije = new List<string>();
 
 
@@ -21,11 +21,11 @@ using Common;namespace TestClient
             factory = this.CreateChannel();
         }
 
-        public bool PosaljiZahtev(string naziv)
+         public bool PartnershipRequest(string naziv)
         {
             try
             {
-                factory.PosaljiZahtev(naziv);
+                factory.PartnershipRequest(naziv);
                 Console.WriteLine("test");
             }
             catch (Exception e)
@@ -37,12 +37,12 @@ using Common;namespace TestClient
         }
 
 
-        public List<string> GetOCompany()
+        public List<string> GetAllOutsourcingCompanies()
         {
             try
             {
                
-                kompanije= factory.GetOCompany();
+                kompanije= factory.GetAllOutsourcingCompanies();
                 for (int i = 0; i < kompanije.Count;i++ )
                     Console.WriteLine(kompanije[i]+"\n");
             }

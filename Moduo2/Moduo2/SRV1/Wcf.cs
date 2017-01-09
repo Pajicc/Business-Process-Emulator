@@ -8,13 +8,13 @@ using SRV2.Access;
 
 namespace SRV2
 {
-    public class Wcf : IWcf
+    public class Wcf : ICommonService
     {
 
         static public List<string> projekti = new List<string>();
-        
-         
-        public bool PosaljiZahtev(string naziv)
+
+
+        public bool PartnershipRequest(string naziv)
             {
           
                 projekti.Add(naziv);
@@ -24,7 +24,7 @@ namespace SRV2
             }
 
 
-        public List<string> GetOCompany()
+        public List<string> GetAllOutsourcingCompanies()
         {
             List<string> kompanije = new List<string>();
             kompanije.Add("kompanijaA");

@@ -50,7 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IWcf.cs" />
+    <Compile Include="ICommonService.cs" />
     <Compile Include="OutsourcingCompany.cs" />
     <Compile Include="ICompanyService.cs" />
     <Compile Include="Project.cs" />
