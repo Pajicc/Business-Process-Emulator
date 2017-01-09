@@ -53,5 +53,20 @@ using Common;namespace TestClient
             return kompanije;
            
         }
+
+
+        public void SendProject(Project projekat)
+        {
+            try
+            {
+                factory.SendProject(projekat);
+                Console.WriteLine("Projekat");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while trying to Login(). {0}", e.Message);
+            }
+            
+        }
     }
 }

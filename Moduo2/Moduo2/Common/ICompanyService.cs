@@ -37,5 +37,8 @@ namespace Common
         [OperationContract]
         List<Tim> GetAllTims();
 
+        [OperationContract]
+        List<Project> GetProjects();
+
     }
 }

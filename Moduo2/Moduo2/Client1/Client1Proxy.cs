@@ -176,5 +176,23 @@ namespace Client2
 
             return allTims;
         }
+
+
+        public List<Project> GetProjects()
+        {
+            List<Project> allProjects = new List<Project>();
+
+            try
+            {
+                allProjects = factory.GetProjects();
+                Console.WriteLine("GetAllTims() >> succeded");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while trying to GetAllTims(). {0}", e.Message);
+            }
+
+            return allProjects;
+        }
     }
 }
