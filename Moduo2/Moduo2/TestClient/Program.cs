@@ -4,7 +4,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
-
+using Common;
 namespace TestClient
 {
     class Program
@@ -20,6 +20,17 @@ namespace TestClient
 
             proxy.PartnershipRequest("komp1");
             proxy.GetAllOutsourcingCompanies();
+           
+            Project projekat1 = new Project();
+            projekat1.Name = "projekat1";
+            projekat1.Description = " pafsd;klfj;sdalj";
+            projekat1.StartTime = 12.23;
+            projekat1.EndTime = 12.27;
+            proxy.SendProject(projekat1);
+
+
+            
+
             Console.ReadLine();
 
         }

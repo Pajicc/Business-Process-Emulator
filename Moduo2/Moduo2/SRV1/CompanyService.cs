@@ -94,7 +94,7 @@ namespace SRV2
         {
             Console.WriteLine("Getcoomp() ok!");
 
-            List<string> lista = SRV2.Wcf.kompanije;
+            List<string> lista = SRV2.CommonService.kompanije;
 
             
 
@@ -127,6 +127,12 @@ namespace SRV2
             Console.WriteLine("GetAllTims() ok!");
 
             return timovi;
+        }
+
+
+        public List<Project> GetProjects()
+        {
+            return SRV2.CommonService.projekti;
         }
     }
 }

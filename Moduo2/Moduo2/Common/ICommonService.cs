@@ -18,6 +18,9 @@ namespace Common
         [OperationContract]
         List<string> GetAllOutsourcingCompanies();
 
+        [OperationContract]
+        void SendProject(Project projekat);
+
 
     }
 }

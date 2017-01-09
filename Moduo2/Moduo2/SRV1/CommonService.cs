@@ -9,10 +9,12 @@ using System.Windows.Forms;
 
 namespace SRV2
 {
-    public class Wcf : ICommonService
+    public class CommonService : ICommonService
     {
 
         static public List<string> kompanije = new List<string>();
+        static public List<Project> projekti = new List<Project>();
+
 
 
         public bool PartnershipRequest(string naziv)
@@ -45,6 +47,15 @@ namespace SRV2
             kompanije.Add("kompanijaB");
 
             return kompanije;
+        }
+
+
+
+
+
+        public void SendProject(Project projekat)
+        {
+            projekti.Add(projekat);
         }
     }
 }

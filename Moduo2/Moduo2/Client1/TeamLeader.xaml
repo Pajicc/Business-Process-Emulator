@@ -29,7 +29,7 @@
             <TabItem Header="All employees" Margin="44,-3,-90,1">
                 <Grid Background="#FFE5E5E5" Margin="0,-2,-11,-15">
                     <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="168" Margin="10,10,0,0" VerticalAlignment="Top" Width="280"/>
-                    <Button x:Name="button1" Content="Load all employees" HorizontalAlignment="Left" Margin="10,194,0,0" VerticalAlignment="Top" Width="109"/>
+                    <Button x:Name="button1" Content="Load all employees" HorizontalAlignment="Left" Margin="10,194,0,0" VerticalAlignment="Top" Width="109" Click="button1_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Tasks" Margin="44,-3,-90,1">

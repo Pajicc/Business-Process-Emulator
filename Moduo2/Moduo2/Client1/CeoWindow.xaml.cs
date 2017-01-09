@@ -47,6 +47,12 @@ namespace Client2
             {
                 combobox_projekti.Items.Add(usr);
             }
+
+            foreach (Project pro in MainWindow.proxy.GetProjects())
+            {
+                cb_projekti.Items.Add(pro.Name);
+            }
+
             foreach (Tim tims in MainWindow.proxy.GetAllTims())
             {
                 timovi_ComboBox.Items.Add(tims.NazivTima);
@@ -135,5 +141,27 @@ namespace Client2
 
         }
 
+        private void button1_Click_1(object sender, RoutedEventArgs e)
+        {
+            List <User> employees= new List<User>();
+            employees= MainWindow.proxy.GetAllEmployees();
+            for (int i = 0; i < employees.Count; i++)
+                listBox.Items.Add(employees[i].Username);
+
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            foreach (string usr in MainWindow.proxy.GetCompanyes())
+            {
+                combobox_projekti.Items.Add(usr);
+            }
+
+            foreach (Project pro in MainWindow.proxy.GetProjects())
+            {
+                cb_projekti.Items.Add(pro.Name);
+            }
+
+        }
     }
 }
