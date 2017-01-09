@@ -90,11 +90,11 @@ namespace SRV2
             return lista;
         }
 
-        public List<string> GetProjects()
+        public List<string> GetCompanyes()
         {
-            Console.WriteLine("GetProjects() ok!");
+            Console.WriteLine("Getcoomp() ok!");
 
-            List<string> lista = SRV2.Wcf.projekti;
+            List<string> lista = SRV2.Wcf.kompanije;
 
             
 
@@ -119,6 +119,14 @@ namespace SRV2
             Console.WriteLine("Pozvana funkcija za GetOnlineUsers!");
 
             return onlineUsers;
+        }
+
+
+        public List<Tim> GetAllTims()
+        {
+            Console.WriteLine("GetAllTims() ok!");
+
+            return timovi;
         }
     }
 }

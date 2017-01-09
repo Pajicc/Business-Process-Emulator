@@ -32,7 +32,10 @@ namespace Common
         List<User> GetOnlineUsers();
 
         [OperationContract]
-        List<string> GetProjects();
+        List<string> GetCompanyes();
+
+        [OperationContract]
+        List<Tim> GetAllTims();
 
     }
 }

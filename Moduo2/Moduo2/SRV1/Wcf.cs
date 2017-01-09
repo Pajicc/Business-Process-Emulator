@@ -12,13 +12,14 @@ namespace SRV2
     public class Wcf : ICommonService
     {
 
-        static public List<string> projekti = new List<string>();
+        static public List<string> kompanije = new List<string>();
 
 
         public bool PartnershipRequest(string naziv)
             {
           
              //   projekti.Add(naziv);
+                kompanije.Add(naziv);
                 DialogResult result = MessageBox.Show("Da li zelite da prihvatite partnerstvo?", "Warning",
  MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
                 if (result == DialogResult.Yes)

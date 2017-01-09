@@ -18,7 +18,7 @@ namespace TestClient
             proxy = new TestClientProxy(binding, new EndpointAddress(new Uri(address)));
 
 
-            proxy.PartnershipRequest("PROJEKAT1");
+            proxy.PartnershipRequest("komp1");
             proxy.GetAllOutsourcingCompanies();
             Console.ReadLine();
 

@@ -83,11 +83,15 @@
                 <Grid Background="#FFE5E5E5" Margin="0,-3,-4,-14">
                     <Grid.ColumnDefinitions>
 
-                        <ColumnDefinition Width="278*"/>
+                        <ColumnDefinition Width="417*"/>
+                        <ColumnDefinition Width="32*"/>
+                        <ColumnDefinition Width="16*"/>
+                        <ColumnDefinition Width="8*"/>
+                        <ColumnDefinition Width="105*"/>
 
                     </Grid.ColumnDefinitions>
-                    <ComboBox HorizontalAlignment="Left" Margin="100,55,0,0" Name="combobox_projekti" VerticalAlignment="Top" Width="120"/>
-                    <Label Content="Projekti:" HorizontalAlignment="Left" Margin="42,51,0,0" VerticalAlignment="Top"/>
+                    <ComboBox HorizontalAlignment="Left"   Margin="100,55,0,0" Name="combobox_projekti" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="Kompanije" HorizontalAlignment="Left" Margin="29,51,0,0" VerticalAlignment="Top"/>
                     <Button Content="Accept" HorizontalAlignment="Left" Margin="291,57,0,0" VerticalAlignment="Top" Width="75"/>
                     <Button Content="Decline" HorizontalAlignment="Left" Margin="291,103,0,0" VerticalAlignment="Top" Width="75"/>
                 </Grid>
@@ -100,10 +104,12 @@
 
                     </Grid.ColumnDefinitions>
                     <ComboBox HorizontalAlignment="Left" Margin="158,51,0,0" VerticalAlignment="Top" Width="120"/>
-                    <ComboBox HorizontalAlignment="Left" Margin="158,122,0,0" VerticalAlignment="Top" Width="120"/>
+                    <ComboBox HorizontalAlignment="Left" Name="timovi_ComboBox" Margin="158,104,0,0" VerticalAlignment="Top" Width="120"/>
                     <Label Content="Prihvaceni projekti:" HorizontalAlignment="Left" Margin="33,51,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Timovi:" HorizontalAlignment="Left" Margin="33,118,0,0" VerticalAlignment="Top" Width="110"/>
+                    <Label Content="Timovi:" HorizontalAlignment="Left" Margin="21,104,0,0" VerticalAlignment="Top" Width="110"/>
                     <Button Content="Set" HorizontalAlignment="Left" Margin="328,87,0,0" VerticalAlignment="Top" Width="75"/>
+                    <TextBox HorizontalAlignment="Left" Height="125" Name="tB_tim" Margin="10,166,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="468"/>
+                    <Button Content="Prikazi tim" HorizontalAlignment="Left" Margin="194,141,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
                 </Grid>
             </TabItem>
         </TabControl>

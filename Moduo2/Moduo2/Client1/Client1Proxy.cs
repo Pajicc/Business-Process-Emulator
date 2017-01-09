@@ -106,13 +106,13 @@ namespace Client2
             return allEmpl;
         }
 
-        public List<string> GetProjects()
+        public List<string> GetCompanyes()
         {
             List<string> allEmpl = new List<string>();
 
             try
             {
-                allEmpl = factory.GetProjects();
+                allEmpl = factory.GetCompanyes();
                 Console.WriteLine("GetAllproj() >> succeded");
             }
             catch (Exception e)
@@ -157,5 +157,24 @@ namespace Client2
             return onlineUsers;
         }
 
+
+
+        public List<Tim> GetAllTims()
+        {
+
+            List<Tim> allTims = new List<Tim>();
+
+            try
+            {
+                allTims = factory.GetAllTims();
+                Console.WriteLine("GetAllTims() >> succeded");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while trying to GetAllTims(). {0}", e.Message);
+            }
+
+            return allTims;
+        }
     }
 }

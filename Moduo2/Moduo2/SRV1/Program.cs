@@ -28,8 +28,22 @@ namespace SRV2
             host2.AddServiceEndpoint(typeof(ICommonService), binding2, address2);
 
             host2.Open();
+            User u1 = new User();
+            User u2 = new User();
+            u1.Name = "marko";
+            u2.Name = "pera";
+            List<User> usrs = new List<User>();
 
+            usrs.Add(u1);
+            usrs.Add(u2);
            
+           
+            
+            Tim tim1 = new Tim();
+            tim1.Tl = SRV2.Access.DB.Instance.GetUser("l");
+            tim1.Employees = usrs;
+            tim1.NazivTima = "trimDim";
+            SRV2.CompanyService.timovi.Add(tim1);
 
             Console.ReadLine();
 
