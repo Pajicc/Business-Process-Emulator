@@ -17,6 +17,7 @@ Klase:
     pocetak, rokZavrsetka
 	User productOwner
     KorisnickePrice korisnickePrice	
+uikl
 
   KorisnickePrice:
      
