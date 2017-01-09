@@ -22,7 +22,7 @@ namespace Client2
     public partial class EmployeeWindow : Window
     {
         User user = new User();
-
+        int start = 0;
         public EmployeeWindow(User u)
         {
             InitializeComponent();
@@ -33,8 +33,11 @@ namespace Client2
             textBox.Text = user.LastName;
             textBox_Copy.Text = user.Password;
             textBox_Copy1.Text = user.Email;
-            textBox_Copy4.Text = user.WorkTimeStart.ToString();
+            textBox_Copy4.Text = user.WorkTimeStartHour.ToString();
+            textBox1.Text = user.WorkTimeStartMin.ToString();
             textBox_Copy3.Text = user.WorkTimeEnd.ToString();
+
+            start = int.Parse(textBox_Copy4.Text, CultureInfo.InvariantCulture);
         }
 
         private void EditEmployee_Click(object sender, RoutedEventArgs e)
@@ -56,7 +59,8 @@ namespace Client2
             userEdit.Password = textBox_Copy.Text;
             userEdit.Email = textBox_Copy1.Text;
             userEdit.Role = Roles.Employee;
-            userEdit.WorkTimeStart = double.Parse(textBox_Copy4.Text, CultureInfo.InvariantCulture);
+            userEdit.WorkTimeStartHour = int.Parse(textBox_Copy4.Text, CultureInfo.InvariantCulture);
+            userEdit.WorkTimeStartMin = int.Parse(textBox1.Text, CultureInfo.InvariantCulture);
             userEdit.WorkTimeEnd = double.Parse(textBox_Copy3.Text, CultureInfo.InvariantCulture);
 
 

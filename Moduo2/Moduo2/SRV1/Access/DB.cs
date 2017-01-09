@@ -97,7 +97,8 @@ namespace SRV2.Access
                     access.Actions.Find(userMain.Username).Password = userEdit.Password;
                     access.Actions.Find(userMain.Username).Email = userEdit.Email;
                     access.Actions.Find(userMain.Username).Role = userEdit.Role;
-                    access.Actions.Find(userMain.Username).WorkTimeStart = userEdit.WorkTimeStart;
+                    access.Actions.Find(userMain.Username).WorkTimeStartHour = userEdit.WorkTimeStartHour;
+                    access.Actions.Find(userMain.Username).WorkTimeStartMin = userEdit.WorkTimeStartMin;
                     access.Actions.Find(userMain.Username).WorkTimeEnd = userEdit.WorkTimeEnd;
 
                     int k = access.SaveChanges();

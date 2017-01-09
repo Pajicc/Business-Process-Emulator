@@ -22,7 +22,8 @@ namespace ProjectTest.DataTest.UserTest
         private string password = "123";
         private string email = "flasica123";
         private bool loggedIn = false;
-        private double workTimeStart = 15;
+        private int workTimeStarthour = 15;
+        private int workTimeStartMin = 44;
         private double workTimeEnd = 19;
         private Roles role = 0;
 
@@ -55,7 +56,7 @@ namespace ProjectTest.DataTest.UserTest
         public void UserConstructorTestSaParametrima()
         {
             
-            Assert.DoesNotThrow(() => new User(username, password, email, workTimeStart, workTimeEnd,role));
+            Assert.DoesNotThrow(() => new User(username, password, email, workTimeStarthour, workTimeStartMin, workTimeEnd,role));
         }
 
         [Test]
@@ -114,17 +115,24 @@ namespace ProjectTest.DataTest.UserTest
         [Test]
         public void UserWorkTimeStart()
         {
-            user.WorkTimeStart = workTimeStart;
+            user.WorkTimeStartHour = workTimeStarthour;
 
-            Assert.AreEqual(workTimeStart, user.WorkTimeStart);
+            Assert.AreEqual(workTimeStarthour, user.WorkTimeStartHour);
+        }
+        [Test]
+        public void UserWorkTimeStartMin()
+        {
+            user.WorkTimeStartMin = workTimeStartMin;
+
+            Assert.AreEqual(workTimeStartMin, user.WorkTimeStartMin);
         }
 
         [Test]
         public void UserWorkTimeEnd()
         {
-            user.WorkTimeEnd = workTimeStart;
+            user.WorkTimeEnd = workTimeEnd;
 
-            Assert.AreEqual(workTimeStart, user.WorkTimeEnd);
+            Assert.AreEqual(workTimeEnd, user.WorkTimeEnd);
         }
 
         [Test]

@@ -28,18 +28,20 @@ namespace Common
         private string lastName = string.Empty;
         private string email = string.Empty;
         private bool loggedIn = false;
-        private double workTimeStart = 0;
+        private int workTimeStarthour = 0;
+        private int workTimeStartMin = 0;
         private double workTimeEnd = 0;
         private Roles role;
 
         public User() { }
-        public User( string name, string pass, string email, double start, double end, Roles role)
+        public User( string name, string pass, string email, int starth,int startm, double end, Roles role)
         {
             
             this.username = name;
             this.password = pass;
             this.email = email;
-            this.workTimeStart = start;
+            this.workTimeStarthour = starth;
+            this.workTimeStartMin = startm;
             this.workTimeEnd = end;
             this.role = role;
         }
@@ -77,10 +79,15 @@ namespace Common
             get { return loggedIn; }
             set { this.loggedIn = value; }
         }
-        public double WorkTimeStart
+        public int WorkTimeStartHour
         {
-            get { return workTimeStart; }
-            set { this.workTimeStart = value; }
+            get { return workTimeStarthour; }
+            set { this.workTimeStarthour = value; }
+        }
+        public int WorkTimeStartMin
+        {
+            get { return workTimeStartMin; }
+            set { this.workTimeStartMin = value; }
         }
         public double WorkTimeEnd
         {

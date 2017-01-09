@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ServiceModel;
 using Common;
+using System.Globalization;
 
 namespace Client2
 {
@@ -23,7 +24,7 @@ namespace Client2
     public partial class MainWindow : Window
     {        
         public static Client1Proxy proxy;
-
+       // User user = new User();
         public MainWindow()
         {
             InitializeComponent();
@@ -31,6 +32,7 @@ namespace Client2
             NetTcpBinding binding = new NetTcpBinding();
             string address = "net.tcp://localhost:9999/CompanyService";
             proxy = new Client1Proxy(binding, new EndpointAddress(new Uri(address)));
+
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -42,6 +44,8 @@ namespace Client2
             */
             
             u = proxy.Login(textbox1.Text, textbox2.Password);
+
+          
 
             if (u == null)
             {
@@ -68,12 +72,26 @@ namespace Client2
                     EmployeeWindow empWin = new EmployeeWindow(u);
                     empWin.Show();
                     this.Close();
+
                 }
                 else if (u.Role == Roles.TL)
                 {
                     TeamLeader empWin = new TeamLeader(u);
                     empWin.Show();
                     this.Close();
+                }
+
+
+                DateTime dt = DateTime.Now;
+                int trenutno = dt.Minute;
+                int h = dt.Hour;
+                int starth = u.WorkTimeStartHour;
+                int startno = u.WorkTimeStartMin;
+                if ((trenutno - startno > 15) || (h != starth))
+                {
+                    int kasnjenje = trenutno - startno;
+                    int kasnjenje1 = h - starth;
+                    MessageBox.Show("Zakasnili ste " + kasnjenje1 + " h, i "+ kasnjenje + "min.");
                 }
             }
         }
