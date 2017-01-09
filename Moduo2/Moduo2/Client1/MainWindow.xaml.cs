@@ -87,11 +87,26 @@ namespace Client2
                 int h = dt.Hour;
                 int starth = u.WorkTimeStartHour;
                 int startno = u.WorkTimeStartMin;
-                if ((trenutno - startno > 15) || (h != starth))
+                double kraj= u.WorkTimeEnd;
+                
+                if (h>= starth && h<kraj)
                 {
-                    int kasnjenje = trenutno - startno;
-                    int kasnjenje1 = h - starth;
-                    MessageBox.Show("Zakasnili ste " + kasnjenje1 + " h, i "+ kasnjenje + "min.");
+                    if (h > starth)
+                    {
+                        int kasnjenje = trenutno - startno;
+                        int kasnjenje1 = h - starth;
+                        MessageBox.Show("Zakasnili ste " + kasnjenje1 + " h, i " + kasnjenje + "min.");
+                    }
+                    else if (trenutno > startno + 15) 
+                    {
+                        int kasnjenje = trenutno - startno;
+                        int kasnjenje1 = h - starth;
+                        MessageBox.Show("Zakasnili ste " + kasnjenje1 + " h, i " + kasnjenje + "min.");
+                    }
+                    else
+                    {
+
+                    }
                 }
             }
         }
