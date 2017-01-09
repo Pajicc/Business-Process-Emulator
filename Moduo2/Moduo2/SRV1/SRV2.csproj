@@ -74,6 +74,7 @@
     <Compile Include="CompanyService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Wcf.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -104,6 +105,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="DB\Database2.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

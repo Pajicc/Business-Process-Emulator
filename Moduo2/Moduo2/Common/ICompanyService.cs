@@ -29,6 +29,10 @@ namespace Common
         User GetUser(string username);
 
         [OperationContract]
-        List<User> GetOnlineUsers(); 
+        List<User> GetOnlineUsers();
+
+        [OperationContract]
+        List<string> GetProjects();
+
     }
 }

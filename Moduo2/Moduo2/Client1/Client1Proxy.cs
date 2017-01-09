@@ -106,6 +106,23 @@ namespace Client2
             return allEmpl;
         }
 
+        public List<string> GetProjects()
+        {
+            List<string> allEmpl = new List<string>();
+
+            try
+            {
+                allEmpl = factory.GetProjects();
+                Console.WriteLine("GetAllproj() >> succeded");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while trying to GetAllproj(). {0}", e.Message);
+            }
+
+            return allEmpl;
+        }
+
         public User GetUser(string username)
         {
             User u = new User();

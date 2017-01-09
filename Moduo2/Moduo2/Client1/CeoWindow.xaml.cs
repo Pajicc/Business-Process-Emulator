@@ -41,6 +41,12 @@ namespace Client2
             {
                 listOfEmployees.Items.Add(usr.Username);
             }
+
+            foreach (string usr in MainWindow.proxy.GetProjects())
+            {
+                combobox_projekti.Items.Add(usr);
+            }
+
         }
 
         private void addEmployee_Click(object sender, RoutedEventArgs e)

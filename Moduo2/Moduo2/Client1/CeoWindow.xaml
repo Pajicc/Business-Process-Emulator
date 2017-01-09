@@ -86,7 +86,7 @@
                         <ColumnDefinition Width="278*"/>
 
                     </Grid.ColumnDefinitions>
-                    <ComboBox HorizontalAlignment="Left" Margin="100,55,0,0" VerticalAlignment="Top" Width="120"/>
+                    <ComboBox HorizontalAlignment="Left" Margin="100,55,0,0" Name="combobox_projekti" VerticalAlignment="Top" Width="120"/>
                     <Label Content="Projekti:" HorizontalAlignment="Left" Margin="42,51,0,0" VerticalAlignment="Top"/>
                     <Button Content="Accept" HorizontalAlignment="Left" Margin="291,57,0,0" VerticalAlignment="Top" Width="75"/>
                     <Button Content="Decline" HorizontalAlignment="Left" Margin="291,103,0,0" VerticalAlignment="Top" Width="75"/>

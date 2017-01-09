@@ -20,6 +20,17 @@ namespace SRV2
 
             host.Open();
             Console.WriteLine("CompanyService is opened. Press <enter> to finish...");
+
+            NetTcpBinding binding2 = new NetTcpBinding();
+            string address2 = "net.tcp://localhost:9998/CompanyService";
+
+            ServiceHost host2 = new ServiceHost(typeof(Wcf));
+            host2.AddServiceEndpoint(typeof(IWcf), binding2, address2);
+
+            host2.Open();
+
+           
+
             Console.ReadLine();
 
             host.Close();

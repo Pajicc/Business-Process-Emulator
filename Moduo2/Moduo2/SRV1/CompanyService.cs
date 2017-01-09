@@ -13,6 +13,8 @@ namespace SRV2
         static public List<User> onlineUsers = new List<User>();
         static public List<OutsourcingCompany> outsrc = new List<OutsourcingCompany>();
         static public List<Tim> timovi = new List<Tim>();
+        
+
 
 
         public User Login(string username, string pass)
@@ -84,6 +86,17 @@ namespace SRV2
             List<User> lista = new List<User>();
 
             lista = DB.Instance.GetAllEmployees();
+
+            return lista;
+        }
+
+        public List<string> GetProjects()
+        {
+            Console.WriteLine("GetProjects() ok!");
+
+            List<string> lista = SRV2.Wcf.projekti;
+
+            
 
             return lista;
         }
