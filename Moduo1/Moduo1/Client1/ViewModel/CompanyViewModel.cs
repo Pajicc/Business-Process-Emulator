@@ -8,6 +8,7 @@ using Common;
 using Client1.Command;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 
 namespace Client1.ViewModel
 {
@@ -15,6 +16,9 @@ namespace Client1.ViewModel
     {
        
         #region propertyFields
+
+        public ObservableCollection<User> employeeList { get; set; }
+        public ObservableCollection<Project> projects { get; set; }
 
         private string loggedInUser = "";
         public string selectedUserForEdit ="";
@@ -24,14 +28,17 @@ namespace Client1.ViewModel
 
         private string usernameAddUser;        //add user
         private string passwordAddUser;
+                  
+        private string pi_username;             //personal info
+        private string pi_lastname;
+        private string pi_email;
+        private string pi_password;
+        private string pi_name;
+        private string pi_from;
+        private string pi_to;
 
-        private string pi_username_admin;             //admin personal info
-        private string pi_lastname_admin;
-        private string pi_email_admin;
-        private string pi_password_admin;
-        private string pi_name_admin;
-
-        private string ae_username_admin;             //admin personal info
+        // ** ADMIN **
+        private string ae_username_admin;             //add employee
         private string ae_lastname_admin;
         private string ae_email_admin;
         private string ae_password_admin;
@@ -40,7 +47,7 @@ namespace Client1.ViewModel
         private string aeRoleAdmin;
         private int aeRoleAdminIdx;
 
-        private string ee_lastname_admin;           //admin edit employee
+        private string ee_lastname_admin;           //edit employee
         private string ee_username_admin;
         private string ee_email_admin;
         private string ee_password_admin;
@@ -48,6 +55,13 @@ namespace Client1.ViewModel
         private string ee_roleComboBox_admin;
         private string eeRoleAdmin;
         private int eeRoleAdminIdx;
+
+        // ** PRODUCT OWNER **
+        private string ap_name_po;           //add project
+        private string ap_desc_po;
+        private string ap_from_po;
+        private string ap_to_po;
+
 
         public ObservableCollection<string> EeEmployeeList { get; set; }     
         private string eeEmployeeAdmin;
@@ -61,6 +75,8 @@ namespace Client1.ViewModel
         /// </summary>
         public CompanyViewModel()
         {
+            employeeList = new ObservableCollection<User>();
+            projects = new ObservableCollection<Project>();
         }
         public string LoggedInUser
         {
@@ -145,69 +161,95 @@ namespace Client1.ViewModel
             }
         }
 
-        public string PiUsernameAdmin
+        public string PiUsername
         {
             get
             {
-                return pi_username_admin;
+                return pi_username;
             }
 
             set
             {
-                pi_username_admin = value;
-                OnPropertyChanged("pi_username_admin");
+                pi_username= value;
+                OnPropertyChanged("pi_username");
             }
         }
-        public string PiPasswordAdmin
+        public string PiPassword
         {
             get
             {
-                return pi_password_admin;
+                return pi_password;
             }
 
             set
             {
-                pi_password_admin = value;
-                OnPropertyChanged("pi_password_admin");
+                pi_password = value;
+                OnPropertyChanged("pi_password");
             }
         }
-        public string PiNameAdmin
+        public string PiName
         {
             get
             {
-                return pi_name_admin;
+                return pi_name;
             }
 
             set
             {
-                pi_name_admin = value;
-                OnPropertyChanged("pi_name_admin");
+                pi_name = value;
+                OnPropertyChanged("pi_name");
             }
         }
-        public string PiLastnameAdmin
+        public string PiLastname
         {
             get
             {
-                return pi_lastname_admin;
+                return pi_lastname;
             }
 
             set
             {
-                pi_lastname_admin = value;
-                OnPropertyChanged("pi_lastname_admin");
+                pi_lastname = value;
+                OnPropertyChanged("pi_lastname");
             }
         }
-        public string PiEmailAdmin
+        public string PiEmail
         {
             get
             {
-                return pi_email_admin;
+                return pi_email;
             }
 
             set
             {
-                pi_email_admin = value;
-                OnPropertyChanged("pi_email_admin");
+                pi_email = value;
+                OnPropertyChanged("pi_email");
+            }
+        }
+        public string PiFrom
+        {
+            get
+            {
+                return pi_from;
+            }
+
+            set
+            {
+                pi_from = value;
+                OnPropertyChanged("pi_from");
+            }
+        }
+        public string PiTo
+        {
+            get
+            {
+                return pi_to;
+            }
+
+            set
+            {
+                pi_to = value;
+                OnPropertyChanged("pi_to");
             }
         }
         public string AePasswordAdmin
@@ -430,6 +472,59 @@ namespace Client1.ViewModel
                 OnPropertyChanged("EeEmployeeAdmin");
             }
         }
+
+        public string ApNamePo
+        {
+            get
+            {
+                return ap_name_po;
+            }
+
+            set
+            {
+                ap_name_po = value;
+                OnPropertyChanged("ap_name_po");
+            }
+        }
+        public string ApDescPo
+        {
+            get
+            {
+                return ap_desc_po;
+            }
+
+            set
+            {
+                ap_desc_po = value;
+                OnPropertyChanged("ap_desc_po");
+            }
+        }
+        public string ApFromPo
+        {
+            get
+            {
+                return ap_from_po;
+            }
+
+            set
+            {
+                ap_from_po = value;
+                OnPropertyChanged("ap_from_po");
+            }
+        }
+        public string ApToPo
+        {
+            get
+            {
+                return ap_to_po;
+            }
+
+            set
+            {
+                ap_to_po = value;
+                OnPropertyChanged("ap_to_po");
+            }
+        }
         #endregion
 
         #region Private Commands
@@ -439,7 +534,7 @@ namespace Client1.ViewModel
         private ICommand closeWindow;
         private ICommand adminAddUser;
         private ICommand adminEditUser;
-        private ICommand adminEditPi;
+        private ICommand poAddProject;
         #endregion
 
         #region Public Commands
@@ -466,11 +561,11 @@ namespace Client1.ViewModel
             }
         }
 
-        public ICommand AdminEditPi
+        public ICommand EditPi
         {
             get
             {
-                return adminEditPi ?? (adminEditPi = new RelayCommand(param => AdminEditPiExecution(param)));
+                return editPersonalInfo ?? (editPersonalInfo = new RelayCommand(param => EditPiExecution(param)));
             }
         }
 
@@ -488,7 +583,13 @@ namespace Client1.ViewModel
                 return adminEditUser ?? (adminEditUser = new RelayCommand(param => AdminEditUserExecution(param)));
             }
         }
-
+        public ICommand PoAddProject
+        {
+            get
+            {
+                return poAddProject ?? (poAddProject = new RelayCommand(param => PoAddProjectExecution(param)));
+            }
+        }
        
         #endregion
 
@@ -518,40 +619,77 @@ namespace Client1.ViewModel
             }
             else
             {
+                employeeList.Add(us);       //dodaj u listu prijavljenih
+
                 switch (us.Role)
                 {
                     case Roles.CEO:
                         AdminWindow adminWin = new AdminWindow();
                         
                         adminWin.Show();
-
-                        adminWin.pi_username_admin.Text = us.Username;          //personal info
+                        
+                        adminWin.pi_username.Text = us.Username;          //personal info
                         loggedInUser = us.Username;
-                        adminWin.pi_name_admin.Text = us.Name;
-                        adminWin.pi_lastname_admin.Text = us.LastName;
-                        adminWin.pi_password_admin.Text = us.Password;
-                        adminWin.pi_email_admin.Text = us.Email;
+                        adminWin.pi_name.Text = us.Name;
+                        adminWin.pi_lastname.Text = us.LastName;
+                        adminWin.pi_password.Text = us.Password;
+                        adminWin.pi_email.Text = us.Email;
 
                         adminWin.ae_roleComboBox_admin.ItemsSource = Enum.GetNames(typeof(Roles));    //add employee
                         adminWin.ee_roleComboBox_admin.ItemsSource = Enum.GetNames(typeof(Roles));
                         adminWin.ee_roleComboBox_admin.SelectedIndex = 4;
 
+                        foreach (Project proj in wrap.proxy.GetAllProjects())   //iz baze dodaj u observable listu sve projekte
+                        {
+                            projects.Add(proj);
+                        }
+
                         //wrap.mw.Close();
                         wrap.subwin = adminWin;
                         break;
                     case Roles.HR:
-                    case Roles.PO:
+                        HumanResourceWindow hrWin = new HumanResourceWindow();
+                        hrWin.Show();
+                        wrap.subwin = hrWin;
+                        hrWin.pi_username.Text = us.Username;          //personal info
+                        loggedInUser = us.Username;
+                        hrWin.pi_name.Text = us.Name;
+                        hrWin.pi_lastname.Text = us.LastName;
+                        hrWin.pi_password.Text = us.Password;
+                        hrWin.pi_email.Text = us.Email;
                         break;
                     case Roles.SM:
-                        EmployeeWindow empWin = new EmployeeWindow(us);
+                    case Roles.PO:
+                        ProductOwnerWindow poWin = new ProductOwnerWindow();
+                        poWin.Show();
+                        wrap.subwin = poWin;
+                        poWin.pi_username.Text = us.Username;          //personal info
+                        loggedInUser = us.Username;
+                        poWin.pi_name.Text = us.Name;
+                        poWin.pi_lastname.Text = us.LastName;
+                        poWin.pi_password.Text = us.Password;
+                        poWin.pi_email.Text = us.Email;
+                        break;
+                    case Roles.Employee:
+                        EmployeeWindow empWin = new EmployeeWindow();
                         empWin.Show();
+
+                        empWin.pi_username.Text = us.Username;          //personal info
+                        loggedInUser = us.Username;
+                        empWin.pi_name.Text = us.Name;
+                        empWin.pi_lastname.Text = us.LastName;
+                        empWin.pi_password.Text = us.Password;
+                        empWin.pi_email.Text = us.Email;
+                        empWin.pi_from.Text = us.WorkTimeStart;
+                        empWin.pi_to.Text = us.WorkTimeStart;
+
                         wrap.mw.Close();
                         break;
                 }
             }
         }
        
-        private void AdminEditPiExecution(object param)
+        private void EditPiExecution(object param)
         {
             User userEdit = new User();
             User oldUser = new User();
@@ -559,10 +697,12 @@ namespace Client1.ViewModel
 
             Context wrap = Context.getInstance();
 
-            userEdit.Name = PiNameAdmin;
-            userEdit.LastName = PiLastnameAdmin;
-            userEdit.Password = PiPasswordAdmin;
-            userEdit.Email = PiEmailAdmin;
+            userEdit.Name = PiName;
+            userEdit.LastName = PiLastname;
+            userEdit.Password = PiPassword;
+            userEdit.Email = PiEmail;
+            userEdit.WorkTimeStart = PiFrom;
+            userEdit.WorkTimeEnd = PiTo;
 
             wrap.proxy.EditUser(oldUser, userEdit);
             //wrap.subwin.Close();
@@ -622,6 +762,26 @@ namespace Client1.ViewModel
                 win.ee_listOfEmployees_admin.Items.Add(usr.Username);
             }   
             //wrap.subwin.Close();
+        }
+
+        private void PoAddProjectExecution(object param)
+        {
+            Context wrap = Context.getInstance();
+            ProductOwnerWindow win = ((ProductOwnerWindow)wrap.subwin);
+
+            Project p = new Project();
+            p.Name = ApNamePo;
+            p.Description = ApDescPo;
+            p.StartTime = ApFromPo;
+            p.Description = ApDescPo;
+            p.Po = LoggedInUser;
+
+            wrap.proxy.CreateProject(p);
+
+            win.ap_name_po.Clear();
+            win.ap_desc_po.Clear();
+            win.ap_from_po.Clear();
+            win.ap_to_po.Clear();
         }
 
         private void CloseWindowExecution(object param)

@@ -29,9 +29,6 @@ namespace Common
         User GetUser(string username);
 
         [OperationContract]
-        List<User> GetOnlineUsers();
-
-        [OperationContract]
         bool CreateProject(Project prj);
 
         [OperationContract]

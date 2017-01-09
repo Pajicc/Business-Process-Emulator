@@ -80,6 +80,7 @@
     <Compile Include="HumanResourceWindow.xaml.cs">
       <DependentUpon>HumanResourceWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OutsourcingProxy.cs" />
     <Compile Include="ProductOwnerWindow.xaml.cs">
       <DependentUpon>ProductOwnerWindow.xaml</DependentUpon>
     </Compile>

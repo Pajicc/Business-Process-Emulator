@@ -175,9 +175,9 @@ namespace SRV1.Access
         {
             using (var access = new AccessDB())
             {
-                User usr = access.Users.Find(prj.Po.Username);
+                User usr = access.Users.Find(prj.Po);
 
-                prj.Po = usr;
+                prj.Po = usr.Username;
 
                 access.Projects.Add(prj);
 

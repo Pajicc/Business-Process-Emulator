@@ -12,15 +12,15 @@ namespace Common
     public class UserStory
     {
         private int id;
-        private string ime = string.Empty;
-        private string name = string.Empty;
-        private string criteria = string.Empty;
-        private bool approved = false;
-        private double startTime = 0;
-        private double endTime = 0;
+        private string ime;
+        private string name;
+        private string criteria;
+        private bool approved;
+        private string startTime;
+        private string endTime;
 
         public UserStory() { }
-        public UserStory(string ime, string criteria, double start, double end)
+        public UserStory(string ime, string criteria, string start, string end)
         {
             this.ime = ime;
             this.criteria = criteria;
@@ -45,7 +45,7 @@ namespace Common
             get { return name; }
             set { name = value; }
         }
-        public double EndTime
+        public string EndTime
         {
             get { return endTime; }
             set { endTime = value; }
@@ -60,7 +60,7 @@ namespace Common
             get { return criteria; }
             set { criteria = value; }
         }
-        public double StartTime
+        public string StartTime
         {
             get { return startTime; }
             set { startTime = value; }

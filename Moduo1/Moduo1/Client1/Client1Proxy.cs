@@ -123,23 +123,6 @@ namespace Client1
             return u;
         }
 
-        public List<User> GetOnlineUsers()
-        {
-            List<User> onlineUsers = new List<User>();
-
-            try
-            {
-                onlineUsers = factory.GetOnlineUsers();
-                Console.WriteLine("GetOnlineUsers() >> succeded");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error while trying to GetOnlineUsers(). {0}", e.Message);
-            }
-
-            return onlineUsers;
-        }
-
         public bool CreateProject(Project prj)
         {
             bool allowed = false;
@@ -191,6 +174,6 @@ namespace Client1
             }
 
             return projekti;
-        }
+        }      
     }
 }

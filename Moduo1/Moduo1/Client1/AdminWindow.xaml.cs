@@ -29,10 +29,17 @@ namespace Client1
             wrapper.subwin = this;
             this.DataContext = wrapper.cvm;
 
+            sendReqButton.IsEnabled = false;
+
             foreach (User usr in wrapper.proxy.GetAllEmployees())
             {
                 ee_listOfEmployees_admin.Items.Add(usr.Username);
-            }   
+            }
+
+            foreach (string comp in wrapper.outsourcingProxy.GetAllOutsourcingCompanies())
+            {
+                outsourcingCompanies.Items.Add(comp);
+            }  
 
         }
 
@@ -57,5 +64,25 @@ namespace Client1
             }
                
         }
+
+        private void sendReqButton_Click(object sender, RoutedEventArgs e)
+        {
+            Context wrap = Context.getInstance();
+            bool app = wrap.outsourcingProxy.PartnershipRequest(outsourcingCompanies.SelectedItem.ToString());
+
+            if (app)
+            {
+                MessageBox.Show("Approved!!");
+                partnerCompanies.Items.Add(outsourcingCompanies.SelectedItem.ToString());
+            }
+                
+        }
+
+        private void outsourcingCompanies_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            sendReqButton.IsEnabled = true;
+        }
+
+
     }
 }

@@ -7,12 +7,12 @@ using Common;
 using SRV1.Access;
 using System.Net.Mail;
 using System.Net;
-
+using System.Windows.Forms;
 namespace SRV1
 {
     public class CompanyService : ICompanyService
     {
-        public List<User> onlineUsers = new List<User>();
+       // public List<User> onlineUsers = new List<User>();
 
         public User Login(string username, string pass)
         {
@@ -53,12 +53,13 @@ namespace SRV1
             DateTime dt = DateTime.Now;
             if (ProveriDaLiKasni(dt, u.WorkTimeStart))
             {
+                DialogResult result = MessageBox.Show("You are late for work!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 //SendMail(u);
             }
 
             if (u != null)
             {
-                onlineUsers.Add(u);
+                //onlineUsers.Add(u);
                 return u;
             }   
             else
@@ -79,7 +80,7 @@ namespace SRV1
 
             if (done)
             {
-                onlineUsers.Remove(u);
+               // onlineUsers.Remove(u);
             }
 
             return done;
@@ -132,13 +133,6 @@ namespace SRV1
                 return u;
             else
                 return null;
-        }
-
-        public List<User> GetOnlineUsers()
-        {
-            Console.WriteLine("Pozvana funkcija za GetOnlineUsers!");
-
-            return onlineUsers;
         }
 
         public bool ProveriDaLiKasni(DateTime ulogovao, string timestart)

@@ -21,46 +21,14 @@ namespace Client1
     /// </summary>
     public partial class EmployeeWindow : Window
     {
-        User user = new User();
-
-        public EmployeeWindow(User u)
+        public EmployeeWindow()
         {
             InitializeComponent();
-            user = u;
 
-            textBox_Copy5.Text = user.Username;
-            textBox_Copy2.Text = user.Name;
-            textBox.Text = user.LastName;
-            textBox_Copy.Text = user.Password;
-            textBox_Copy1.Text = user.Email;
-            textBox_Copy4.Text = user.WorkTimeStart.ToString();
-            textBox_Copy3.Text = user.WorkTimeEnd.ToString();
-        }
+            Context wrapper = Context.getInstance();
+            wrapper.subwin = this;
+            this.DataContext = wrapper.cvm;
 
-        private void EditEmployee_Click(object sender, RoutedEventArgs e)
-        {
-            /*
-            textBox_Copy2 //name
-            textBox         //lastname
-            textBox_Copy    //pass
-                textBox_Copy1 //email
-                textBox_Copy4 //from,
-                    textBox_Copy3 //to
-             */
-
-            User userEdit = new User();
-
-            userEdit.Username = textBox_Copy5.Text;
-            userEdit.Name = textBox_Copy2.Text;
-            userEdit.LastName = textBox.Text;
-            userEdit.Password = textBox_Copy.Text;
-            userEdit.Email = textBox_Copy1.Text;
-            userEdit.Role = Roles.Employee;
-            userEdit.WorkTimeStart = textBox_Copy4.Text;
-            userEdit.WorkTimeEnd = textBox_Copy3.Text;
-
-
-            MainWindow.proxy.EditUser(user, userEdit);
         }
     }
 }

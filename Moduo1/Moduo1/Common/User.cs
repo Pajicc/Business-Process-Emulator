@@ -20,14 +20,14 @@ namespace Common
     [Table("Users")]
     public class User
     {
-        private string username = string.Empty;
-        private string password = string.Empty;
-        private string name = string.Empty;
-        private string lastName = string.Empty;
-        private string email = string.Empty;
+        private string username;
+        private string password;
+        private string name;
+        private string lastName;
+        private string email;
         private bool loggedIn = false;
-        private string workTimeStart = string.Empty;
-        private string workTimeEnd = string.Empty;
+        private string workTimeStart;
+        private string workTimeEnd;
         private Roles role;
 
         public User() { }

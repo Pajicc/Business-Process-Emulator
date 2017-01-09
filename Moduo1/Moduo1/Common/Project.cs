@@ -11,16 +11,16 @@ namespace Common
     [Table("Projects")]
     public class Project
     {
-        private string name = string.Empty;    
-        private string description = string.Empty;        
-        private double startTime = 0;
-        private double endTime = 0;
+        private string name;
+        private string description;
+        private string startTime;
+        private string endTime;
         private bool active = false;
-        private User po;
+        private string po;
         private List<UserStory> userStories = new List<UserStory>();
 
         public Project() { }
-        public Project(string name, string desc, double start, double end, User po, List<UserStory> userStories)
+        public Project(string name, string desc, string start, string end, string po, List<UserStory> userStories)
         {
             this.name = name;
             this.description = desc;
@@ -46,18 +46,18 @@ namespace Common
             get { return description; }
             set { description = value; }
         }
-        public double StartTime
+        public string StartTime
         {
             get { return startTime; }
             set { startTime = value; }
         }
-        public double EndTime
+        public string EndTime
         {
             get { return endTime; }
             set { endTime = value; }
         }
 
-        public User Po
+        public string Po
         {
             get { return po; }
             set { po = value; }

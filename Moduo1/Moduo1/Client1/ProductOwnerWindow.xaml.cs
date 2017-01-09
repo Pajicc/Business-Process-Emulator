@@ -22,6 +22,11 @@ namespace Client1
         public ProductOwnerWindow()
         {
             InitializeComponent();
+
+            Context wrapper = Context.getInstance();
+            wrapper.subwin = this;
+            this.DataContext = wrapper.cvm;
+
         }
     }
 }
