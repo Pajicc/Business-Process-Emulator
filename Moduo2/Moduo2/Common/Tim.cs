@@ -10,6 +10,8 @@ namespace Common
     {
         private List<User> employees = new List<User>();
 
+        private string nazivTima;
+      
         private User tl = new User();
 
         public User Tl
@@ -22,6 +24,12 @@ namespace Common
         {
             get { return employees; }
             set { employees = value; }
+        }
+
+        public string NazivTima
+        {
+            get { return nazivTima; }
+            set { nazivTima = value; }
         }
         
     }

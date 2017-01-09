@@ -41,6 +41,17 @@ namespace Client2
             {
                 listOfEmployees.Items.Add(usr.Username);
             }
+           
+
+            foreach (string usr in MainWindow.proxy.GetCompanyes())
+            {
+                combobox_projekti.Items.Add(usr);
+            }
+            foreach (Tim tims in MainWindow.proxy.GetAllTims())
+            {
+                timovi_ComboBox.Items.Add(tims.NazivTima);
+            }
+            
         }
 
         private void addEmployee_Click(object sender, RoutedEventArgs e)
@@ -102,6 +113,25 @@ namespace Client2
         private void button1_Click(object sender, RoutedEventArgs e)
         {
 
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string nazivT = (string)timovi_ComboBox.SelectedItem;
+
+            foreach(Tim t in MainWindow.proxy.GetAllTims())
+            {
+                if (t.NazivTima == nazivT)
+                {
+                    tB_tim.Text += "Naziv tima: " + t.NazivTima + "\n";
+                    tB_tim.Text += "Vodja tima: " + t.Tl.Username + "\n";
+                    for (int i = 0; i < t.Employees.Count; i++)
+                    {
+                        tB_tim.Text += "Zaposleni[" + i + "]:" + "\t" + t.Employees[i].Name + "\n";
+                    }
+                }
+            }
 
         }
 

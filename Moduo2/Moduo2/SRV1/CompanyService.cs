@@ -13,6 +13,8 @@ namespace SRV2
         static public List<User> onlineUsers = new List<User>();
         static public List<OutsourcingCompany> outsrc = new List<OutsourcingCompany>();
         static public List<Tim> timovi = new List<Tim>();
+        
+
 
 
         public User Login(string username, string pass)
@@ -88,6 +90,17 @@ namespace SRV2
             return lista;
         }
 
+        public List<string> GetCompanyes()
+        {
+            Console.WriteLine("Getcoomp() ok!");
+
+            List<string> lista = SRV2.Wcf.kompanije;
+
+            
+
+            return lista;
+        }
+
         public User GetUser(string username)
         {
             Console.WriteLine("GetUsername: " + username);
@@ -106,6 +119,14 @@ namespace SRV2
             Console.WriteLine("Pozvana funkcija za GetOnlineUsers!");
 
             return onlineUsers;
+        }
+
+
+        public List<Tim> GetAllTims()
+        {
+            Console.WriteLine("GetAllTims() ok!");
+
+            return timovi;
         }
     }
 }
