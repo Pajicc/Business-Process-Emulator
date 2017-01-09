@@ -1,4 +1,4 @@
-
+rf
 Klase:
   User - unosicemo ih u bazu
 	ime, prz, password, email
@@ -17,6 +17,7 @@ Klase:
     pocetak, rokZavrsetka
 	User productOwner
     KorisnickePrice korisnickePrice	
+uikl
 
   KorisnickePrice:
      
