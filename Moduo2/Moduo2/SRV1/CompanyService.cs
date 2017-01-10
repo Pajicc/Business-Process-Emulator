@@ -132,7 +132,45 @@ namespace SRV2
 
         public List<Project> GetProjects()
         {
-            return SRV2.CommonService.projekti;
+            Console.WriteLine("Ucitana lista Projekata!");
+
+            List<Project> lista = new List<Project>();
+
+            lista = DB.Instance.GetAllProjects();
+
+            return lista;
+            
+        }
+
+
+        public bool AddProjectToBase(Project proj)
+        {
+
+            bool done = false;
+
+            Console.WriteLine("Dodat nov Projekat!");
+            
+
+            done = DB.Instance.AddProject(proj);
+
+            return done;
+            
+        }
+
+
+
+
+
+        public bool AddTeam(Tim tim)
+        {
+            bool done = false;
+
+            Console.WriteLine("Dodat nov Tim!");
+
+
+            done = DB.Instance.AddTeam(tim);
+
+            return done;
         }
     }
 }

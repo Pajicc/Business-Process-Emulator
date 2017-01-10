@@ -41,7 +41,7 @@ namespace SRV2
             
             Tim tim1 = new Tim();
             tim1.Tl = SRV2.Access.DB.Instance.GetUser("l");
-            tim1.Employees = usrs;
+            //tim1.Employees = usrs;
             tim1.NazivTima = "trimDim";
             SRV2.CompanyService.timovi.Add(tim1);
 
