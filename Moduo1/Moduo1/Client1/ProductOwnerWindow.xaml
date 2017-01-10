@@ -36,7 +36,7 @@
                     <Label x:Name="label_Copy5" Content="from:" HorizontalAlignment="Left" Margin="127,192,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="label_Copy6" Content="to:" HorizontalAlignment="Left" Margin="231,192,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="ap_from_po" HorizontalAlignment="Left" Height="23" Margin="165,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Text="{Binding ApFromPo}"/>
-                    <TextBox x:Name="ap_desc_po" HorizontalAlignment="Left" Height="95" Margin="132,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding ApDescriptionPo}"/>
+                    <TextBox x:Name="ap_desc_po" HorizontalAlignment="Left" Height="95" Margin="132,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding ApDescPo}"/>
                     <Label x:Name="label1_Copy1" Content="Created user stories:" HorizontalAlignment="Left" Margin="393,19,0,0" VerticalAlignment="Top"/>
                     <Button Content="Add project" HorizontalAlignment="Left" Margin="231,253,0,0" VerticalAlignment="Top" Width="90" Height="24" Command="{Binding PoAddProject}"/>
                     <Button Content="Add more user stories" HorizontalAlignment="Left" Margin="393,201,0,0" VerticalAlignment="Top" Width="127" Height="24"/>

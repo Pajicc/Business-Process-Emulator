@@ -37,7 +37,7 @@ namespace SRV1
 
             #region addovanjeCeoiHiringCompanies
             //addovanje CEO i HiringCompanies
-            /*List<User> users = new List<User>();
+            List<User> users = new List<User>();
 
             User test = new User("test", "test", "test@li.com", "09:00:00", "12:00:00", Roles.CEO);
             users.Add(test);
@@ -74,29 +74,32 @@ namespace SRV1
 
             using (var access = new AccessDB())
             {
-                foreach(User us in users)
+                if(access.Users == null)
                 {
-                    access.Users.Add(us);
+                    foreach (User us in users)
+                    {
+                        access.Users.Add(us);
+                    }
+
+                    int i = access.SaveChanges();
+
+                    if (i > 0)
+                    {
+                        Console.WriteLine("Uspesno kreirani korisnici!");
+                    }
+
+                    access.HiringCompanies.Add(hc1);
+                    access.HiringCompanies.Add(hc2);
+                    access.HiringCompanies.Add(hc3);
+
+                    int j = access.SaveChanges();
+
+                    if (j > 0)
+                    {
+                        Console.WriteLine("Uspesno kreirane kompanije!");
+                    }
                 }
-
-                int i = access.SaveChanges();
-
-                if (i>0)
-                {
-                    Console.WriteLine("Uspesno kreirani korisnici!");
-                }
-
-                access.HiringCompanies.Add(hc1);
-                access.HiringCompanies.Add(hc2);
-                access.HiringCompanies.Add(hc3);
-
-                int j = access.SaveChanges();
-
-                if (j > 0)
-                {
-                    Console.WriteLine("Uspesno kreirane kompanije!");
-                }
-            }*/
+            }
             #endregion
             
             Console.ReadLine();

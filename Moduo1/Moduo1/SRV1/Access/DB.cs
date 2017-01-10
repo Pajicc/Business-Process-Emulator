@@ -370,10 +370,13 @@ namespace SRV1.Access
                             access.HiringCompanies.Find(hc.Name).ParnterCompanies.Add(partner);
 
                         int k = access.SaveChanges();
-                        return true;
+
+                        if(k > 0)
+                            return true;
                     }
                 }     
             }
+
             return false;
         }
     }
