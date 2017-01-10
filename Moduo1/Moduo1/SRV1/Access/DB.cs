@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Common;
 using SRV1;
+using System.Windows.Forms;
 
 namespace SRV1.Access
 {
@@ -38,7 +39,7 @@ namespace SRV1.Access
             using (var access = new AccessDB())
             {
                 access.Users.Add(user);
-                
+
                 int i = access.SaveChanges();
 
                 if (i > 0)
@@ -51,7 +52,7 @@ namespace SRV1.Access
                     Program.log.Info("Failed to add to database! User: " + user.Username);
                     return false;
                 }
-               
+
             }
         }
 
@@ -61,7 +62,7 @@ namespace SRV1.Access
         /// <param name="username"></param>
         /// <param name="pass"></param>
         /// <returns></returns>
-        public User CheckUser(string username, string pass)
+        public bool LoginUser(string username, string pass)
         {
             using (var access = new AccessDB())
             {
@@ -69,14 +70,35 @@ namespace SRV1.Access
                 {
                     if (access.Users.Find(username).Password == pass)
                     {
-                        access.Users.Find(username).LoggedIn = true;
-                        Program.log.Info("Check username for login: " + username);
-                        return access.Users.Find(username);
+                        if (access.Users.Find(username).LoggedIn != true)
+                        {
+                            access.Users.Find(username).LoggedIn = true;
+
+                            access.SaveChanges();
+
+                            Program.log.Info("Check username for login: " + username);
+                            //return access.Users.Find(username);
+                            return true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("You are already logged in!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+
                     }
+                    else
+                    {
+                        MessageBox.Show("Wrong password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Username doesn't exist!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
                 Program.log.Info("Check username for login failed! Username: " + username);
-                return null;
+                //return null;
+                return false;
             }
         }
 
@@ -93,6 +115,9 @@ namespace SRV1.Access
                 if (access.Users.Find(username).Username == username)
                 {
                     access.Users.Find(username).LoggedIn = false;
+
+                    access.SaveChanges();
+
                     Program.log.Info("User: " + username + " has been logged out!");
                     return true;
                 }
@@ -128,35 +153,33 @@ namespace SRV1.Access
         /// <param name="userMain"></param>
         /// <param name="userEdit"></param>
         /// <returns></returns>
-        public bool EditUser(User userMain, User userEdit)
+        public bool EditUser(User userEdit)
         {
             User usr = new User();
 
             using (var access = new AccessDB())
             {
-                if (access.Users.Find(userMain.Username).Username == userMain.Username)
+                if (access.Users.Find(userEdit.Username).Username == userEdit.Username)
                 {
-                    access.Users.Find(userMain.Username).Name = userEdit.Name;
-                    access.Users.Find(userMain.Username).LastName = userEdit.LastName;
-                    access.Users.Find(userMain.Username).Password = userEdit.Password;
-                    access.Users.Find(userMain.Username).Email = userEdit.Email;
-                    access.Users.Find(userMain.Username).Role = userEdit.Role;
-                    access.Users.Find(userMain.Username).WorkTimeStart = userEdit.WorkTimeStart;
-                    access.Users.Find(userMain.Username).WorkTimeEnd = userEdit.WorkTimeEnd;
-
-                    
+                    access.Users.Find(userEdit.Username).Name = userEdit.Name;
+                    access.Users.Find(userEdit.Username).LastName = userEdit.LastName;
+                    access.Users.Find(userEdit.Username).Password = userEdit.Password;
+                    access.Users.Find(userEdit.Username).Email = userEdit.Email;
+                    access.Users.Find(userEdit.Username).Role = userEdit.Role;
+                    access.Users.Find(userEdit.Username).WorkTimeStart = userEdit.WorkTimeStart;
+                    access.Users.Find(userEdit.Username).WorkTimeEnd = userEdit.WorkTimeEnd;
 
                     int k = access.SaveChanges();
 
                     if (k > 0)
                     {
-                        Program.log.Info("User: " + userMain.Username + " has been edited!");
+                        Program.log.Info("User: " + userEdit.Username + " has been edited!");
                         return true;
                     }
                 }
             }
 
-            Program.log.Info("User: " + userMain.Username + " wasnt edited ERROR!");
+            Program.log.Info("User: " + userEdit.Username + " wasnt edited ERROR!");
             return false;
         }
 
@@ -185,6 +208,30 @@ namespace SRV1.Access
                 Program.log.Info("GetAllEmployee function has been called");
 
                 return usrEmpl;
+            }
+        }
+
+        public List<User> GetAllOnlineUsers()
+        {
+            List<User> usrs = new List<User>();
+
+            List<User> usrOn = new List<User>();
+
+            using (var access = new AccessDB())
+            {
+                usrs = access.Users.ToList();
+
+                foreach (User uu in usrs)
+                {
+                    if (uu.LoggedIn == true)
+                    {
+                        usrOn.Add(uu);
+                    }
+                }
+
+                Program.log.Info("GetAllOnlineUsers function has been called");
+
+                return usrOn;
             }
         }
 
@@ -268,15 +315,15 @@ namespace SRV1.Access
             using (var access = new AccessDB())
             {
                 List<UserStory> usdb = new List<UserStory>();
-                foreach(UserStory us in access.UserStories)
+                foreach (UserStory us in access.UserStories)
                 {
-                    if(us.Name == proj.Name)
+                    if (us.Name == proj.Name)
                     {
                         usdb.Add(us);
                     }
                 }
 
-                foreach(UserStory usrstr in usdb)
+                foreach (UserStory usrstr in usdb)
                 {
                     access.UserStories.Remove(usrstr);
                 }
@@ -293,7 +340,7 @@ namespace SRV1.Access
                     {
                         Program.log.Info("Project: " + projDB.Name + " is deleted");
                         return true;
-                    } 
+                    }
                 }
 
                 Program.log.Info("Failed to delete Project: " + projDB.Name);
@@ -358,7 +405,7 @@ namespace SRV1.Access
 
                 foreach (Partner part in access.Partners)
                 {
-                    if(part.ImeHiringKompanije == findHC.Name)
+                    if (part.ImeHiringKompanije == findHC.Name)
                     {
                         partCompanies.Add(part.ImeOutKompanije);
                     }
@@ -376,7 +423,7 @@ namespace SRV1.Access
 
                 foreach (HiringCompany hc in access.HiringCompanies)
                 {
-                    if(hc.CEO == ceo)
+                    if (hc.CEO == ceo)
                     {
                         findHC = hc;
                     }

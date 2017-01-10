@@ -14,64 +14,59 @@ namespace SRV1
 {
     public class CompanyService : ICompanyService
     {
-       // public List<User> onlineUsers = new List<User>();
-
-        public User Login(string username, string pass)
+        public bool Login(string username, string pass)
         {
             Console.WriteLine("Username: " + username + "\nPassword: " + pass);
 
-            User u = new User();
-            u = DB.Instance.CheckUser(username, pass);
+            bool loggedIn = DB.Instance.LoginUser(username, pass);
 
-            u.LoggedIn = true;
-
-            #region testProjekat(add/remove)
-            /* //testiranje za addovanje i brisanje projekta
-            Project prj = new Project();
-            List<UserStory> us = new List<UserStory>();
-
-            prj.Name = "Projekat24411";
-            prj.Active = true;
-            prj.Description = "testProjekat";
-            prj.Po = GetUser("poTest");
-
-            for (int i = 0; i < 5; i++)
+            if (loggedIn)
             {
-                UserStory story = new UserStory();
-                story.Ime = "us" + i;
-                story.Criteria = "criteria" + i;
+                User u = DB.Instance.GetUser(username);
 
-                us.Add(story);
-            }
+                #region testProjekat(add/remove)
+                /* //testiranje za addovanje i brisanje projekta
+                Project prj = new Project();
+                List<UserStory> us = new List<UserStory>();
 
-            prj.UserStories = us;
+                prj.Name = "Projekat24411";
+                prj.Active = true;
+                prj.Description = "testProjekat";
+                prj.Po = GetUser("poTest");
 
-            //CreateProject(prj);
+                for (int i = 0; i < 5; i++)
+                {
+                    UserStory story = new UserStory();
+                    story.Ime = "us" + i;
+                    story.Criteria = "criteria" + i;
 
-            DeleteProject(prj);    
-            */
-            #endregion
+                    us.Add(story);
+                }
 
-            DateTime dt = DateTime.Now;
-            if (ProveriDaLiKasni(dt, u.WorkTimeStart))
-            {
-                DialogResult result = MessageBox.Show("You are late for work!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //SendMail(u);
-            }
+                prj.UserStories = us;
 
-            if (u != null)
-            {
-                //onlineUsers.Add(u);
+                //CreateProject(prj);
+
+                DeleteProject(prj);    
+                */
+                #endregion
+
+                DateTime dt = DateTime.Now;
+                if (ProveriDaLiKasni(dt, u.WorkTimeStart))
+                {
+                    MessageBox.Show("You are late for work!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //SendMail(u);
+                }
+
                 Program.log.Info("User: " + username + " Has been loggedIn!");
-                return u;
+                return true;
             }
             else
             {
                 Program.log.Info("Failed login! User: " + username);
-                return null; 
+                return false;
             }
 
-                
         }
 
         public bool LogOut(string username, string pass)
@@ -79,16 +74,10 @@ namespace SRV1
             bool done = false;
             Console.WriteLine("User: " + username + " is now logged out.");
 
-            User u = new User();
-            u = DB.Instance.CheckUser(username, pass);
-
-            u.LoggedIn = false;
-
             done = DB.Instance.LogOut(username, pass);
 
             return done;
         }
-
         public bool AddUser(User user)
         {
             bool done = false;
@@ -102,14 +91,26 @@ namespace SRV1
             return done;
         }
 
-        public bool EditUser(User userMain, User editUser)
+        public List<User> GetAllOnlineUsers()
+        {
+            Console.WriteLine("Poslata listaonline Usera!");
+
+            List<User> lista = new List<User>();
+
+            lista = DB.Instance.GetAllOnlineUsers();
+
+            return lista;
+        }
+
+
+        public bool EditUser(User editUser)
         {
             bool done = false;
 
             Console.WriteLine("Editovan User!");
             Console.WriteLine("Username: " + editUser.Username + "\nPassword: " + editUser.Password);
 
-            done = DB.Instance.EditUser(userMain, editUser);
+            done = DB.Instance.EditUser(editUser);
 
             return done;
         }

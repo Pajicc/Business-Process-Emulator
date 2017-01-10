@@ -10,8 +10,9 @@ namespace Common
     [ServiceContract]
     public interface ICompanyService
     {
+
         [OperationContract]
-        User Login(string username, string pass);
+        bool Login(string username, string pass);
 
         [OperationContract]
         bool LogOut(string username, string pass);
@@ -20,10 +21,13 @@ namespace Common
         bool AddUser(User user);
 
         [OperationContract]
-        bool EditUser(User userMain, User editUser);
+        bool EditUser(User editUser);
 
         [OperationContract]
         List<User> GetAllEmployees();
+
+        [OperationContract]
+        List<User> GetAllOnlineUsers();
 
         [OperationContract]
         User GetUser(string username);
@@ -45,6 +49,6 @@ namespace Common
 
         [OperationContract]
         bool AddPartnerCompany(string ceo, string partner);
-     
+
     }
 }

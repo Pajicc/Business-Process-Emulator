@@ -18,13 +18,13 @@ namespace Client1
 			factory = this.CreateChannel();
 		}
 
-        public User Login(string username, string pass)
+        public bool Login(string username, string pass)
         {
-            User u = new User();
+            bool allowed = false;
 
             try
             {
-                u = factory.Login(username, pass);
+                allowed = factory.Login(username, pass);
                 Console.WriteLine("Login() >> succeded");
             }
             catch (Exception e)
@@ -32,7 +32,7 @@ namespace Client1
                 Console.WriteLine("Error while trying to Login(). {0}", e.Message);
             }
 
-            return u;
+            return allowed;
         }
 
         public bool LogOut(string username, string pass)
@@ -71,13 +71,14 @@ namespace Client1
             return allowed;
         }
 
-        public bool EditUser(User userMain, User editUser)
+
+        public bool EditUser(User editUser)
         {
             bool allowed = false;
 
             try
             {
-                factory.EditUser(userMain, editUser);
+                factory.EditUser(editUser);
                 Console.WriteLine("EditUser() >> succeded");
                 allowed = true;
             }
@@ -88,6 +89,7 @@ namespace Client1
 
             return allowed;
         }
+
 
         public List<User> GetAllEmployees()
         {
@@ -101,6 +103,22 @@ namespace Client1
             catch (Exception e)
             {
                 Console.WriteLine("Error while trying to GetAllEmployees(). {0}", e.Message);
+            }
+
+            return allEmpl;
+        }
+        public List<User> GetAllOnlineUsers()
+        {
+            List<User> allEmpl = new List<User>();
+
+            try
+            {
+                allEmpl = factory.GetAllOnlineUsers();
+                Console.WriteLine("GetAllOnlineUsers() >> succeded");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while trying to GetAllOnlineUsers(). {0}", e.Message);
             }
 
             return allEmpl;
