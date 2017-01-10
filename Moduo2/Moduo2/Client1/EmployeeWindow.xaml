@@ -28,6 +28,7 @@
                     <Label x:Name="label_Copy6" Content="Username:" HorizontalAlignment="Left" Margin="49,11,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="label1" Content=":" HorizontalAlignment="Left" Margin="183,179,0,0" VerticalAlignment="Top" Height="26"/>
                     <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="23" Margin="196,182,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="17" RenderTransformOrigin="0.2,-0.739" />
+                    <Button Content="Logout" HorizontalAlignment="Left" Margin="255,240,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="All employees" Margin="44,-3,-90,1">

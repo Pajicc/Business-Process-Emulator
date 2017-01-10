@@ -25,6 +25,7 @@
                     <Label x:Name="label_Copy2" Content="Name:" HorizontalAlignment="Left" Margin="49,74,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="textBox_Copy3" HorizontalAlignment="Left" Height="23" Margin="132,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
                     <Label x:Name="label_Copy3" Content="Last name:" HorizontalAlignment="Left" Margin="49,105,0,0" VerticalAlignment="Top"/>
+                    <Button Content="Button" HorizontalAlignment="Left" Margin="363,244,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_2"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Edit employee" Margin="109,-2,-122,2">
