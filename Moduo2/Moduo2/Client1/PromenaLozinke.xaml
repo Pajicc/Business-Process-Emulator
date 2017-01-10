@@ -1,0 +1,16 @@
+﻿<Window x:Class="Client2.PromenaLozinke"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="PromenaLozinke" Height="300" Width="300">
+    <Grid>
+        <Label Content="Username :" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="80"/>
+        <TextBox HorizontalAlignment="Left" Name="tb1" Height="23" Margin="120,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="PROMENA LOZINKE NAKON 6 MESECI" HorizontalAlignment="Left" Margin="43,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="Stara Lozinka:" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Width="89"/>
+        <Label Content="Nova Lozinka:" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top" Width="89"/>
+        <TextBox HorizontalAlignment="Left" x:Name="tb2" Height="23" Margin="120,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" x:Name="tb3" Height="23" Margin="120,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Apply" HorizontalAlignment="Left" Margin="143,177,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+
+    </Grid>
+</Window>

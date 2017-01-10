@@ -33,6 +33,43 @@ namespace Client2
             string address = "net.tcp://localhost:9999/CompanyService";
             proxy = new Client1Proxy(binding, new EndpointAddress(new Uri(address)));
 
+            List<User> useri = new List<User>();
+            useri= proxy.GetAllUsers();
+
+            foreach (User usr in MainWindow.proxy.GetAllUsers())
+            {
+                DateTime trenutno= DateTime.Now;
+                
+                if(trenutno.Day!=usr.Vremelozinka.Day)
+                {
+                    //MessageBox.Show(usr.Username + "MOra da promeni lozinku");
+                    PromenaLozinke win = new PromenaLozinke(usr);
+                    win.Show();
+                    
+                }
+                else if(trenutno.Hour!=usr.Vremelozinka.Hour)
+                {
+                    //MessageBox.Show(usr.Username + "MOra da promeni lozinku");
+                    PromenaLozinke win = new PromenaLozinke(usr);
+                    win.Show();
+
+
+                }
+                else if ((trenutno.Minute - usr.Vremelozinka.Minute)>2)
+                {
+                  //  MessageBox.Show(usr.Username + "MOra da promeni lozinku");
+                    PromenaLozinke win = new PromenaLozinke(usr);
+                    win.Show();
+
+                    
+
+
+
+                }
+
+
+            }
+
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {

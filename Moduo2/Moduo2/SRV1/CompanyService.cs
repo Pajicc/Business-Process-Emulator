@@ -216,5 +216,29 @@ namespace SRV2
 
 
         }
+
+
+        public List<User> GetAllUsers()
+        {
+            Console.WriteLine("Ucitana lista Usera!");
+
+            List<User> lista = new List<User>();
+
+            lista = DB.Instance.GetAllUsers();
+
+            return lista;
+        }
+
+
+        public bool UpdatePass(string username, string pass)
+        {
+            bool done = false;
+
+            Console.WriteLine("Updated pass for user "+ username);
+
+            done = DB.Instance.UpdatePass(username, pass);
+
+            return done;
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using Common;
+using System;
 
 namespace Client2
 {
@@ -24,6 +25,8 @@ namespace Client2
             
             u.Username = textbox1.Text;       //Dodavanje usera - za punjenje baze
             u.Password = textbox2.Password;
+            u.Vremelozinka = DateTime.Now;
+                
 
             MainWindow.proxy.AddUser(u);
         }

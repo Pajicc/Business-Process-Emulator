@@ -287,5 +287,42 @@ namespace Client2
 
             return allowed;
         }
+
+
+        public List<User> GetAllUsers()
+        {
+            List<User> allEmpl = new List<User>();
+
+            try
+            {
+                allEmpl = factory.GetAllUsers();
+                Console.WriteLine("GetAllUSers() >> succeded");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while trying to GetAllUsers(). {0}", e.Message);
+            }
+
+            return allEmpl;
+        }
+
+
+        public bool UpdatePass(string username, string pass)
+        {
+            bool allowed = false;
+
+            try
+            {
+                factory.UpdatePass(username, pass);
+                Console.WriteLine("UpdatePass() >> succeded");
+                allowed = true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while trying to UpdatePass(). {0}", e.Message);
+            }
+
+            return allowed;
+        }
     }
 }

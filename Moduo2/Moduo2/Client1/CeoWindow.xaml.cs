@@ -101,6 +101,8 @@ namespace Client2
             u1.Password = textBox3_Copy.Text;
             u1.Email = textBox3_Copy1.Text;
             u1.Role = (Roles)roleComboBox.SelectedIndex;
+            u1.Vremelozinka = DateTime.Now;
+                
 
             MainWindow.proxy.AddUser(u1);
         }

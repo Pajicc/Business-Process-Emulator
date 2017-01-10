@@ -78,6 +78,9 @@
       <DependentUpon>CeoWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Client1Proxy.cs" />
+    <Compile Include="PromenaLozinke.xaml.cs">
+      <DependentUpon>PromenaLozinke.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TeamLeader.xaml.cs">
       <DependentUpon>TeamLeader.xaml</DependentUpon>
     </Compile>
@@ -100,6 +103,10 @@
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PromenaLozinke.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TeamLeader.xaml">
       <SubType>Designer</SubType>

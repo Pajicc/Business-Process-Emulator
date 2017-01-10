@@ -33,6 +33,8 @@ namespace Common
         private int workTimeEnd = 0;
         private int workTimeEndMin = 0;
         private Roles role;
+        private DateTime vremelozinka = new DateTime();
+        
 
         public User() { }
         public User( string name, string pass, string email, int starth,int startm, int end,int endmin, Roles role)
@@ -105,6 +107,12 @@ namespace Common
         {
             get { return role; }
             set { role = value; }
+        }
+
+        public DateTime Vremelozinka
+        {
+            get { return vremelozinka; }
+            set { vremelozinka = value; }
         }
 
         public void Login()

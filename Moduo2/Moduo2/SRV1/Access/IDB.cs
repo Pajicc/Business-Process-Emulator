@@ -15,6 +15,10 @@ namespace SRV2.Access
         User GetUser(string username);
         bool EditUser(User userMain, User userEdit);
         List<User> GetAllLogedUsers();
+        List<User> GetAllUsers();
+        bool UpdatePass(string username, string pass);
+
+
 
         bool AddProject(Project project);
         List<Project> GetAllProjects();

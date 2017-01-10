@@ -26,6 +26,9 @@ namespace Common
         List<User> GetAllLogedUsers();
 
         [OperationContract]
+        List<User> GetAllUsers();
+
+        [OperationContract]
         User GetUser(string username);
 
         [OperationContract]
@@ -34,7 +37,9 @@ namespace Common
         [OperationContract]
         List<string> GetCompanyes();
 
-       
+        [OperationContract]
+        bool UpdatePass(string username, string pass);
+
         [OperationContract]
         List<Tim> GetAllTims();
 

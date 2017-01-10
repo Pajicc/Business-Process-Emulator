@@ -265,5 +265,49 @@ namespace SRV2.Access
             }
 
         }
+
+
+        public List<User> GetAllUsers()
+        {
+            List<User> usrs = new List<User>();
+
+            List<User> usrEmpl = new List<User>();
+
+            using (var access = new AccessDB())
+            {
+                usrs = access.Actions.ToList();
+
+                foreach (User uu in usrs)
+                {
+                    
+                    
+                        usrEmpl.Add(uu);
+                    
+                }
+
+                return usrEmpl;
+            }
+        }
+
+
+        public bool UpdatePass(string username, string pass)
+        {
+            using (var access = new AccessDB())
+            {
+                if (access.Actions.Find(username).Username == username)
+                {
+                    access.Actions.Find(username).Password = pass;
+                    access.Actions.Find(username).Vremelozinka = DateTime.Now;
+
+                    int i = access.SaveChanges();
+                    if (i > 0)
+                        return true;
+                    return false;
+
+                }
+
+                return false;
+            }
+        }
     }
 }
