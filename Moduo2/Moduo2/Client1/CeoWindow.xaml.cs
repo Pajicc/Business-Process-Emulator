@@ -163,5 +163,11 @@ namespace Client2
             }
 
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            MainWindow.proxy.LogOut(user.Username, user.Password);
+            this.Close();
+        }
     }
 }

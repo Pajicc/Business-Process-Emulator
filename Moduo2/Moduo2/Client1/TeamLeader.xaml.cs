@@ -75,10 +75,7 @@ namespace Client2
             MainWindow.proxy.EditUser(user, userEdit);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
@@ -86,6 +83,17 @@ namespace Client2
             employees = MainWindow.proxy.GetAllEmployees();
             for (int i = 0; i < employees.Count; i++)
                 listBox.Items.Add(employees[i].Username);
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            MainWindow.proxy.LogOut(user.Username, user.Password);
+            this.Close();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

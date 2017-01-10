@@ -112,6 +112,12 @@ namespace Client2
             for (int i = 0; i < employees.Count; i++)
                 listBox.Items.Add(employees[i].Username);
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.proxy.LogOut(user.Username, user.Password);
+            this.Close();
+        }
   
     }
 }

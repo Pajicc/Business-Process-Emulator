@@ -49,6 +49,7 @@ namespace SRV2.Access
                     if (access.Actions.Find(username).Password == pass)
                     {
                         access.Actions.Find(username).LoggedIn = true;
+                        int i = access.SaveChanges();
                         return access.Actions.Find(username);
                     }
                 }
@@ -64,6 +65,7 @@ namespace SRV2.Access
                 if (access.Actions.Find(username).Username == username)
                 {
                     access.Actions.Find(username).LoggedIn = false;
+                    int i = access.SaveChanges();
                     return true;
                 }
 
@@ -124,7 +126,7 @@ namespace SRV2.Access
 
                 foreach (User uu in usrs)
                 {
-                    if (uu.Role == Roles.Employee)
+                    if (uu.LoggedIn==true)
                     {
                         usrEmpl.Add(uu);
                     }
