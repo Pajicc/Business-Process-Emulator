@@ -250,5 +250,42 @@ namespace Client2
 
             return users;
         }
+
+
+        public Tim GetTimByName(string name)
+        {
+            Tim u = new Tim();
+
+            try
+            {
+                u = factory.GetTimByName(name);
+                Console.WriteLine("GetTeam() >> succeded");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while trying to GetTeam(). {0}", e.Message);
+            }
+
+            return u;
+        }
+
+
+        public bool AddTeamToProject(string nazivProjekta, string nazivTima)
+        {
+            bool allowed = false;
+
+            try
+            {
+                factory.AddTeamToProject(nazivProjekta,nazivTima);
+                Console.WriteLine("AddTeamToProject() >> succeded");
+                allowed = true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while trying to AddTeamToProject(). {0}", e.Message);
+            }
+
+            return allowed;
+        }
     }
 }
