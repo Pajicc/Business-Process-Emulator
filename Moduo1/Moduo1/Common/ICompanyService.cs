@@ -36,5 +36,8 @@ namespace Common
 
         [OperationContract]
         List<Project> GetAllProjects();
+
+        [OperationContract]
+        bool ActivateProject(Project p);
     }
 }

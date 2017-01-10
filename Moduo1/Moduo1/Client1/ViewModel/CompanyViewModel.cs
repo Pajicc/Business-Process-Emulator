@@ -18,7 +18,11 @@ namespace Client1.ViewModel
         #region propertyFields
 
         public ObservableCollection<User> employeeList { get; set; }
+
         public ObservableCollection<Project> projects { get; set; }
+
+        public ObservableCollection<Project> activeProjects { get; set; }
+        public ObservableCollection<Project> notActiveProjects { get; set; }
 
         private string loggedInUser = "";
         public string selectedUserForEdit ="";
@@ -77,6 +81,8 @@ namespace Client1.ViewModel
         {
             employeeList = new ObservableCollection<User>();
             projects = new ObservableCollection<Project>();
+            activeProjects = new ObservableCollection<Project>();
+            notActiveProjects = new ObservableCollection<Project>();
         }
         public string LoggedInUser
         {
@@ -639,9 +645,14 @@ namespace Client1.ViewModel
                         adminWin.ee_roleComboBox_admin.ItemsSource = Enum.GetNames(typeof(Roles));
                         adminWin.ee_roleComboBox_admin.SelectedIndex = 4;
 
-                        foreach (Project proj in wrap.proxy.GetAllProjects())   //iz baze dodaj u observable listu sve projekte
+                        foreach (Project proj in wrap.proxy.GetAllProjects())   //iz baze dodaj u observable liste sve projekte
                         {
                             projects.Add(proj);
+
+                            if (proj.Active)
+                                activeProjects.Add(proj);
+                            else
+                                notActiveProjects.Add(proj);
                         }
 
                         //wrap.mw.Close();
@@ -777,6 +788,11 @@ namespace Client1.ViewModel
             p.Po = LoggedInUser;
 
             wrap.proxy.CreateProject(p);
+
+            if(!projects.Contains(p))
+                projects.Add(p);
+
+            notActiveProjects.Add(p);
 
             win.ap_name_po.Clear();
             win.ap_desc_po.Clear();

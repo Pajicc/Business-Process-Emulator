@@ -159,6 +159,24 @@ namespace Client1
             return allowed;
         }
 
+        public bool ActivateProject(Project prj)
+        {
+            bool allowed = false;
+
+            try
+            {
+                allowed = factory.ActivateProject(prj);
+                Console.WriteLine("ActivateProject() >> succeded");
+                allowed = true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while trying to ActivateProject(). {0}", e.Message);
+            }
+
+            return allowed;
+        }
+
         public List<Project> GetAllProjects()
         {
             List<Project> projekti = new List<Project>();

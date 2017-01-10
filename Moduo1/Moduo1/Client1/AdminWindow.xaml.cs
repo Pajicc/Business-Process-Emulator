@@ -83,6 +83,18 @@ namespace Client1
             sendReqButton.IsEnabled = true;
         }
 
+        private void approveProject_Click(object sender, RoutedEventArgs e)
+        {
+            Context wrap = Context.getInstance();
+
+            Project p = partnerCompanies_Copy1.SelectedItem as Project;
+            p.Active = true;
+
+
+            wrap.cvm.activeProjects.Add(p);
+            wrap.cvm.notActiveProjects.Remove(p);
+        }
+
 
     }
 }
