@@ -19,8 +19,8 @@ namespace SRV1.Access
         bool DeleteProject(Project prj);
         bool UpdateProject(Project p);
         List<Project> GetAllProjects();
-        List<string> GetAllParnterCompanies(string username);
-        bool AddParnterCompany(string ceo, string partner);
+        List<string> GetAllPartnerCompanies(string username);
+        bool AddPartnerCompany(string ceo, string partner);
         bool AddHiringCompany(HiringCompany hc);
     }
 }

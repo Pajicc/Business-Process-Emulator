@@ -73,15 +73,17 @@ namespace Client1
             if (app)
             {
                 MessageBox.Show("Approved!!");
-                wrap.proxy.AddParnterCompany(wrap.cvm.LoggedInUser,outsourcingCompanies.SelectedItem.ToString());   //dodavanje u bazu
+                wrap.proxy.AddPartnerCompany(wrap.cvm.LoggedInUser,outsourcingCompanies.SelectedItem.ToString());   //dodavanje u bazu
 
                 wrap.cvm.partnerCompanies.Clear();  //ocisti bind listu 
 
-                foreach (string comp in wrap.proxy.GetAllParnterCompanies(wrap.cvm.LoggedInUser))       //iscitaj iz baze i ubaci u listu
+                
+                foreach (string comp in wrap.proxy.GetAllPartnerCompanies(wrap.cvm.LoggedInUser))       //iscitaj iz baze i ubaci u listu
                 {
                     wrap.cvm.partnerCompanies.Add(comp);
                     partnerCompaniesComboBox.Items.Refresh();
                 }
+                
             }
                 
         }

@@ -41,10 +41,10 @@ namespace Common
         bool UpdateProject(Project p);
 
         [OperationContract]
-        List<string> GetAllParnterCompanies(string username);
+        List<string> GetAllPartnerCompanies(string username);
 
         [OperationContract]
-        bool AddParnterCompany(string ceo, string partner);
+        bool AddPartnerCompany(string ceo, string partner);
      
     }
 }

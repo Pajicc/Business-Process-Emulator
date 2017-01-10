@@ -12,11 +12,11 @@ namespace Common
     public class HiringCompany
     {
         private string name = string.Empty;
-        private User ceo = new User();
-        private List<string> partnerCompanies = new List<string>();
+        private string ceo = string.Empty;
+        private List<Partner> partnerCompanies = new List<Partner>();
 
         public HiringCompany() { }
-        public HiringCompany(string name, User ceo)
+        public HiringCompany(string name, string ceo)
         {
             this.name = name;
             this.ceo = ceo;
@@ -29,13 +29,14 @@ namespace Common
             set { name = value; }
         }
 
-        public User CEO
+        public string CEO
         {
             get { return ceo; }
             set { ceo = value; }
         }
 
-        public List<string> ParnterCompanies
+        [NotMapped]
+        public List<Partner> ParnterCompanies
         {
             get { return partnerCompanies; }
             set { partnerCompanies = value; }

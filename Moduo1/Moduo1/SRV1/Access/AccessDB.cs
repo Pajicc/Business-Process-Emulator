@@ -34,5 +34,10 @@ namespace SRV1.Access
         /// Actions za UserStories
         /// </summary>
         public DbSet<UserStory> UserStories { get; set; }
+
+        /// <summary>
+        /// Actions za Partnere
+        /// </summary>
+        public DbSet<Partner> Partners { get; set; }
     }
 }

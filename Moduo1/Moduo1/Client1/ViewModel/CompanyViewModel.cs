@@ -671,7 +671,7 @@ namespace Client1.ViewModel
                         adminWin.ee_roleComboBox_admin.SelectedIndex = 4;
 
                         partnerCompanies.Clear();
-                        foreach (string comp in wrap.proxy.GetAllParnterCompanies(LoggedInUser))
+                        foreach (string comp in wrap.proxy.GetAllPartnerCompanies(LoggedInUser))
                         {
                             partnerCompanies.Add(comp);
                         }

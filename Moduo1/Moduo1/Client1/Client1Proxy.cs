@@ -194,35 +194,35 @@ namespace Client1
             return projekti;
         }
 
-        public List<string> GetAllParnterCompanies(string username)
+        public List<string> GetAllPartnerCompanies(string username)
         {
             List<string> companies = new List<string>();
 
             try
             {
-                companies = factory.GetAllParnterCompanies(username);
-                Console.WriteLine("GetAllParnterCompanies() >> succeded");
+                companies = factory.GetAllPartnerCompanies(username);
+                Console.WriteLine("GetAllPartnerCompanies() >> succeded");
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error while trying to GetAllParnterCompanies(). {0}", e.Message);
+                Console.WriteLine("Error while trying to GetAllPartnerCompanies(). {0}", e.Message);
             }
 
             return companies;
         }
 
-        public bool AddParnterCompany(string ceo, string partner)
+        public bool AddPartnerCompany(string ceo, string partner)
         {
             bool allowed = false;
 
             try
             {
-                allowed = factory.AddParnterCompany(ceo, partner);
-                Console.WriteLine("AddParnterCompany() >> succeded");
+                allowed = factory.AddPartnerCompany(ceo, partner);
+                Console.WriteLine("AddPartnerCompany() >> succeded");
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error while trying to AddParnterCompany(). {0}", e.Message);
+                Console.WriteLine("Error while trying to AddPartnerCompany(). {0}", e.Message);
             }
 
             return allowed;

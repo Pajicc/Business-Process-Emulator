@@ -68,14 +68,14 @@ namespace SRV1
             User user2 = new User("user2", "user2", "user2@li.com", "09:00:00", "12:00:00", Roles.Employee);
             users.Add(user2);
 
-            List<string> partners1 = new List<string>();
-            partners1.Add("partner1");
-            partners1.Add("partner2");
+            //List<Partner> partners1 = new List<Partner>();
+            //partners1.Add(new Partner("partner1", "HiringCompany1"));
+            //partners1.Add(new Partner("partner2", "HiringCompany2"));
 
-            HiringCompany hc1 = new HiringCompany("HiringCompany1", ceo1);
-            hc1.ParnterCompanies = partners1;
-            HiringCompany hc2 = new HiringCompany("HiringCompany2", ceo2);
-            HiringCompany hc3 = new HiringCompany("HiringCompany3", ceo3);
+            HiringCompany hc1 = new HiringCompany("HiringCompany1", "ceo1");
+            //hc1.ParnterCompanies = partners1;
+            HiringCompany hc2 = new HiringCompany("HiringCompany2", "ceo2");
+            HiringCompany hc3 = new HiringCompany("HiringCompany3", "ceo3");
       
             using (var access = new AccessDB())
             {
@@ -104,6 +104,25 @@ namespace SRV1
                         Console.WriteLine("Uspesno kreirane kompanije!");
                     }
                 }
+
+                //test za dodavanje novog partnera, ne radi jer ne moze da se doda na polje u listi
+                /*
+                List<Partner> partnersOld = access.HiringCompanies.FirstOrDefault(f => f.Name == hc1.Name).ParnterCompanies;
+
+                Partner noviPart = new Partner("noviPart");
+
+                partnersOld.Add(noviPart);
+                //access.HiringCompanies.Find(0).ParnterCompanies.Add(noviPart);
+
+                access.HiringCompanies.FirstOrDefault(f => f.Name == hc1.Name).ParnterCompanies = partnersOld;
+
+                int ff = access.SaveChanges();
+
+                if (ff > 0)
+                {
+                    Console.WriteLine("Uspesno dodat novi partner!");
+                }
+                */
             }
             #endregion
             
