@@ -89,13 +89,13 @@ namespace Client2
             return allowed;
         }
 
-        public List<User> GetAllEmployees()
+        public List<User> GetAllLogedUsers()
         {
             List<User> allEmpl = new List<User>();
 
             try
             {
-                allEmpl = factory.GetAllEmployees();
+                allEmpl = factory.GetAllLogedUsers();
                 Console.WriteLine("GetAllEmployees() >> succeded");
             }
             catch (Exception e)
@@ -231,6 +231,24 @@ namespace Client2
             }
 
             return allowed;
+        }
+
+
+        public List<User> GetUsersByType(Roles role)
+        {
+            List<User> users = new List<User>();
+
+            try
+            {
+                users = factory.GetUsersByType(role);
+                Console.WriteLine("GetUsers() >> succeded");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while trying to GetUsers(). {0}", e.Message);
+            }
+
+            return users;
         }
     }
 }

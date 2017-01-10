@@ -42,7 +42,7 @@ namespace Client2
 
             roleComboBox.ItemsSource = Enum.GetNames(typeof(Roles));    //add employee
 
-            foreach (User usr in MainWindow.proxy.GetAllEmployees())
+            foreach (User usr in MainWindow.proxy.GetAllLogedUsers())
             {
                 listOfEmployees.Items.Add(usr.Username);
             }
@@ -62,6 +62,25 @@ namespace Client2
             {
                 timovi_ComboBox.Items.Add(tims.NazivTima);
             }
+
+            foreach (User usr in MainWindow.proxy.GetUsersByType(Roles.TL))
+            {
+               cb1.Items.Add(usr.Username);
+            }
+
+            foreach (User usr in MainWindow.proxy.GetUsersByType(Roles.Employee))
+            {
+                cb2.Items.Add(usr.Username);
+            }
+            foreach (User usr in MainWindow.proxy.GetUsersByType(Roles.Employee))
+            {
+                cb3.Items.Add(usr.Username);
+            }
+            foreach (User usr in MainWindow.proxy.GetUsersByType(Roles.Employee))
+            {
+                cb4.Items.Add(usr.Username);
+            }
+
             
         }
 
@@ -154,7 +173,7 @@ namespace Client2
         private void button1_Click_1(object sender, RoutedEventArgs e)
         {
             List <User> employees= new List<User>();
-            employees= MainWindow.proxy.GetAllEmployees();
+            employees= MainWindow.proxy.GetAllLogedUsers();
             for (int i = 0; i < employees.Count; i++)
                 listBox.Items.Add(employees[i].Username);
 
@@ -179,5 +198,20 @@ namespace Client2
             MainWindow.proxy.LogOut(user.Username, user.Password);
             this.Close();
         }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            Tim tim = new Tim();
+            tim.NazivTima = tb0.Text.ToString();
+            tim.Tl = MainWindow.proxy.GetUser(cb1.SelectedItem.ToString()).Username;
+            tim.Employee1 = MainWindow.proxy.GetUser(cb2.SelectedItem.ToString()).Username;
+            tim.Employee2 = MainWindow.proxy.GetUser(cb3.SelectedItem.ToString()).Username;
+            tim.Employee3 = MainWindow.proxy.GetUser(cb4.SelectedItem.ToString()).Username;
+
+            MainWindow.proxy.AddTeam(tim);
+
+        }
+
+        
     }
 }

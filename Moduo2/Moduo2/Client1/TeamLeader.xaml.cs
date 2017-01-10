@@ -82,7 +82,7 @@ namespace Client2
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             List<User> employees = new List<User>();
-            employees = MainWindow.proxy.GetAllEmployees();
+            employees = MainWindow.proxy.GetAllLogedUsers();
             for (int i = 0; i < employees.Count; i++)
                 listBox.Items.Add(employees[i].Username);
         }

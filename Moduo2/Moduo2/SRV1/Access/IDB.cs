@@ -14,11 +14,12 @@ namespace SRV2.Access
         bool LogOut(string username, string pass);
         User GetUser(string username);
         bool EditUser(User userMain, User userEdit);
-        List<User> GetAllEmployees();
+        List<User> GetAllLogedUsers();
 
         bool AddProject(Project project);
         List<Project> GetAllProjects();
         bool AddTeam(Tim tim);
+        List<User> GetUsersByType(Roles role);
 
 
 

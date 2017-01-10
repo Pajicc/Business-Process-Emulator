@@ -31,6 +31,7 @@ namespace SRV2.Access
         {
             using (var access = new AccessDB())
             {
+                
                 access.Actions.Add(user);
                 int i = access.SaveChanges();
 
@@ -128,7 +129,7 @@ namespace SRV2.Access
             return false;
         }
 
-        public List<User> GetAllEmployees()
+        public List<User> GetAllLogedUsers()
         {
             List<User> usrs = new List<User>();
 
@@ -141,6 +142,28 @@ namespace SRV2.Access
                 foreach (User uu in usrs)
                 {
                     if (uu.LoggedIn==true)
+                    {
+                        usrEmpl.Add(uu);
+                    }
+                }
+
+                return usrEmpl;
+            }
+        }
+
+        public List<User> GetUsersByType(Roles role)
+        {
+            List<User> usrs = new List<User>();
+
+            List<User> usrEmpl = new List<User>();
+
+            using (var access = new AccessDB())
+            {
+                usrs = access.Actions.ToList();
+
+                foreach (User uu in usrs)
+                {
+                    if (uu.Role == role)
                     {
                         usrEmpl.Add(uu);
                     }

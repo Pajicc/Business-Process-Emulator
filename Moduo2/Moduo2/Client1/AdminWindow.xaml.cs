@@ -42,7 +42,7 @@ namespace Client2
 
             roleComboBox.ItemsSource = Enum.GetNames(typeof(Roles));    //add employee
 
-            foreach (User usr in MainWindow.proxy.GetAllEmployees())
+            foreach (User usr in MainWindow.proxy.GetAllLogedUsers())
             {
                 listOfEmployees.Items.Add(usr.Username);
             }           
@@ -117,7 +117,7 @@ namespace Client2
         private void button1_Click_1(object sender, RoutedEventArgs e)
         {
             List<User> employees = new List<User>();
-            employees = MainWindow.proxy.GetAllEmployees();
+            employees = MainWindow.proxy.GetAllLogedUsers();
             for (int i = 0; i < employees.Count; i++)
                 listBox.Items.Add(employees[i].Username);
         }

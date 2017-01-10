@@ -12,7 +12,7 @@
                 <Grid Background="#FFE5E5E5" Margin="0,9,80,-12">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="401*"/>
-                      
+
                     </Grid.ColumnDefinitions>
                     <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="132,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" IsReadOnly="True"/>
                     <Label x:Name="label" Content="Username:" HorizontalAlignment="Left" Margin="49,34,0,0" VerticalAlignment="Top"/>
@@ -81,8 +81,9 @@
             <TabItem Header="All employees" Margin="33,-2,-42,3">
                 <Grid Background="#FFE5E5E5" Margin="0,-2,-11,-15">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="53*"/>
-                        <ColumnDefinition Width="339*"/>
+                        <ColumnDefinition Width="79*"/>
+                        <ColumnDefinition Width="476*"/>
+                        <ColumnDefinition Width="30*"/>
                     </Grid.ColumnDefinitions>
                     <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="168" Margin="10,10,0,0" VerticalAlignment="Top" Width="280" Grid.ColumnSpan="2"/>
                     <Button x:Name="button1" Content="Load all employees" HorizontalAlignment="Left" Margin="10,194,0,0" VerticalAlignment="Top" Width="109" Grid.ColumnSpan="2" Click="button1_Click_1"/>
@@ -116,7 +117,7 @@
 
                     </Grid.ColumnDefinitions>
                     <ComboBox HorizontalAlignment="Left" Margin="158,51,0,0" VerticalAlignment="Top" Width="120"/>
-                    <ComboBox HorizontalAlignment="Left" Name="timovi_ComboBox" Margin="158,104,0,0" VerticalAlignment="Top" Width="120"/>
+                    <ComboBox HorizontalAlignment="Left" Name="timovi_ComboBox" Margin="158,104,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="timovi_ComboBox_SelectionChanged"/>
                     <Label Content="Prihvaceni projekti:" HorizontalAlignment="Left" Margin="33,51,0,0" VerticalAlignment="Top"/>
                     <Label Content="Timovi:" HorizontalAlignment="Left" Margin="21,104,0,0" VerticalAlignment="Top" Width="110"/>
                     <Button Content="Set" HorizontalAlignment="Left" Margin="328,87,0,0" VerticalAlignment="Top" Width="75"/>
@@ -135,13 +136,13 @@
                     <Label Content="TL:" HorizontalAlignment="Left" Margin="40,60,0,0" VerticalAlignment="Top" Width="110"/>
                     <Label Content="Employee1:" HorizontalAlignment="Left" Margin="40,91,0,0" VerticalAlignment="Top" Width="110"/>
                     <Label Content="Employee2:" HorizontalAlignment="Left" Margin="40,122,0,0" VerticalAlignment="Top" Width="110"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="170,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <TextBox HorizontalAlignment="Left" Name="tb0" Height="23" Margin="170,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                     <Label Content="Employee3:" HorizontalAlignment="Left" Margin="40,153,0,0" VerticalAlignment="Top" Width="110" RenderTransformOrigin="0.491,1.962"/>
                     <ComboBox HorizontalAlignment="Left" Name="cb1" Margin="170,64,0,0" VerticalAlignment="Top" Width="120"/>
                     <ComboBox HorizontalAlignment="Left" Name="cb2" Margin="170,95,0,0" VerticalAlignment="Top" Width="120"/>
                     <ComboBox HorizontalAlignment="Left" Name="cb3" Margin="170,126,0,0" VerticalAlignment="Top" Width="120"/>
                     <ComboBox HorizontalAlignment="Left" Name="cb4" Margin="170,157,0,0" VerticalAlignment="Top" Width="120"/>
-                    <Button Content="Naprvi Tim" HorizontalAlignment="Left" Margin="381,91,0,0" VerticalAlignment="Top" Width="75"/>
+                    <Button Content="Naprvi Tim" HorizontalAlignment="Left" Margin="381,91,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_3"/>
                 </Grid>
             </TabItem>
         </TabControl>

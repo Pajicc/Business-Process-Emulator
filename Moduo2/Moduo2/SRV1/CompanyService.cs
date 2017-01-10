@@ -79,13 +79,13 @@ namespace SRV2
             return done;
         }
 
-        public List<User> GetAllEmployees()
+        public List<User> GetAllLogedUsers()
         {
             Console.WriteLine("Ucitana lista Usera!");
 
             List<User> lista = new List<User>();
 
-            lista = DB.Instance.GetAllEmployees();
+            lista = DB.Instance.GetAllLogedUsers();
 
             return lista;
         }
@@ -171,6 +171,18 @@ namespace SRV2
             done = DB.Instance.AddTeam(tim);
 
             return done;
+        }
+
+
+        public List<User> GetUsersByType(Roles role)
+        {
+            Console.WriteLine("GetUsersByType!");
+
+            List<User> lista = new List<User>();
+
+            lista = DB.Instance.GetUsersByType(role);
+
+            return lista;
         }
     }
 }

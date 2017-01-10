@@ -23,7 +23,7 @@ namespace Common
         bool EditUser(User userMain, User editUser);
 
         [OperationContract]
-        List<User> GetAllEmployees();
+        List<User> GetAllLogedUsers();
 
         [OperationContract]
         User GetUser(string username);
@@ -46,6 +46,12 @@ namespace Common
 
         [OperationContract]
         bool AddTeam(Tim tim);
+
+        [OperationContract]
+        List<User> GetUsersByType(Roles role);
+
+
+
 
         
 

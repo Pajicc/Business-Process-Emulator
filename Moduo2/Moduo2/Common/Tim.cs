@@ -13,13 +13,13 @@ namespace Common
         
 
         private string nazivTima;
-        private User tl = new User();
-        private User employee1 = new User();
-        private User employee2 = new User();
-        private User employee3 = new User();
+        private string tl = string.Empty;
+        private string employee1 = string.Empty;
+        private string employee2 = string.Empty;
+        private string employee3 = string.Empty;
 
 
-        public User Tl
+        public string Tl
         {
             get { return tl; }
             set { tl = value; }
@@ -34,19 +34,19 @@ namespace Common
             set { nazivTima = value; }
         }
 
-        public User Employee1
+        public string Employee1
         {
             get { return employee1; }
             set { employee1 = value; }
         }
 
-        public User Employee2
+        public string Employee2
         {
             get { return employee2; }
             set { employee2 = value; }
         }
 
-        public User Employee3
+        public string Employee3
         {
             get { return employee3; }
             set { employee3 = value; }

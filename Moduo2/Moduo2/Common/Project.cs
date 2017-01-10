@@ -10,8 +10,7 @@ namespace Common
 {
     public class Project
     {
-        public class Project
-        {
+        
             private string name = string.Empty;
             private string description = string.Empty;
             private double startTime = 0;
@@ -97,4 +96,4 @@ namespace Common
              }*/
         }
     }
-}
+
