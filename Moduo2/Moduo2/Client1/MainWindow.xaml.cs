@@ -59,6 +59,12 @@ namespace Client2
                     adminWin.Show();
                     this.Close();
                 }
+                if (u.Role == Roles.SM)
+                {
+                    AdminWindow adminWin = new AdminWindow(u);
+                    adminWin.Show();
+                    this.Close();
+                }
                 else if (u.Role == Roles.CEO)
                 {
                     CeoWindow CeoWin = new CeoWindow(u);

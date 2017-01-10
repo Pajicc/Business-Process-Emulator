@@ -19,7 +19,7 @@ namespace Common
         List<string> GetAllOutsourcingCompanies();
 
         [OperationContract]
-        void SendProject(Project projekat);
+        void SendProject(Project projekat, string NazivKompanije);
 
 
     }

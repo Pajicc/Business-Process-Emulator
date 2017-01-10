@@ -85,12 +85,12 @@ namespace ProjectTest.DataTest
            Assert.AreEqual(po, projekat.Po);
        }*/
 
-       [Test]
+      /* [Test]
        public void ProjektUserStories()
        {
            projekat.UserStories = userStories;
 
            Assert.AreEqual(userStories, projekat.UserStories);
-       }
+       }*/
     }
 }

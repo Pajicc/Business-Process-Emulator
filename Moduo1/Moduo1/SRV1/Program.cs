@@ -7,11 +7,16 @@ using Common;
 using System.ServiceModel;
 using System.Data.Entity;
 using SRV1.Access;
+using log4net.Config;
+using log4net;
+using log4net.Appender;
 
 namespace SRV1
 {
-    class Program
+    public class Program
     {
+        public static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         static void Main(string[] args)
         {
             string executable = System.Reflection.Assembly.GetExecutingAssembly().Location;
@@ -28,11 +33,16 @@ namespace SRV1
 
             host.Open();
             Console.WriteLine("CompanyService is opened. Press <enter> to finish...");
+            log.Info("CompanyService has started working");
+            
             Console.ReadLine();
 
             host.Close();
         }
 
+        public void ProveravajPass()
+        {
 
+        }
     }
 }

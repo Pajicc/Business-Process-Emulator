@@ -8,6 +8,8 @@ using SRV1.Access;
 using System.Net.Mail;
 using System.Net;
 using System.Windows.Forms;
+using SRV1;
+
 namespace SRV1
 {
     public class CompanyService : ICompanyService
@@ -60,10 +62,16 @@ namespace SRV1
             if (u != null)
             {
                 //onlineUsers.Add(u);
+                Program.log.Info("User: " + username + " Has been loggedIn!");
                 return u;
-            }   
+            }
             else
-                return null;
+            {
+                Program.log.Info("Failed login! User: " + username);
+                return null; 
+            }
+
+                
         }
 
         public bool LogOut(string username, string pass)
@@ -77,11 +85,6 @@ namespace SRV1
             u.LoggedIn = false;
 
             done = DB.Instance.LogOut(username, pass);
-
-            if (done)
-            {
-               // onlineUsers.Remove(u);
-            }
 
             return done;
         }
