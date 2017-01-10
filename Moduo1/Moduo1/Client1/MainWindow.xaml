@@ -7,7 +7,7 @@
         <Label Content="Username:" HorizontalAlignment="Left" Margin="39,87,0,0" VerticalAlignment="Top"/>
         <Label Content="Password:" HorizontalAlignment="Left" Margin="39,138,0,0" VerticalAlignment="Top" />
         <Button Name="login" Content="Login" HorizontalAlignment="Left" Margin="42,214,0,0" VerticalAlignment="Top" Width="75" Command="{Binding Login}"/>
-        <Button Name="cancel" Content="Cancel" HorizontalAlignment="Left" Margin="181,214,0,0" VerticalAlignment="Top" Width="75" Command="{Binding CloseMainWindow}"/>
+        <Button Name="cancel" Content="Cancel" HorizontalAlignment="Left" Margin="181,214,0,0" VerticalAlignment="Top" Width="75"/>
         <TextBox HorizontalAlignment="Left" Height="22" Margin="136,138,0,0" VerticalAlignment="Top" Width="120" Name="password_login" Text="{Binding PasswordLogin}"/>
         <Button Content="Add" HorizontalAlignment="Left" Margin="283,257,0,0" VerticalAlignment="Top" Width="17" Height="11" Click="Button_Click"/>
         <Label Content="Login" HorizontalAlignment="Left" Margin="130,10,0,0" VerticalAlignment="Top" Width="66" FontSize="18"/>

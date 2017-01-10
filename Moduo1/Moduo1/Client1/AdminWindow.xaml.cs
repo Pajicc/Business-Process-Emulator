@@ -73,7 +73,15 @@ namespace Client1
             if (app)
             {
                 MessageBox.Show("Approved!!");
-                partnerCompanies.Items.Add(outsourcingCompanies.SelectedItem.ToString());
+                wrap.proxy.AddParnterCompany(wrap.cvm.LoggedInUser,outsourcingCompanies.SelectedItem.ToString());   //dodavanje u bazu
+
+                wrap.cvm.partnerCompanies.Clear();  //ocisti bind listu 
+
+                foreach (string comp in wrap.proxy.GetAllParnterCompanies(wrap.cvm.LoggedInUser))       //iscitaj iz baze i ubaci u listu
+                {
+                    wrap.cvm.partnerCompanies.Add(comp);
+                    partnerCompaniesComboBox.Items.Refresh();
+                }
             }
                 
         }
@@ -81,6 +89,37 @@ namespace Client1
         private void outsourcingCompanies_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             sendReqButton.IsEnabled = true;
+        }
+
+        private void approveProject_Click(object sender, RoutedEventArgs e)
+        {
+            Context wrap = Context.getInstance();
+
+            Project p = partnerCompanies_Copy1.SelectedItem as Project;
+            
+            p.State = States.approved;
+            wrap.proxy.UpdateProject(p);
+
+            wrap.cvm.activeProjects.Add(p);
+            wrap.cvm.notActiveProjects.Remove(p);
+
+            projectsGrid.Items.Refresh();
+        }
+
+        private void sendProject_Click(object sender, RoutedEventArgs e)
+        {
+            Context wrap = Context.getInstance();
+
+            Project p = partnerCompanies_Copy.SelectedItem as Project;
+
+            if (wrap.outsourcingProxy.SendProject(p))
+            {
+                p.State = States.inProgress;
+                wrap.proxy.UpdateProject(p);
+                wrap.cvm.activeProjects.Remove(p);
+            }
+                
+            projectsGrid.Items.Refresh();
         }
 
 

@@ -51,5 +51,21 @@ namespace Client1
 
             return companies;
         }
+
+        public bool SendProject(Project p)
+        {
+            bool allowed = false;
+
+            try
+            {
+                allowed = factory.SendProject(p);
+                Console.WriteLine("SendProject() >> succeded");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while trying to SendProject(). {0}", e.Message);
+            }
+            return allowed;
+        }
     }
 }

@@ -206,5 +206,48 @@ namespace SRV1
 
             return done;
         }
+
+        public bool UpdateProject(Project prj)
+        {
+            bool done = false;
+
+            Console.WriteLine("Updateovan Projekat: " + prj.Name);
+
+            done = DB.Instance.UpdateProject(prj);
+
+            return done;
+        }
+
+        public List<string> GetAllParnterCompanies(string username)
+        {
+            List<string> companies = new List<string>();
+
+            companies = DB.Instance.GetAllParnterCompanies(username);
+
+            return companies;
+        }
+        public bool AddHiringCompany(HiringCompany hc)
+        {
+            bool done = false;
+
+            Console.WriteLine("Dodata nova Kompanija!");
+            Console.WriteLine("Ime Kompanije: " + hc.Name);
+
+            done = DB.Instance.AddHiringCompany(hc);
+
+            return done;
+        }
+
+        public bool AddParnterCompany(string ceo, string partner)
+        {
+            bool done = false;
+
+            Console.WriteLine("Dodata nova Parnter kompanija!");
+            Console.WriteLine("Ime Kompanije: " + partner);
+
+            done = DB.Instance.AddParnterCompany(ceo, partner);
+
+            return done;
+        }
     }
 }

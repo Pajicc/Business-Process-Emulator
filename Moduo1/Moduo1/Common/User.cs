@@ -22,6 +22,7 @@ namespace Common
     {
         private string username;
         private string password;
+        private string passeditime;
         private string name;
         private string lastName;
         private string email;
@@ -51,6 +52,11 @@ namespace Common
         {
             get { return password; }
             set { password = value; }
+        }
+        public string Passeditime
+        {
+            get { return passeditime; }
+            set { passeditime = value; }
         }
         public string Name
         {

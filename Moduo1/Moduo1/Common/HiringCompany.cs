@@ -13,14 +13,13 @@ namespace Common
     {
         private string name = string.Empty;
         private User ceo = new User();
-        private List<Project> projects = new List<Project>();
+        private List<string> partnerCompanies = new List<string>();
 
         public HiringCompany() { }
-        public HiringCompany(string name, User ceo, List<Project> projects)
+        public HiringCompany(string name, User ceo)
         {
             this.name = name;
             this.ceo = ceo;
-            this.projects = projects;
         }
 
         [Key]
@@ -36,12 +35,11 @@ namespace Common
             set { ceo = value; }
         }
 
-        public List<Project> Projects
+        public List<string> ParnterCompanies
         {
-            get { return projects; }
-            set { projects = value; }
+            get { return partnerCompanies; }
+            set { partnerCompanies = value; }
         }
-
-
+       
     }
 }

@@ -16,7 +16,7 @@ namespace Common
         [OperationContract]
         List<string> GetAllOutsourcingCompanies();
 
-        //[OperationContract]
-        //List<string> GetAllHiringCompanies();
+        [OperationContract]
+        bool SendProject(Project p);
     }
 }

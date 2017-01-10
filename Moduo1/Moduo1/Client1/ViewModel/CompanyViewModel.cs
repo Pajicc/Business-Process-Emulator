@@ -18,7 +18,14 @@ namespace Client1.ViewModel
         #region propertyFields
 
         public ObservableCollection<User> employeeList { get; set; }
+
         public ObservableCollection<Project> projects { get; set; }
+
+        public ObservableCollection<Project> activeProjects { get; set; }
+        public ObservableCollection<Project> notActiveProjects { get; set; }
+
+        public ObservableCollection<string> partnerCompanies { get; set; }
+
 
         private string loggedInUser = "";
         public string selectedUserForEdit ="";
@@ -77,6 +84,9 @@ namespace Client1.ViewModel
         {
             employeeList = new ObservableCollection<User>();
             projects = new ObservableCollection<Project>();
+            activeProjects = new ObservableCollection<Project>();
+            notActiveProjects = new ObservableCollection<Project>();
+            partnerCompanies = new ObservableCollection<string>();
         }
         public string LoggedInUser
         {
@@ -621,6 +631,27 @@ namespace Client1.ViewModel
             {
                 employeeList.Add(us);       //dodaj u listu prijavljenih
 
+                projects.Clear();
+                notActiveProjects.Clear();
+                activeProjects.Clear();
+
+                foreach (Project proj in wrap.proxy.GetAllProjects())   //iz baze dodaj u observable liste sve projekte
+                {
+                    if (!projects.Contains(proj))
+                        projects.Add(proj);
+
+                    switch (proj.State)
+                    {
+                        case States.approved:
+                            activeProjects.Add(proj);
+                            break;
+                        case States.notApproved:
+                            notActiveProjects.Add(proj);
+                            break;
+                    }
+                        
+                }
+
                 switch (us.Role)
                 {
                     case Roles.CEO:
@@ -639,9 +670,10 @@ namespace Client1.ViewModel
                         adminWin.ee_roleComboBox_admin.ItemsSource = Enum.GetNames(typeof(Roles));
                         adminWin.ee_roleComboBox_admin.SelectedIndex = 4;
 
-                        foreach (Project proj in wrap.proxy.GetAllProjects())   //iz baze dodaj u observable listu sve projekte
+                        partnerCompanies.Clear();
+                        foreach (string comp in wrap.proxy.GetAllParnterCompanies(LoggedInUser))
                         {
-                            projects.Add(proj);
+                            partnerCompanies.Add(comp);
                         }
 
                         //wrap.mw.Close();
@@ -773,10 +805,15 @@ namespace Client1.ViewModel
             p.Name = ApNamePo;
             p.Description = ApDescPo;
             p.StartTime = ApFromPo;
-            p.Description = ApDescPo;
+            p.EndTime = ApToPo;
             p.Po = LoggedInUser;
 
             wrap.proxy.CreateProject(p);
+
+            if(!projects.Contains(p))
+                projects.Add(p);
+
+            notActiveProjects.Add(p);
 
             win.ap_name_po.Clear();
             win.ap_desc_po.Clear();
@@ -786,7 +823,7 @@ namespace Client1.ViewModel
 
         private void CloseWindowExecution(object param)
         {
-            Context wrap = Context.getInstance();
+            Context wrap = Context.getInstance();          
             wrap.subwin.Close();
         }
         #endregion

@@ -201,9 +201,9 @@ namespace SRV1.Access
 
                 prj.Po = usr.Username;
 
-                access.Projects.Add(prj);
+                prj.State = States.notApproved;
 
-                
+                access.Projects.Add(prj);
 
                 int i = access.SaveChanges();
 
@@ -217,6 +217,26 @@ namespace SRV1.Access
                     Program.log.Info("Project: " + prj.Name + " has failed to be created by: " + usr.Username);
                     return false;
                 }
+            }
+        }
+
+        public bool UpdateProject(Project prj)
+        {
+            using (var access = new AccessDB())
+            {
+                if (access.Projects.Find(prj.Name).Name == prj.Name)
+                {
+                    access.Projects.Find(prj.Name).State = prj.State;       //dodati ako treba jos nesto da se izmeni
+
+                    int k = access.SaveChanges();
+
+                    if (k > 0)
+                    {
+                        Program.log.Info("Project: " + prj.Name + " has been activated!");
+                        return true;
+                    }
+                }
+                return false;
             }
         }
 
@@ -301,6 +321,60 @@ namespace SRV1.Access
         }
          */
 
+        public bool AddHiringCompany(HiringCompany hc)
+        {
+            using (var access = new AccessDB())
+            {
+                access.HiringCompanies.Add(hc);
 
+                int i = access.SaveChanges();
+
+                if (i > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public List<string> GetAllParnterCompanies(string username)
+        {
+            List<string> companies = new List<string>();
+
+            using (var access = new AccessDB())
+            {
+                List<UserStory> usdb = new List<UserStory>();
+                foreach (HiringCompany hc in access.HiringCompanies)
+                {
+                    if (hc.CEO.Username == username)
+                    {
+                        companies.Add(hc.Name);
+                    }
+                }             
+            }
+            return companies;
+        }
+
+        public bool AddParnterCompany(string ceo, string partner)
+        {
+            using (var access = new AccessDB())
+            {
+                foreach (HiringCompany hc in access.HiringCompanies)
+                {
+                    if (hc.CEO.Name == ceo)
+                    {
+                        if(!hc.ParnterCompanies.Contains(partner))
+                            access.HiringCompanies.Find(hc.Name).ParnterCompanies.Add(partner);
+
+                        int k = access.SaveChanges();
+                        return true;
+                    }
+                }     
+            }
+            return false;
+        }
     }
 }
