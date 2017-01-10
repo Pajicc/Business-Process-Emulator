@@ -194,5 +194,43 @@ namespace Client2
 
             return allProjects;
         }
+
+
+        public bool AddProjectToBase(Project proj)
+        {
+            bool allowed = false;
+
+            try
+            {
+                factory.AddProjectToBase(proj);
+                Console.WriteLine("AddProject() >> succeded");
+                allowed = true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while trying to AddUser(). {0}", e.Message);
+            }
+
+            return allowed;
+        }
+
+
+        public bool AddTeam(Tim tim)
+        {
+            bool allowed = false;
+
+            try
+            {
+                factory.AddTeam(tim);
+                Console.WriteLine("AddTeam() >> succeded");
+                allowed = true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while trying to AddUser(). {0}", e.Message);
+            }
+
+            return allowed;
+        }
     }
 }

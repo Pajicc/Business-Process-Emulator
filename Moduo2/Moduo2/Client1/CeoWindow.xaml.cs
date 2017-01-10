@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Common;
 using System.ServiceModel;
+using System.Globalization;
 
 namespace Client2
 {
@@ -34,6 +35,10 @@ namespace Client2
             textBox_Copy3.Text = u.LastName;
             textBox_Copy.Text = u.Password;
             textBox_Copy1.Text = u.Email;
+            tb1.Text = u.WorkTimeStartHour.ToString();
+            tb2.Text = u.WorkTimeStartMin.ToString();
+            tb3.Text = u.WorkTimeEnd.ToString();
+            tb4.Text = u.WorkTimeEndMin.ToString();
 
             roleComboBox.ItemsSource = Enum.GetNames(typeof(Roles));    //add employee
 
@@ -81,6 +86,11 @@ namespace Client2
             userEdit.LastName = textBox_Copy3.Text;
             userEdit.Password = textBox_Copy.Text;
             userEdit.Email = textBox_Copy1.Text;
+            userEdit.WorkTimeStartHour = int.Parse(tb1.Text, CultureInfo.InvariantCulture);
+            userEdit.WorkTimeStartMin = int.Parse(tb2.Text, CultureInfo.InvariantCulture);
+            userEdit.WorkTimeEnd = int.Parse(tb3.Text, CultureInfo.InvariantCulture);
+            userEdit.WorkTimeEndMin = int.Parse(tb4.Text, CultureInfo.InvariantCulture);
+           
 
             MainWindow.proxy.EditUser(user, userEdit);
         }
@@ -124,7 +134,7 @@ namespace Client2
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string nazivT = (string)timovi_ComboBox.SelectedItem;
+            /*string nazivT = (string)timovi_ComboBox.SelectedItem;
 
             foreach(Tim t in MainWindow.proxy.GetAllTims())
             {
@@ -138,7 +148,7 @@ namespace Client2
                     }
                 }
             }
-
+            */
         }
 
         private void button1_Click_1(object sender, RoutedEventArgs e)

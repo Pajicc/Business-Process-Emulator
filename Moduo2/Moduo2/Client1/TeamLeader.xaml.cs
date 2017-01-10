@@ -37,6 +37,8 @@ namespace Client2
             textBox_Copy6.Text = user.WorkTimeStartMin.ToString();
 
             textBox_Copy3.Text = user.WorkTimeEnd.ToString();
+            textBox_Copy7.Text = user.WorkTimeEndMin.ToString();
+
             List<int> ocene = new List<int>();
             ocene.Add(1);
             ocene.Add(2);
@@ -69,8 +71,8 @@ namespace Client2
             userEdit.Role = Roles.Employee;
             userEdit.WorkTimeStartHour = int.Parse(textBox_Copy4.Text, CultureInfo.InvariantCulture);
             userEdit.WorkTimeStartMin = int.Parse(textBox_Copy6.Text, CultureInfo.InvariantCulture);
-            userEdit.WorkTimeEnd = double.Parse(textBox_Copy3.Text, CultureInfo.InvariantCulture);
-
+            userEdit.WorkTimeEnd = int.Parse(textBox_Copy3.Text, CultureInfo.InvariantCulture);
+            userEdit.WorkTimeEndMin = int.Parse(textBox_Copy7.Text, CultureInfo.InvariantCulture);
 
             MainWindow.proxy.EditUser(user, userEdit);
         }
