@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client2"
         mc:Ignorable="d"
-        Title="CeoWindow" Height="347" Width="500">
+        Title="CeoWindow" Height="347" Width="600">
     <Grid Margin="0,0,2,4">
         <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="312" VerticalAlignment="Top" Width="580">
             <TabItem Header="Personal Info" Margin="-2,-2,-11,0">
@@ -114,6 +114,26 @@
                     <Button Content="Set" HorizontalAlignment="Left" Margin="328,87,0,0" VerticalAlignment="Top" Width="75"/>
                     <TextBox HorizontalAlignment="Left" Height="125" Name="tB_tim" Margin="10,166,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="468"/>
                     <Button Content="Prikazi tim" HorizontalAlignment="Left" Margin="194,141,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Napravi Tim" Margin="0,-2,-63,3" HorizontalAlignment="Right" Width="77">
+                <Grid Background="#FFE5E5E5" Margin="0,-9,-11,-8">
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="278*"/>
+
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Naziv Tima:" HorizontalAlignment="Left" Margin="40,29,0,0" VerticalAlignment="Top"/>
+                    <Label Content="TL:" HorizontalAlignment="Left" Margin="40,60,0,0" VerticalAlignment="Top" Width="110"/>
+                    <Label Content="Employee1:" HorizontalAlignment="Left" Margin="40,91,0,0" VerticalAlignment="Top" Width="110"/>
+                    <Label Content="Employee2:" HorizontalAlignment="Left" Margin="40,122,0,0" VerticalAlignment="Top" Width="110"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="170,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="Employee3:" HorizontalAlignment="Left" Margin="40,153,0,0" VerticalAlignment="Top" Width="110" RenderTransformOrigin="0.491,1.962"/>
+                    <ComboBox HorizontalAlignment="Left" Name="cb1" Margin="170,64,0,0" VerticalAlignment="Top" Width="120"/>
+                    <ComboBox HorizontalAlignment="Left" Name="cb2" Margin="170,95,0,0" VerticalAlignment="Top" Width="120"/>
+                    <ComboBox HorizontalAlignment="Left" Name="cb3" Margin="170,126,0,0" VerticalAlignment="Top" Width="120"/>
+                    <ComboBox HorizontalAlignment="Left" Name="cb4" Margin="170,157,0,0" VerticalAlignment="Top" Width="120"/>
+                    <Button Content="Naprvi Tim" HorizontalAlignment="Left" Margin="381,91,0,0" VerticalAlignment="Top" Width="75"/>
                 </Grid>
             </TabItem>
         </TabControl>

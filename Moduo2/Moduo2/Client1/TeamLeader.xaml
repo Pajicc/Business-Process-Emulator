@@ -16,14 +16,14 @@
                     <TextBox x:Name="textBox_Copy3" HorizontalAlignment="Left" Height="23" Margin="255,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60"/>
                     <Label x:Name="label_Copy3" Content="from:" HorizontalAlignment="Left" Margin="127,179,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="label_Copy4" Content="to:" HorizontalAlignment="Left" Margin="231,179,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="textBox_Copy4" HorizontalAlignment="Left" Height="23" Margin="165,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="16"/>
+                    <TextBox x:Name="textBox_Copy4" HorizontalAlignment="Left" Height="23" Margin="165,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="29"/>
                     <Button x:Name="EditEmployee" Content="Edit Info" HorizontalAlignment="Left" Margin="155,240,0,0" VerticalAlignment="Top" Width="76" Click="EditEmployee_Click"/>
                     <TextBox x:Name="textBox_Copy2" HorizontalAlignment="Left" Height="23" Margin="132,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
                     <Label x:Name="label_Copy5" Content="Name:" HorizontalAlignment="Left" Margin="49,42,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="textBox_Copy5" HorizontalAlignment="Left" Height="23" Margin="132,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" IsReadOnly="True"/>
                     <Label x:Name="label_Copy6" Content="Username:" HorizontalAlignment="Left" Margin="49,11,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="textBox_Copy6" HorizontalAlignment="Left" Height="23" Margin="195,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="16"/>
-                    <Label x:Name="label1" Content=":" HorizontalAlignment="Left" Margin="181,182,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBox_Copy6" HorizontalAlignment="Left" Height="23" Margin="199,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="27"/>
+                    <Label x:Name="label1" Content=":" HorizontalAlignment="Left" Margin="194,179,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.154,0.423"/>
                     <Button Content="Logout" HorizontalAlignment="Left" Margin="264,240,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
                 </Grid>
             </TabItem>

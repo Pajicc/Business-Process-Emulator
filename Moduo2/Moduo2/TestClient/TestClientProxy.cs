@@ -55,11 +55,11 @@ using Common;namespace TestClient
         }
 
 
-        public void SendProject(Project projekat)
+        public void SendProject(Project projekat, string NazivKompanije)
         {
             try
             {
-                factory.SendProject(projekat);
+                factory.SendProject(projekat,  NazivKompanije);
                 Console.WriteLine("Projekat");
             }
             catch (Exception e)

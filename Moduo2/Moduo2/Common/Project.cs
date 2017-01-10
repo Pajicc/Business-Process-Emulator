@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Common
 {
@@ -12,11 +14,13 @@ namespace Common
         private string description = string.Empty;        
         private double startTime = 0;
         private double endTime = 0;
-        private User tl = new User();
-        private List<UserStory> userStories = new List<UserStory>();
-        private Tim tim = new Tim();
+        private string kompanija = string.Empty;
+        private string tim=string.Empty;
+      //  private User tl = new User();
+      //  private List<UserStory> userStories = new List<UserStory>();
+      //  private Tim tim = new Tim();
         private int tezina = 0;
-        private List<string> tasks = new List<string>();
+      //  private List<string> tasks = new List<string>();
         
        
 
@@ -28,27 +32,39 @@ namespace Common
             this.description = desc;
             this.startTime = start;
             this.endTime = end;
-            this.tl = po;
-            this.userStories = userStories;
+           // this.tl = po;
+           // this.userStories = userStories;
         }
-
+        [Key]
         public string Name
         {
             get { return name; }
             set { name = value; }
         }
-
-        public List<string> Tasks
+       
+        public string Kompanija
         {
-            get { return tasks; }
-            set { tasks = value; }
+            get { return kompanija; }
+            set { kompanija = value; }
         }
 
-        public Tim Tim
+         public string Tim
         {
             get { return tim; }
             set { tim = value; }
         }
+
+       /* public List<string> Tasks
+        {
+            get { return tasks; }
+            set { tasks = value; }
+        }*/
+
+       /* public Tim Tim
+        {
+            get { return tim; }
+            set { tim = value; }
+        }*/
 
         public int  Tezina
         {
@@ -70,15 +86,15 @@ namespace Common
             get { return endTime; }
             set { endTime = value; }
         }
-        public User Tl
+        /*public User Tl
         {
             get { return tl; }
             set { tl = value; }
-        }
-        public List<UserStory> UserStories
+        }*/
+       /* public List<UserStory> UserStories
         {
             get { return userStories; }
             set { userStories = value; }
-        }
+        }*/
     }
 }

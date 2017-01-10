@@ -40,6 +40,19 @@ namespace SRV2.Access
             }
         }
 
+        public bool AddProject(Project project)
+        {
+            using (var access = new AccessDB())
+            {
+                access.Actions2.Add(project);
+                int i = access.SaveChanges();
+
+                if (i > 0)
+                    return true;
+                return false;
+            }
+        }
+
         public User CheckUser(string username, string pass)
         {
             using (var access = new AccessDB())
@@ -133,6 +146,42 @@ namespace SRV2.Access
                 }
 
                 return usrEmpl;
+            }
+        }
+
+
+        public List<Project> GetAllProjects()
+        {
+            List<Project> proj = new List<Project>();
+
+            List<Project> projlist = new List<Project>();
+
+            using (var access = new AccessDB())
+            {
+                proj = access.Actions2.ToList();
+
+                foreach (Project uu in proj)
+                {
+                    
+                    
+                        projlist.Add(uu);
+                    
+                }
+
+                return projlist;
+            }
+        }
+
+        public bool AddTeam(Tim tim)
+        {
+            using (var access = new AccessDB())
+            {
+                access.Actions3.Add(tim);
+                int i = access.SaveChanges();
+
+                if (i > 0)
+                    return true;
+                return false;
             }
         }
 

@@ -124,7 +124,7 @@ namespace Client2
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string nazivT = (string)timovi_ComboBox.SelectedItem;
+            /*string nazivT = (string)timovi_ComboBox.SelectedItem;
 
             foreach(Tim t in MainWindow.proxy.GetAllTims())
             {
@@ -138,7 +138,7 @@ namespace Client2
                     }
                 }
             }
-
+            */
         }
 
         private void button1_Click_1(object sender, RoutedEventArgs e)

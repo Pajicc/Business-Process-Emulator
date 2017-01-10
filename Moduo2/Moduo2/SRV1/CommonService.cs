@@ -53,9 +53,17 @@ namespace SRV2
 
 
 
-        public void SendProject(Project projekat)
+        public void SendProject(Project projekat, string NazivKompanije)
         {
+            projekat.Kompanija = NazivKompanije;
             projekti.Add(projekat);
+
+            bool done = false;
+            done = DB.Instance.AddProject(projekat);
+
+            
+
+
         }
     }
 }

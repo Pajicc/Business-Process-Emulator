@@ -34,11 +34,20 @@ namespace Common
         [OperationContract]
         List<string> GetCompanyes();
 
+       
         [OperationContract]
         List<Tim> GetAllTims();
 
         [OperationContract]
         List<Project> GetProjects();
+
+        [OperationContract]
+        bool AddProjectToBase(Project proj);
+
+        [OperationContract]
+        bool AddTeam(Tim tim);
+
+        
 
     }
 }
