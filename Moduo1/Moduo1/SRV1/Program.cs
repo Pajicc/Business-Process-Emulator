@@ -68,13 +68,18 @@ namespace SRV1
             User user2 = new User("user2", "user2", "user2@li.com", "09:00:00", "12:00:00", Roles.Employee);
             users.Add(user2);
 
+            List<string> partners1 = new List<string>();
+            partners1.Add("partner1");
+            partners1.Add("partner2");
+
             HiringCompany hc1 = new HiringCompany("HiringCompany1", ceo1);
+            hc1.ParnterCompanies = partners1;
             HiringCompany hc2 = new HiringCompany("HiringCompany2", ceo2);
             HiringCompany hc3 = new HiringCompany("HiringCompany3", ceo3);
-
+      
             using (var access = new AccessDB())
             {
-                if(access.Users == null)
+                if(access.Users.Count<User>() == 0)
                 {
                     foreach (User us in users)
                     {
