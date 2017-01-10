@@ -8,6 +8,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Common
 {
+    public enum States
+    {
+        approved = 0,
+        notApproved = 1,
+        inProgress = 2,
+        finished = 3
+    }
+
     [Table("Projects")]
     public class Project
     {
@@ -15,7 +23,7 @@ namespace Common
         private string description;
         private string startTime;
         private string endTime;
-        private bool active = false;
+        private States state;
         private string po;
         private List<UserStory> userStories = new List<UserStory>();
 
@@ -36,10 +44,10 @@ namespace Common
             get { return name; }
             set { name = value; }
         }
-        public bool Active
+        public States State
         {
-            get { return active; }
-            set { active = value; }
+            get { return state; }
+            set { state = value; }
         }
         public string Description
         {

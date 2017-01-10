@@ -73,7 +73,14 @@ namespace Client1
             if (app)
             {
                 MessageBox.Show("Approved!!");
-                partnerCompanies.Items.Add(outsourcingCompanies.SelectedItem.ToString());
+                wrap.proxy.AddParnterCompany(wrap.cvm.LoggedInUser,outsourcingCompanies.SelectedItem.ToString());
+
+                wrap.cvm.partnerCompanies.Clear();
+                foreach (string comp in wrap.proxy.GetAllParnterCompanies(wrap.cvm.LoggedInUser))
+                {
+                    wrap.cvm.partnerCompanies.Add(comp);
+
+                }
             }
                 
         }
@@ -88,11 +95,30 @@ namespace Client1
             Context wrap = Context.getInstance();
 
             Project p = partnerCompanies_Copy1.SelectedItem as Project;
-            p.Active = true;
-
+            
+            p.State = States.approved;
+            wrap.proxy.UpdateProject(p);
 
             wrap.cvm.activeProjects.Add(p);
             wrap.cvm.notActiveProjects.Remove(p);
+
+            projectsGrid.Items.Refresh();
+        }
+
+        private void sendProject_Click(object sender, RoutedEventArgs e)
+        {
+            Context wrap = Context.getInstance();
+
+            Project p = partnerCompanies_Copy.SelectedItem as Project;
+
+            if (wrap.outsourcingProxy.SendProject(p))
+            {
+                p.State = States.inProgress;
+                wrap.proxy.UpdateProject(p);
+                wrap.cvm.activeProjects.Remove(p);
+            }
+                
+            projectsGrid.Items.Refresh();
         }
 
 

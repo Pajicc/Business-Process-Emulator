@@ -58,8 +58,7 @@ namespace Client1
 
             try
             {
-                allowed = true;
-                factory.SendProject(p);
+                allowed = factory.SendProject(p);
                 Console.WriteLine("SendProject() >> succeded");
             }
             catch (Exception e)

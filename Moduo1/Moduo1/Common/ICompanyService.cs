@@ -38,6 +38,13 @@ namespace Common
         List<Project> GetAllProjects();
 
         [OperationContract]
-        bool ActivateProject(Project p);
+        bool UpdateProject(Project p);
+
+        [OperationContract]
+        List<string> GetAllParnterCompanies(string username);
+
+        [OperationContract]
+        bool AddParnterCompany(string ceo, string partner);
+     
     }
 }

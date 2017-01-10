@@ -159,19 +159,19 @@ namespace Client1
             return allowed;
         }
 
-        public bool ActivateProject(Project prj)
+        public bool UpdateProject(Project prj)
         {
             bool allowed = false;
 
             try
             {
-                allowed = factory.ActivateProject(prj);
-                Console.WriteLine("ActivateProject() >> succeded");
+                allowed = factory.UpdateProject(prj);
+                Console.WriteLine("UpdateProject() >> succeded");
                 allowed = true;
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error while trying to ActivateProject(). {0}", e.Message);
+                Console.WriteLine("Error while trying to UpdateProject(). {0}", e.Message);
             }
 
             return allowed;
@@ -192,6 +192,40 @@ namespace Client1
             }
 
             return projekti;
+        }
+
+        public List<string> GetAllParnterCompanies(string username)
+        {
+            List<string> companies = new List<string>();
+
+            try
+            {
+                companies = factory.GetAllParnterCompanies(username);
+                Console.WriteLine("GetAllParnterCompanies() >> succeded");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while trying to GetAllParnterCompanies(). {0}", e.Message);
+            }
+
+            return companies;
+        }
+
+        public bool AddParnterCompany(string ceo, string partner)
+        {
+            bool allowed = false;
+
+            try
+            {
+                allowed = factory.AddParnterCompany(ceo, partner);
+                Console.WriteLine("AddParnterCompany() >> succeded");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while trying to AddParnterCompany(). {0}", e.Message);
+            }
+
+            return allowed;
         }      
     }
 }
