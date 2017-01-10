@@ -37,7 +37,7 @@ namespace SRV1
 
             #region addovanjeCeoiHiringCompanies
             //addovanje CEO i HiringCompanies
-            List<User> users = new List<User>();
+            /*List<User> users = new List<User>();
 
             User test = new User("test", "test", "test@li.com", "09:00:00", "12:00:00", Roles.CEO);
             users.Add(test);
@@ -96,9 +96,9 @@ namespace SRV1
                 {
                     Console.WriteLine("Uspesno kreirane kompanije!");
                 }
-            }
+            }*/
             #endregion
-
+            
             Console.ReadLine();
 
             host.Close();

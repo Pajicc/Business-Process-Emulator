@@ -84,7 +84,7 @@
                     <Label Content="Outsourcing companies:" HorizontalAlignment="Left" Margin="86,9,0,0" VerticalAlignment="Top" FontSize="15"/>
                     <Label Content="Partner companies:" HorizontalAlignment="Left" Margin="380,30,0,0" VerticalAlignment="Top" FontSize="15"/>
                     <Button Name="sendReqButton" Content="Send request" HorizontalAlignment="Left" Margin="124,78,0,0" VerticalAlignment="Top" Width="89" Height="26" Click="sendReqButton_Click"/>
-                    <ComboBox Name="partnerCompanies" HorizontalAlignment="Left" Margin="360,65,0,0" VerticalAlignment="Top" Width="167" Height="22" ItemsSource="{Binding partnerCompanies}"/>
+                    <ComboBox Name="partnerCompaniesComboBox" HorizontalAlignment="Left" Margin="360,65,0,0" VerticalAlignment="Top" Width="167" Height="22" ItemsSource="{Binding partnerCompanies}"/>
                     <Button Name="sendProject" Content="Send project" HorizontalAlignment="Left" Margin="391,216,0,0" VerticalAlignment="Top" Width="108" Height="25" Click="sendProject_Click"/>
                     <ComboBox x:Name="partnerCompanies_Copy" HorizontalAlignment="Left" Margin="360,143,0,0" VerticalAlignment="Top" Width="167" Height="22" ItemsSource="{Binding activeProjects}" DisplayMemberPath="Name"/>
                     <Label Content="Approved projects:" HorizontalAlignment="Left" Margin="380,113,0,0" VerticalAlignment="Top" FontSize="15"/>
