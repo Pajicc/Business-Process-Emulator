@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Common;
+using SRV1;
 
 namespace SRV1.Access
 {
@@ -41,8 +42,16 @@ namespace SRV1.Access
                 int i = access.SaveChanges();
 
                 if (i > 0)
+                {
+                    Program.log.Info("User: " + user.Username + " has been added to database!");
                     return true;
-                return false;
+                }
+                else
+                {
+                    Program.log.Info("Failed to add to database! User: " + user.Username);
+                    return false;
+                }
+               
             }
         }
 
@@ -61,10 +70,12 @@ namespace SRV1.Access
                     if (access.Users.Find(username).Password == pass)
                     {
                         access.Users.Find(username).LoggedIn = true;
+                        Program.log.Info("Check username for login: " + username);
                         return access.Users.Find(username);
                     }
                 }
-                
+
+                Program.log.Info("Check username for login failed! Username: " + username);
                 return null;
             }
         }
@@ -82,9 +93,11 @@ namespace SRV1.Access
                 if (access.Users.Find(username).Username == username)
                 {
                     access.Users.Find(username).LoggedIn = false;
+                    Program.log.Info("User: " + username + " has been logged out!");
                     return true;
                 }
 
+                Program.log.Info("User: " + username + " has failed to logout!");
                 return false;
             }
         }
@@ -100,9 +113,11 @@ namespace SRV1.Access
             {
                 if (access.Users.Find(username).Username == username)
                 {
+                    Program.log.Info("GetUser: " + username);
                     return access.Users.Find(username);
                 }
 
+                Program.log.Info("Failed to GetUser: " + username);
                 return null;
             }
         }
@@ -129,14 +144,19 @@ namespace SRV1.Access
                     access.Users.Find(userMain.Username).WorkTimeStart = userEdit.WorkTimeStart;
                     access.Users.Find(userMain.Username).WorkTimeEnd = userEdit.WorkTimeEnd;
 
+                    
+
                     int k = access.SaveChanges();
 
                     if (k > 0)
+                    {
+                        Program.log.Info("User: " + userMain.Username + " has been edited!");
                         return true;
-
+                    }
                 }
             }
 
+            Program.log.Info("User: " + userMain.Username + " wasnt edited ERROR!");
             return false;
         }
 
@@ -162,6 +182,8 @@ namespace SRV1.Access
                     }
                 }
 
+                Program.log.Info("GetAllEmployee function has been called");
+
                 return usrEmpl;
             }
         }
@@ -181,11 +203,20 @@ namespace SRV1.Access
 
                 access.Projects.Add(prj);
 
+                
+
                 int i = access.SaveChanges();
 
                 if (i > 0)
+                {
+                    Program.log.Info("Project: " + prj.Name + " has been created by: " + usr.Username);
                     return true;
-                return false;
+                }
+                else
+                {
+                    Program.log.Info("Project: " + prj.Name + " has failed to be created by: " + usr.Username);
+                    return false;
+                }
             }
         }
 
@@ -200,6 +231,8 @@ namespace SRV1.Access
             using (var access = new AccessDB())
             {
                 projects = access.Projects.ToList();
+
+                Program.log.Info("GetAllProjects function has been called");
 
                 return projects;
             }
@@ -237,9 +270,13 @@ namespace SRV1.Access
                     int i = access.SaveChanges();
 
                     if (i > 0)
+                    {
+                        Program.log.Info("Project: " + projDB.Name + " is deleted");
                         return true;
+                    } 
                 }
 
+                Program.log.Info("Failed to delete Project: " + projDB.Name);
                 return false;
             }
         }
@@ -252,6 +289,8 @@ namespace SRV1.Access
                 {
                     access.UserStories.Add(story);
                 }
+          
+                Program.log.Info("SetUserStory function has been called");
 
                 int i = access.SaveChanges();
 
