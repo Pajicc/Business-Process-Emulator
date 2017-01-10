@@ -58,6 +58,12 @@ namespace Client2
                 cb_projekti.Items.Add(pro.Name);
             }
 
+            foreach (Project pro in MainWindow.proxy.GetProjects())
+            {
+
+                projekti_cb.Items.Add(pro.Name);
+            }
+
             foreach (Tim tims in MainWindow.proxy.GetAllTims())
             {
                 timovi_ComboBox.Items.Add(tims.NazivTima);
@@ -80,6 +86,8 @@ namespace Client2
             {
                 cb4.Items.Add(usr.Username);
             }
+
+            
 
             
         }
@@ -153,21 +161,24 @@ namespace Client2
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            /*string nazivT = (string)timovi_ComboBox.SelectedItem;
+            string nazivT = (string)timovi_ComboBox.SelectedItem;
+            Tim t = new Tim();
 
-            foreach(Tim t in MainWindow.proxy.GetAllTims())
+            t= MainWindow.proxy.GetTimByName(nazivT);
             {
-                if (t.NazivTima == nazivT)
-                {
+                
+                
                     tB_tim.Text += "Naziv tima: " + t.NazivTima + "\n";
-                    tB_tim.Text += "Vodja tima: " + t.Tl.Username + "\n";
-                    for (int i = 0; i < t.Employees.Count; i++)
-                    {
-                        tB_tim.Text += "Zaposleni[" + i + "]:" + "\t" + t.Employees[i].Name + "\n";
-                    }
-                }
+                    tB_tim.Text += "Vodja tima: " + t.Tl + "\n";
+
+                    tB_tim.Text += "Zaposleni1: " + t.Employee1 + "\n";
+                    tB_tim.Text += "Zaposleni2: " + t.Employee2 + "\n";
+                    tB_tim.Text += "Zaposleni3: " + t.Employee3 + "\n";
+
+                    
+                
             }
-            */
+            
         }
 
         private void button1_Click_1(object sender, RoutedEventArgs e)
@@ -210,6 +221,15 @@ namespace Client2
 
             MainWindow.proxy.AddTeam(tim);
 
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+           
+            string projekat= projekti_cb.SelectedItem.ToString();
+            string tim = timovi_ComboBox.SelectedItem.ToString();
+
+            MainWindow.proxy.AddTeamToProject(projekat, tim);
         }
 
         

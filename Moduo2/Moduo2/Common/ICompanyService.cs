@@ -50,6 +50,12 @@ namespace Common
         [OperationContract]
         List<User> GetUsersByType(Roles role);
 
+        [OperationContract]
+        Tim GetTimByName(string name);
+
+        [OperationContract]
+        bool AddTeamToProject(string nazivProjekta, string nazivTima);
+
 
 
 

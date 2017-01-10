@@ -21,6 +21,8 @@ namespace SRV2.Access
         bool AddTeam(Tim tim);
         List<User> GetUsersByType(Roles role);
         List<Tim> GetAllTeams();
+        Tim GetTimByName(string naziv);
+        bool AddTeamToProject(string nazivProjekta, string nazivTima);
 
 
 

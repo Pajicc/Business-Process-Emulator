@@ -231,5 +231,39 @@ namespace SRV2.Access
             }
         }
 
+
+
+        public Tim GetTimByName(string naziv)
+        {
+            using (var access = new AccessDB())
+            {
+                if (access.Actions3.Find(naziv).NazivTima== naziv)
+                {
+                    return access.Actions3.Find(naziv);
+                }
+
+                return null;
+            }
+        }
+
+
+        public bool AddTeamToProject(string nazivProjekta, string nazivTima)
+        {
+            using (var access = new AccessDB())
+            {
+                if (access.Actions2.Find(nazivProjekta).Name == nazivProjekta)
+                {
+                    access.Actions2.Find(nazivProjekta).Tim = nazivTima;
+                    int i = access.SaveChanges();
+                    if (i > 0)
+                        return true;
+                    return false;
+
+                }
+
+                return false;
+            }
+
+        }
     }
 }

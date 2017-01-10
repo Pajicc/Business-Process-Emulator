@@ -188,5 +188,33 @@ namespace SRV2
 
             return lista;
         }
+
+
+        public Tim GetTimByName(string name)
+        {
+            Console.WriteLine("GeTeam: " + name);
+
+            Tim t = new Tim();
+            t = DB.Instance.GetTimByName(name);
+
+            if (t != null)
+                return t;
+            else
+                return null;
+        }
+
+
+        public bool AddTeamToProject(string nazivProjekta, string nazivTima)
+        {
+            bool done = false;
+
+            Console.WriteLine("Dodat Tim u Projekat!");
+
+            done = DB.Instance.AddTeamToProject(nazivProjekta, nazivTima);
+
+            return done;
+
+
+        }
     }
 }
