@@ -102,6 +102,7 @@ namespace SRV2.Access
                     access.Actions.Find(userMain.Username).WorkTimeStartHour = userEdit.WorkTimeStartHour;
                     access.Actions.Find(userMain.Username).WorkTimeStartMin = userEdit.WorkTimeStartMin;
                     access.Actions.Find(userMain.Username).WorkTimeEnd = userEdit.WorkTimeEnd;
+                    access.Actions.Find(userMain.Username).WorkTimeEndMin = userEdit.WorkTimeEndMin;
 
                     int k = access.SaveChanges();
 

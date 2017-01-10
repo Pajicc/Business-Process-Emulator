@@ -17,6 +17,7 @@ namespace Common
         private Tim tim = new Tim();
         private int tezina = 0;
         private List<string> tasks = new List<string>();
+       // private Project projekat = new Project();
         
        
 

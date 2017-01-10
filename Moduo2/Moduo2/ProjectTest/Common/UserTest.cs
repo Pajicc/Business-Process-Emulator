@@ -24,7 +24,8 @@ namespace ProjectTest.DataTest.UserTest
         private bool loggedIn = false;
         private int workTimeStarthour = 15;
         private int workTimeStartMin = 44;
-        private double workTimeEnd = 19;
+        private int workTimeEnd = 19;
+        private int workTimeEndMin = 19;
         private Roles role = 0;
 
         #endregion Declarations
@@ -56,7 +57,7 @@ namespace ProjectTest.DataTest.UserTest
         public void UserConstructorTestSaParametrima()
         {
             
-            Assert.DoesNotThrow(() => new User(username, password, email, workTimeStarthour, workTimeStartMin, workTimeEnd,role));
+            Assert.DoesNotThrow(() => new User(username, password, email, workTimeStarthour, workTimeStartMin, workTimeEnd, workTimeEndMin,role));
         }
 
         [Test]
@@ -133,6 +134,14 @@ namespace ProjectTest.DataTest.UserTest
             user.WorkTimeEnd = workTimeEnd;
 
             Assert.AreEqual(workTimeEnd, user.WorkTimeEnd);
+        }
+
+        [Test]
+        public void UserWorkTimeEndMin()
+        {
+            user.WorkTimeEndMin = workTimeEndMin;
+
+            Assert.AreEqual(workTimeEndMin, user.WorkTimeEndMin);
         }
 
         [Test]

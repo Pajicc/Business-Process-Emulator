@@ -9,7 +9,7 @@
     <Grid Background="#FFE5E5E5" Margin="0,0,2,7">
         <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="307" VerticalAlignment="Top" Width="344">
             <TabItem Header="Personal Info" Margin="-2,-2,-44,0">
-                <Grid Background="#FFE5E5E5" Margin="0,-45,-11,28">
+                <Grid Background="#FFE5E5E5" Margin="0,-2,-11,-15">
                     <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="132,76,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
                     <Label x:Name="label" Content="Last name:" HorizontalAlignment="Left" Margin="49,73,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" Height="23" Margin="132,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
@@ -17,18 +17,20 @@
                     <TextBox x:Name="textBox_Copy1" HorizontalAlignment="Left" Height="23" Margin="132,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
                     <Label x:Name="label_Copy1" Content="Email:" HorizontalAlignment="Left" Margin="49,129,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="label_Copy2" Content="Work time:" HorizontalAlignment="Left" Margin="49,179,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="textBox_Copy3" HorizontalAlignment="Left" Height="23" Margin="255,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60"/>
-                    <Label x:Name="label_Copy3" Content="from:" HorizontalAlignment="Left" Margin="127,179,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBox_Copy3" HorizontalAlignment="Left" Height="23" Margin="255,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="22"/>
+                    <Label x:Name="label_Copy3" Content="from:" HorizontalAlignment="Left" Margin="117,179,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="label_Copy4" Content="to:" HorizontalAlignment="Left" Margin="231,179,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="textBox_Copy4" HorizontalAlignment="Left" Height="23" Margin="165,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="17"/>
+                    <TextBox x:Name="textBox_Copy4" HorizontalAlignment="Left" Height="23" Margin="160,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="23"/>
                     <Button x:Name="EditEmployee" Content="Edit Info" HorizontalAlignment="Left" Margin="155,240,0,0" VerticalAlignment="Top" Width="76" Click="EditEmployee_Click"/>
                     <TextBox x:Name="textBox_Copy2" HorizontalAlignment="Left" Height="23" Margin="132,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
                     <Label x:Name="label_Copy5" Content="Name:" HorizontalAlignment="Left" Margin="49,42,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="textBox_Copy5" HorizontalAlignment="Left" Height="23" Margin="132,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" IsReadOnly="True"/>
                     <Label x:Name="label_Copy6" Content="Username:" HorizontalAlignment="Left" Margin="49,11,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="label1" Content=":" HorizontalAlignment="Left" Margin="183,179,0,0" VerticalAlignment="Top" Height="26"/>
-                    <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="23" Margin="196,182,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="17" RenderTransformOrigin="0.2,-0.739" />
+                    <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="23" Margin="196,182,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23" RenderTransformOrigin="0.2,-0.739" />
                     <Button Content="Logout" HorizontalAlignment="Left" Margin="255,240,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+                    <Label x:Name="label1_Copy" Content=":" HorizontalAlignment="Left" Margin="277,179,0,0" VerticalAlignment="Top" Height="26"/>
+                    <TextBox x:Name="textBox_Copy6" HorizontalAlignment="Left" Height="23" Margin="290,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="22"/>
                 </Grid>
             </TabItem>
             <TabItem Header="All employees" Margin="44,-3,-90,1">

@@ -30,11 +30,12 @@ namespace Common
         private bool loggedIn = false;
         private int workTimeStarthour = 0;
         private int workTimeStartMin = 0;
-        private double workTimeEnd = 0;
+        private int workTimeEnd = 0;
+        private int workTimeEndMin = 0;
         private Roles role;
 
         public User() { }
-        public User( string name, string pass, string email, int starth,int startm, double end, Roles role)
+        public User( string name, string pass, string email, int starth,int startm, int end,int endmin, Roles role)
         {
             
             this.username = name;
@@ -43,6 +44,7 @@ namespace Common
             this.workTimeStarthour = starth;
             this.workTimeStartMin = startm;
             this.workTimeEnd = end;
+            this.workTimeEndMin = endmin;
             this.role = role;
         }
 
@@ -89,10 +91,15 @@ namespace Common
             get { return workTimeStartMin; }
             set { this.workTimeStartMin = value; }
         }
-        public double WorkTimeEnd
+        public int WorkTimeEnd
         {
             get { return workTimeEnd; }
             set { this.workTimeEnd = value; }
+        }
+        public int WorkTimeEndMin
+        {
+            get { return workTimeEndMin; }
+            set { this.workTimeEndMin = value; }
         }
         public Roles Role
         {
