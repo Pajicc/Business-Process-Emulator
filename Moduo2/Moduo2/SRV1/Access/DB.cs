@@ -209,5 +209,27 @@ namespace SRV2.Access
             }
         }
 
+        public List<Tim> GetAllTeams()
+        {
+            List<Tim> proj = new List<Tim>();
+
+            List<Tim> projlist = new List<Tim>();
+
+            using (var access = new AccessDB())
+            {
+                proj = access.Actions3.ToList();
+
+                foreach (Tim uu in proj)
+                {
+
+
+                    projlist.Add(uu);
+
+                }
+
+                return projlist;
+            }
+        }
+
     }
 }

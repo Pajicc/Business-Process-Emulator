@@ -20,6 +20,7 @@ namespace SRV2.Access
         List<Project> GetAllProjects();
         bool AddTeam(Tim tim);
         List<User> GetUsersByType(Roles role);
+        List<Tim> GetAllTeams();
 
 
 

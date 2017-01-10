@@ -126,7 +126,11 @@ namespace SRV2
         {
             Console.WriteLine("GetAllTims() ok!");
 
-            return timovi;
+            List<Tim> lista = new List<Tim>();
+
+            lista = DB.Instance.GetAllTeams();
+
+            return lista;
         }
 
 
