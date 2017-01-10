@@ -340,41 +340,58 @@ namespace SRV1.Access
             }
         }
 
-        public List<string> GetAllParnterCompanies(string username)
+        public List<string> GetAllPartnerCompanies(string username)
         {
-            List<string> companies = new List<string>();
+            List<string> partCompanies = new List<string>();
 
             using (var access = new AccessDB())
             {
-                List<UserStory> usdb = new List<UserStory>();
+                HiringCompany findHC = new HiringCompany();
+
                 foreach (HiringCompany hc in access.HiringCompanies)
                 {
-                    if (hc.CEO.Username == username)
+                    if (hc.CEO == username)
                     {
-                        companies.Add(hc.Name);
+                        findHC = hc;
                     }
-                }             
+                }
+
+                foreach (Partner part in access.Partners)
+                {
+                    if(part.ImeHiringKompanije == findHC.Name)
+                    {
+                        partCompanies.Add(part.ImeOutKompanije);
+                    }
+                }
+
+                return partCompanies;
             }
-            return companies;
         }
 
-        public bool AddParnterCompany(string ceo, string partner)
+        public bool AddPartnerCompany(string ceo, string partner)
         {
             using (var access = new AccessDB())
             {
+                HiringCompany findHC = new HiringCompany();
+
                 foreach (HiringCompany hc in access.HiringCompanies)
                 {
-                    if (hc.CEO.Name == ceo)
+                    if(hc.CEO == ceo)
                     {
-                        if(!hc.ParnterCompanies.Contains(partner))
-                            access.HiringCompanies.Find(hc.Name).ParnterCompanies.Add(partner);
-
-                        int k = access.SaveChanges();
-
-                        if(k > 0)
-                            return true;
+                        findHC = hc;
                     }
-                }     
+                }
+
+                if (findHC != null)
+                {
+                    Partner part1 = new Partner(findHC.Name, partner);
+                    access.Partners.Add(part1);
+
+                    int k = access.SaveChanges();
+
+                    if (k > 0)
+                        return true;
+                }
             }
 
             return false;

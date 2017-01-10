@@ -218,11 +218,11 @@ namespace SRV1
             return done;
         }
 
-        public List<string> GetAllParnterCompanies(string username)
+        public List<string> GetAllPartnerCompanies(string username)
         {
             List<string> companies = new List<string>();
 
-            companies = DB.Instance.GetAllParnterCompanies(username);
+            companies = DB.Instance.GetAllPartnerCompanies(username);
 
             return companies;
         }
@@ -238,14 +238,14 @@ namespace SRV1
             return done;
         }
 
-        public bool AddParnterCompany(string ceo, string partner)
+        public bool AddPartnerCompany(string ceo, string partner)
         {
             bool done = false;
 
             Console.WriteLine("Dodata nova Parnter kompanija!");
             Console.WriteLine("Ime Kompanije: " + partner);
 
-            done = DB.Instance.AddParnterCompany(ceo, partner);
+            done = DB.Instance.AddPartnerCompany(ceo, partner);
 
             return done;
         }
