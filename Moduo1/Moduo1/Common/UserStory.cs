@@ -12,20 +12,15 @@ namespace Common
     public class UserStory
     {
         private int id;
-        private string ime;
         private string name;
+        private string project;
         private string criteria;
-        private bool approved;
-        private string startTime;
-        private string endTime;
 
         public UserStory() { }
-        public UserStory(string ime, string criteria, string start, string end)
+        public UserStory(string name, string criteria)
         {
-            this.ime = ime;
+            this.name = name;
             this.criteria = criteria;
-            this.startTime = start;
-            this.endTime = end;
         }
 
         [Key]
@@ -35,35 +30,20 @@ namespace Common
             get { return id; }
             set { id = value; }
         }
-        public string Ime
-        {
-            get { return ime; }
-            set { ime = value; }
-        }
         public string Name
         {
             get { return name; }
             set { name = value; }
         }
-        public string EndTime
+        public string Project
         {
-            get { return endTime; }
-            set { endTime = value; }
-        }
-        public bool Approved
-        {
-            get { return approved; }
-            set { approved = value; }
-        }
+            get { return project; }
+            set { project = value; }
+        }    
         public string Criteria
         {
             get { return criteria; }
             set { criteria = value; }
-        }
-        public string StartTime
-        {
-            get { return startTime; }
-            set { startTime = value; }
         }
     }
 }

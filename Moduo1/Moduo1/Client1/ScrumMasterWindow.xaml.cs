@@ -10,37 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.ServiceModel;
-using Common;
 
 namespace Client1
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ScrumMasterWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
-    {        
-        public static Client1Proxy proxy;
-
-        public MainWindow()
+    public partial class ScrumMasterWindow : Window
+    {
+        public ScrumMasterWindow()
         {
             InitializeComponent();
 
             Context wrapper = Context.getInstance();
-            wrapper.mw = this;
+            wrapper.subwin = this;
             this.DataContext = wrapper.cvm;
 
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Context wrapper = Context.getInstance();
-            AddUsers win = new AddUsers();
-            wrapper.subwin = win;
-            win.DataContext = wrapper.cvm;
-            win.ShowDialog();
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -48,5 +34,18 @@ namespace Client1
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
         }
+
+        private void DataGrid_DoubleMouseClick(object sender, MouseButtonEventArgs e)
+        {
+            Context wrap = Context.getInstance();
+
+            userStories.Items.Clear();
+
+            //wrap.proxy.GetAllStories(projectsGrid.SelectedItem as Project);
+
+            //userStories.Items.Add("User story 1");
+
+        }
+
     }
 }

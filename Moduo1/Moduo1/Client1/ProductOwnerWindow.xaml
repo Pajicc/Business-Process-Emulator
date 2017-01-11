@@ -5,14 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client1"
         mc:Ignorable="d"
-        Title="ProductOwnerWindow" Height="347" Width="579.5">
+        Title="ProductOwnerWindow" Height="347" Width="579.5" MouseDown="Window_MouseDown"
+        WindowStyle="None">
     <Grid Margin="0,0,2,4">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="312" VerticalAlignment="Top" Width="570">
+        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="325" VerticalAlignment="Top" Width="570">
             <TabItem Header="Personal Info" Margin="-2,-2,-11,0">
-                <Grid Background="#FFE5E5E5" Margin="-10,-2,1,-1">
+                <Grid Background="#FFE5E5E5" Margin="0,-2,1,8">
                     <TextBox x:Name="pi_username" HorizontalAlignment="Left" Height="23" Margin="132,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" IsReadOnly="True" Text="{Binding PiUsername}"/>
                     <Label x:Name="label" Content="Username:" HorizontalAlignment="Left" Margin="49,34,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="pi_password" HorizontalAlignment="Left" Height="23" Margin="132,139,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding PiPassword}"/>
@@ -46,11 +47,14 @@
             </TabItem>
             <TabItem Header="Projects" Margin="24,-2,-54,0">
                 <Grid Background="#FFE5E5E5" Margin="0,-2,-2,-8">
-                    <DataGrid HorizontalAlignment="Left" Height="274" Margin="10,10,0,0" VerticalAlignment="Top" Width="546" AutoGenerateColumns="True" ItemsSource="{Binding projects}"/>
+                    <DataGrid Name="projectsGrid" HorizontalAlignment="Left" Height="245" Margin="10,26,0,0" VerticalAlignment="Top" Width="295" AutoGenerateColumns="True" ItemsSource="{Binding projects}" MouseDoubleClick="DataGrid_DoubleMouseClick"/>
+                    <ListBox Name="userStories" HorizontalAlignment="Left" Height="190" Margin="356,39,0,0" VerticalAlignment="Top" Width="157"/>
+                    <Label Content="Projects:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
+                    <Label Content="User stories:" HorizontalAlignment="Left" Margin="356,8,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
         </TabControl>
-
+        <Button Content="X" HorizontalAlignment="Left" Margin="534,1,0,0" VerticalAlignment="Top" Width="36" Height="20" Command="{Binding CloseWindow}"/>
     </Grid>
 </Window>
 

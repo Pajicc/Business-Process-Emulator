@@ -622,6 +622,7 @@ namespace Client1.ViewModel
         {
             Context wrap = Context.getInstance();
             MainWindow win = ((MainWindow)wrap.mw);
+            wrap.mw = win;
 
             if (UsernameLogin == "" || PasswordLogin == "")
             {
@@ -631,6 +632,8 @@ namespace Client1.ViewModel
             {
                 if (wrap.proxy.Login(UsernameLogin, PasswordLogin))
                 {
+                    wrap.mw.Close();
+
                     currentUser = wrap.proxy.GetUser(UsernameLogin);
 
                     loggedInUser = currentUser.Username;
@@ -688,19 +691,24 @@ namespace Client1.ViewModel
                             {
                                 partnerCompanies.Add(comp);
                             }
-                            //wrap.mw.Close();
-                            wrap.subwin = adminWin;
                             break;
                         case Roles.HR:
                             HumanResourceWindow hrWin = new HumanResourceWindow();
                             hrWin.Show();
-                            wrap.subwin = hrWin;
+
+                            hrWin.ae_roleComboBox_admin.ItemsSource = Enum.GetNames(typeof(Roles));    //add employee
+                            hrWin.ee_roleComboBox_admin.ItemsSource = Enum.GetNames(typeof(Roles));
+                            hrWin.ee_roleComboBox_admin.SelectedIndex = 4;
+
+                            hrWin.allEmployeesGrid.Items.Refresh();
                             break;
                         case Roles.SM:
+                            ScrumMasterWindow smWin = new ScrumMasterWindow();
+                            smWin.Show();
+                            break;
                         case Roles.PO:
                             ProductOwnerWindow poWin = new ProductOwnerWindow();
                             poWin.Show();
-                            wrap.subwin = poWin;
                             break;
                         case Roles.Employee:
                             EmployeeWindow empWin = new EmployeeWindow();
@@ -841,7 +849,13 @@ namespace Client1.ViewModel
         private void CloseWindowExecution(object param)
         {
             Context wrap = Context.getInstance();
+            wrap.proxy.LogOut(LoggedInUser);
+            employeeList.Remove(currentUser);
             wrap.subwin.Close();
+
+            MainWindow win = new MainWindow();
+            win.Show();
+            wrap.mw = win;
         }
         #endregion
     }

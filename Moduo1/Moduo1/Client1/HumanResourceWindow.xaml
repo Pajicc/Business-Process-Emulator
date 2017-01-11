@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client1"
         mc:Ignorable="d"
-        Title="HumanResourceWindow" Height="347" Width="579.5">
+        Title="HumanResourceWindow" Height="347" Width="579.5" MouseDown="Window_MouseDown">
     <Grid Margin="0,0,2,4">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -70,11 +70,11 @@
             </TabItem>
             <TabItem Header="All employees" Margin="33,-2,-42,3">
                 <Grid Background="#FFE5E5E5" Margin="0,-2,-2,-8">
-                    <DataGrid HorizontalAlignment="Left" Height="259" Margin="7,25,0,0" VerticalAlignment="Top" Width="549" AutoGenerateColumns="True" CanUserAddRows="False" IsReadOnly="True" ItemsSource="{Binding employeeList}"/>
+                    <DataGrid Name="allEmployeesGrid" HorizontalAlignment="Left" Height="259" Margin="7,25,0,0" VerticalAlignment="Top" Width="549" AutoGenerateColumns="True" CanUserAddRows="False" IsReadOnly="True" ItemsSource="{Binding employeeList}"/>
                     <Label Content="All logged in employees:" HorizontalAlignment="Left" Margin="7,-1,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
         </TabControl>
-
+        <Button Content="X" HorizontalAlignment="Left" Margin="538,0,-2,0" VerticalAlignment="Top" Width="34" Height="18" Command="{Binding CloseWindow}"/>
     </Grid>
 </Window>

@@ -12,7 +12,7 @@ using SRV1;
 
 namespace SRV1
 {
-    public class CompanyService : ICompanyService
+    public class CompanyService : ICompanyService, IHiringCompanyService
     {
         public bool Login(string username, string pass)
         {
@@ -69,15 +69,16 @@ namespace SRV1
 
         }
 
-        public bool LogOut(string username, string pass)
+        public bool LogOut(string username)
         {
             bool done = false;
             Console.WriteLine("User: " + username + " is now logged out.");
 
-            done = DB.Instance.LogOut(username, pass);
+            done = DB.Instance.LogOut(username);
 
             return done;
         }
+
         public bool AddUser(User user)
         {
             bool done = false;
@@ -249,6 +250,20 @@ namespace SRV1
             done = DB.Instance.AddPartnerCompany(ceo, partner);
 
             return done;
+        }
+
+
+        public List<string> GetAllHiringCompanies()
+        {
+            //GetAllHiring
+            throw new NotImplementedException();
+        }
+
+        public bool ApproveUserStory(string usName, string usCriteria, string projectName)
+        {
+            //message box, yes or no
+            //ubaci u bazu
+            throw new NotImplementedException();
         }
     }
 }

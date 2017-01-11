@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client1"
         mc:Ignorable="d"
-        Title="EmployeeWindow" Height="355.12" Width="364.157">
+        Title="EmployeeWindow" Height="326.453" Width="364.157" MouseDown="Window_MouseDown">
     <Grid Background="#FFE5E5E5" Margin="0,0,2,7">
-        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="307" VerticalAlignment="Top" Width="344">
+        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="307" VerticalAlignment="Top" Width="354">
             <TabItem Header="Personal Info" Margin="-2,-2,-44,0">
-                <Grid Background="#FFE5E5E5" Margin="0,-2,-11,-15">
+                <Grid Background="#FFE5E5E5" Margin="0,-2,0,-15">
                     <TextBox x:Name="pi_lastname" HorizontalAlignment="Left" Height="23" Margin="132,76,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding PiLastname}"/>
                     <Label x:Name="label" Content="Last name:" HorizontalAlignment="Left" Margin="49,73,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="pi_password" HorizontalAlignment="Left" Height="23" Margin="132,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding PiPassword}"/>
@@ -28,13 +28,8 @@
                     <Label x:Name="label_Copy6" Content="Username:" HorizontalAlignment="Left" Margin="49,11,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="All employees" Margin="44,-3,-90,1">
-                <Grid Background="#FFE5E5E5" Margin="0,-2,-11,-15">
-                    <DataGrid HorizontalAlignment="Left" Height="259" Margin="7,25,0,0" VerticalAlignment="Top" Width="332" AutoGenerateColumns="True" CanUserAddRows="False" IsReadOnly="True" ItemsSource="{Binding employeeList}"/>
-                    <Label Content="All logged in employees:" HorizontalAlignment="Left" Margin="7,-1,0,0" VerticalAlignment="Top"/>
-                </Grid>
-            </TabItem>
         </TabControl>
+        <Button Content="X" HorizontalAlignment="Left" Margin="316,1,0,0" VerticalAlignment="Top" Width="38" Height="20" Command="{Binding CloseWindow}"/>
     </Grid>
 
 </Window>
