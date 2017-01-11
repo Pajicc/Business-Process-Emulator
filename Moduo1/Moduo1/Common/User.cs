@@ -93,7 +93,6 @@ namespace Common
             get { return role; }
             set { role = value; }
         }
-
         public void Login()
         {
             this.loggedIn = true;

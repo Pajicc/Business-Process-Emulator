@@ -26,7 +26,7 @@ namespace SRV1.Access
         bool ChangePass(string username, string oldPass, string newPass);
         string GetCompany(string username);
         List<string> GetAllHiringCompanies();
-        List<string> GetAllUserStories();
+        List<string> GetAllUserStories(Project proj);
         bool AddUserStory(string usName, string usCriteria, string projectName);
     }
 }
