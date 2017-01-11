@@ -223,6 +223,13 @@ namespace Client2
 
             MainWindow.proxy.AddTeam(tim);
 
+            MainWindow.proxy.AddTeamToUser(tim.NazivTima, cb1.SelectedItem.ToString());
+            MainWindow.proxy.AddTeamToUser(tim.NazivTima, cb2.SelectedItem.ToString());
+            MainWindow.proxy.AddTeamToUser(tim.NazivTima, cb3.SelectedItem.ToString());
+            MainWindow.proxy.AddTeamToUser(tim.NazivTima, cb4.SelectedItem.ToString());
+
+
+
         }
 
         private void Button_Click_4(object sender, RoutedEventArgs e)

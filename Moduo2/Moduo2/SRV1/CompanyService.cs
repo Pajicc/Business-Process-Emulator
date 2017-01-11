@@ -240,5 +240,52 @@ namespace SRV2
 
             return done;
         }
+
+
+        public bool AddUserStory(UserStory us)
+        {
+            bool done = false;
+
+            Console.WriteLine("Dodat nov US!");
+
+
+            done = DB.Instance.AddUserStory(us);
+
+            return done;
+        }
+
+
+        public bool AddTeamToUser(string imeTima, string username)
+        {
+            bool done = false;
+
+            Console.WriteLine("Dodat Tim u USera!");
+
+
+            done = DB.Instance.AddTeamToUser(imeTima, username);
+
+            return done;
+        }
+
+
+        public bool AddUserStoryToTeam(User u, UserStory us)
+        {
+            bool done = false;
+
+            Console.WriteLine("Dodat Tim u USera!");
+
+
+            done = DB.Instance.AddUserStoryToTeam(u, us);
+
+            return done;
+        }
+
+
+        public UserStory GetUserStoryFromUser(User u)
+        {
+            UserStory us = new UserStory();
+
+            return DB.Instance.GetUserStoryFromUser(u);
+        }
     }
 }

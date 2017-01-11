@@ -61,6 +61,18 @@ namespace Common
         [OperationContract]
         bool AddTeamToProject(string nazivProjekta, string nazivTima);
 
+        [OperationContract]
+        bool AddUserStory(UserStory us);
+
+        [OperationContract]
+        bool AddTeamToUser(string imeTima, string username);
+
+        [OperationContract]
+        bool AddUserStoryToTeam(User u, UserStory us);
+
+        [OperationContract]
+        UserStory GetUserStoryFromUser(User u);
+
 
 
 

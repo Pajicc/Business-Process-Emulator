@@ -34,6 +34,7 @@ namespace Common
         private int workTimeEndMin = 0;
         private Roles role;
         private DateTime vremelozinka = new DateTime();
+        private string tim = string.Empty;
         
 
         public User() { }
@@ -60,6 +61,12 @@ namespace Common
         {
             get { return password; }
             set { password = value; }
+        }
+
+        public string Tim
+        {
+            get { return tim; }
+            set { tim = value; }
         }
 
         public string Name

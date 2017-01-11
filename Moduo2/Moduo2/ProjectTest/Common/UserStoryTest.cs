@@ -33,13 +33,13 @@ namespace ProjectTest.DataTest
         }
 
         [Test]
-        public void UserStoryConstructorTestSaParametrima()
+       /* public void UserStoryConstructorTestSaParametrima()
         {
             
             Assert.DoesNotThrow(() => new UserStory(name,criteria,startTime,endTime));
         }
 
-        [Test]
+        [Test]*/
         public void UserStoryName()
         {
             
@@ -57,23 +57,23 @@ namespace ProjectTest.DataTest
             Assert.AreEqual(criteria, us.Criteria);
         }
 
-        [Test]
-        public void UserStoryStartTime()
+        
+      /*  public void UserStoryStartTime()
         {
 
             us.StartTime = startTime;
 
             Assert.AreEqual(startTime, us.StartTime);
-        }
+        }*/
 
-        [Test]
+       /* [Test]
         public void UserStoryEndTime()
         {
 
             us.EndTime = endTime;
 
             Assert.AreEqual(endTime, us.EndTime);
-        }
+        }*/
 
-    }
+       }
 }

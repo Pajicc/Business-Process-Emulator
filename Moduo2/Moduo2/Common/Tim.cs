@@ -17,7 +17,7 @@ namespace Common
         private string employee1 = string.Empty;
         private string employee2 = string.Empty;
         private string employee3 = string.Empty;
-
+        private string userStory = string.Empty;
 
         public string Tl
         {
@@ -38,6 +38,12 @@ namespace Common
         {
             get { return employee1; }
             set { employee1 = value; }
+        }
+
+        public string UserStory
+        {
+            get { return userStory; }
+            set { userStory = value; }
         }
 
         public string Employee2

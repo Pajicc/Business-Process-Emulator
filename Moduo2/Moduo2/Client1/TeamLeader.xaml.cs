@@ -47,6 +47,23 @@ namespace Client2
             ocene.Add(8);
             ocene.Add(11);
             ComboboxTezina.ItemsSource = ocene;
+
+            foreach (Project pro in MainWindow.proxy.GetProjects())
+            {
+                cb_projekti.Items.Add(pro.Name);
+            }
+
+
+
+           UserStory us= MainWindow.proxy.GetUserStoryFromUser(user);
+
+           cb_tasks.Items.Add(us.Task1);
+           cb_tasks.Items.Add(us.Task2);
+           cb_tasks.Items.Add(us.Task3);
+
+                
+            
+
          
         }
 
@@ -95,6 +112,21 @@ namespace Client2
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
+            //OVDE TREBA POZVATI METODU SA HIRING KOMPAN
+            UserStory us = new UserStory();
+            us.Name = tbName.Text.ToString();
+            us.Criteria = TbCrit.Text.ToString();
+            us.Projekat = cb_projekti.SelectedItem.ToString();
+            us.Tezina = (int)ComboboxTezina.SelectedItem;
+            us.StartTime = DateTime.Now;
+            us.EndTime = DateTime.Parse(tbend.Text);
+            us.Task1 = tbtask1.Text.ToString();
+            us.Task2 = tbtask2.Text.ToString();
+            us.Task3 = tbtask3.Text.ToString();
+            MainWindow.proxy.AddUserStory(us);
+
+            MainWindow.proxy.AddUserStoryToTeam(user, us);
 
         }
     }
