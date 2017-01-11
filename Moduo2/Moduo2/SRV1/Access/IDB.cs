@@ -29,6 +29,12 @@ namespace SRV2.Access
         bool AddTeamToProject(string nazivProjekta, string nazivTima);
 
 
+        bool AddUserStory(UserStory us);
+        bool AddUserStoryToTeam(User u, UserStory us);
+        bool AddTeamToUser(string imeTima, string username);
+        UserStory GetUserStoryFromUser(User u);
+
+
 
     }
 }

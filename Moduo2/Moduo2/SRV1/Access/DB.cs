@@ -31,7 +31,7 @@ namespace SRV2.Access
         {
             using (var access = new AccessDB())
             {
-                
+
                 access.Actions.Add(user);
                 int i = access.SaveChanges();
 
@@ -167,7 +167,7 @@ namespace SRV2.Access
 
                 foreach (User uu in usrs)
                 {
-                    if (uu.LoggedIn==true)
+                    if (uu.LoggedIn == true)
                     {
                         usrEmpl.Add(uu);
                     }
@@ -216,10 +216,10 @@ namespace SRV2.Access
 
                 foreach (Project uu in proj)
                 {
-                    
-                    
-                        projlist.Add(uu);
-                    
+
+
+                    projlist.Add(uu);
+
                 }
 
                 Program.log.Info("GetAllProjects:  sucess!");
@@ -278,7 +278,7 @@ namespace SRV2.Access
         {
             using (var access = new AccessDB())
             {
-                if (access.Actions3.Find(naziv).NazivTima== naziv)
+                if (access.Actions3.Find(naziv).NazivTima == naziv)
                 {
                     return access.Actions3.Find(naziv);
                 }
@@ -329,10 +329,10 @@ namespace SRV2.Access
 
                 foreach (User uu in usrs)
                 {
-                    
-                    
-                        usrEmpl.Add(uu);
-                    
+
+
+                    usrEmpl.Add(uu);
+
                 }
 
                 Program.log.Info("GetAllUsers: sucess!");
@@ -354,7 +354,7 @@ namespace SRV2.Access
                     int i = access.SaveChanges();
                     if (i > 0)
                     {
-                        Program.log.Info("Updatovana lozinka za usera: " + username );
+                        Program.log.Info("Updatovana lozinka za usera: " + username);
                         return true;
                     }
                     else
@@ -366,6 +366,101 @@ namespace SRV2.Access
                 }
 
                 return false;
+            }
+        }
+
+
+        public bool AddUserStory(UserStory us)
+        {
+            using (var access = new AccessDB())
+            {
+
+                access.Actions4.Add(us);
+                int i = access.SaveChanges();
+
+                if (i > 0)
+                {
+                    Program.log.Info("US: " + us.Name + " has been added to database!");
+                    return true;
+                }
+                else
+                {
+                    Program.log.Info("Failed to add to US! User: " + us.Name);
+                    return false;
+                }
+            }
+        }
+
+
+
+
+
+        public bool AddUserStoryToTeam(User u, UserStory us)
+        {
+
+
+            using (var access = new AccessDB())
+            {
+                if (access.Actions3.Find(u.Tim).NazivTima== u.Tim)
+                {
+                    access.Actions3.Find(u.Tim).UserStory = us.Name;
+                    
+
+                    int i = access.SaveChanges();
+
+                    if (i > 0)
+                    {
+                        Program.log.Info("AddTeamToUser:  has been added to database!");
+                        return true;
+                    }
+                    else
+                    {
+                        Program.log.Info("Failed to AddTeamToUser to US! User: ");
+                        return false;
+                    }
+                }
+                return false;
+            }
+        }
+
+
+        public bool AddTeamToUser(string imeTima, string username)
+        {
+            using (var access = new AccessDB())
+            {
+                if (access.Actions.Find(username).Username == username)
+                {
+                    access.Actions.Find(username).Tim = imeTima;
+
+                    int i = access.SaveChanges();
+
+                    if (i > 0)
+                    {
+                        Program.log.Info("AddTeamToUser:  has been added to database!");
+                        return true;
+                    }
+                    else
+                    {
+                        Program.log.Info("Failed to AddTeamToUser to US! User: ");
+                        return false;
+                    }
+                }
+                return false;
+            }
+        }
+
+
+        public UserStory GetUserStoryFromUser(User u)
+        {
+            using (var access = new AccessDB())
+            {
+                if (access.Actions3.Find(u.Tim).NazivTima == u.Tim)
+                {
+                    return access.Actions4.Find(access.Actions3.Find(u.Tim).UserStory);
+
+                    
+                }
+                return null;
             }
         }
     }

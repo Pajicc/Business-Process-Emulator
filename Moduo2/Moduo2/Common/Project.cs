@@ -17,7 +17,7 @@ namespace Common
             private double endTime = 0;
             private string kompanija = string.Empty;
             private string tim = string.Empty;
-            private int tezina = 0;
+            private string userStory = string.Empty;
 
 
 
@@ -52,6 +52,12 @@ namespace Common
                 set { tim = value; }
             }
 
+
+            public string UStory
+            {
+                get { return userStory; }
+                set { userStory = value; }
+            }
             /* public List<string> Tasks
              {
                  get { return tasks; }
@@ -64,11 +70,7 @@ namespace Common
                  set { tim = value; }
              }*/
 
-            public int Tezina
-            {
-                get { return tezina; }
-                set { tezina = value; }
-            }
+         
             public string Description
             {
                 get { return description; }

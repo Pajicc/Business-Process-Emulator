@@ -324,5 +324,80 @@ namespace Client2
 
             return allowed;
         }
+
+
+        public bool AddUserStory(UserStory us)
+        {
+            bool allowed = false;
+
+            try
+            {
+                factory.AddUserStory(us);
+                Console.WriteLine("AddUS() >> succeded");
+                allowed = true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while trying to AddUS(). {0}", e.Message);
+            }
+
+            return allowed;
+        }
+
+
+        public bool AddTeamToUser(string imeTima, string username)
+        {
+            bool allowed = false;
+
+            try
+            {
+                factory.AddTeamToUser(imeTima, username);
+                Console.WriteLine("AddTeamToUser() >> succeded");
+                allowed = true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while trying to AddTeamToUser(). {0}", e.Message);
+            }
+
+            return allowed;
+        }
+
+
+        public bool AddUserStoryToTeam(User u, UserStory us)
+        {
+            bool allowed = false;
+
+            try
+            {
+                factory.AddUserStoryToTeam(u, us);
+                Console.WriteLine("AddTeamToUser() >> succeded");
+                allowed = true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while trying to AddTeamToUser(). {0}", e.Message);
+            }
+
+            return allowed;
+        }
+
+
+        public UserStory GetUserStoryFromUser(User u)
+        {
+            UserStory us = new UserStory();
+
+            try
+            {
+                us = factory.GetUserStoryFromUser(u);
+                Console.WriteLine("GetUserStoryFromUser() >> succeded");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while trying to GetUserStoryFromUser(). {0}", e.Message);
+            }
+
+            return us;
+        }
     }
 }

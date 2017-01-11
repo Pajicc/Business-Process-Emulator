@@ -15,6 +15,10 @@ namespace SRV2.Access
         public DbSet<User> Actions { get; set; }
         public DbSet<Project> Actions2 { get; set; }
         public DbSet<Tim> Actions3 { get; set; }
+        public DbSet<UserStory> Actions4 { get; set; }
+        
+
+
 
     }
 }
