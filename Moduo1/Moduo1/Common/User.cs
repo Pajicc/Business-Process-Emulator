@@ -41,7 +41,19 @@ namespace Common
             this.workTimeEnd = end;
             this.role = r;
         }
-       
+        public User(string usern, string pass, string passTime, string n, string lastn, string mail, bool logged, string start, string end, Roles r)
+        {
+            this.username = name;
+            this.password = pass;
+            this.name = n;
+            this.lastName = lastn;
+            this.email = mail;
+            this.loggedIn = logged;
+            this.workTimeStart = start;
+            this.workTimeEnd = end;
+            this.role = r;
+        }
+
         [Key]
         public string Username
         {

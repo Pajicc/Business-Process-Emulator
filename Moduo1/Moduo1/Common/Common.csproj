@@ -52,8 +52,8 @@
   <ItemGroup>
     <Compile Include="HiringCompany.cs" />
     <Compile Include="ICompanyService.cs" />
-    <Compile Include="ICommonService.cs" />
     <Compile Include="IHiringCompanyService.cs" />
+    <Compile Include="IOutsourcingCompanyService.cs" />
     <Compile Include="Partner.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="User.cs" />

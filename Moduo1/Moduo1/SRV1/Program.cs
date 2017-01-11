@@ -38,7 +38,7 @@ namespace SRV1
             host.AddServiceEndpoint(typeof(IHiringCompanyService), binding2, address2);
 
             host.Open();
-            host2.Open();
+            //host2.Open();
 
             Console.WriteLine("CompanyService is opened. Press <enter> to finish...");
             log.Info("CompanyService has started working");
