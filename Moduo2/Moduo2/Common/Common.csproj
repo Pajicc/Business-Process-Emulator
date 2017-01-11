@@ -54,6 +54,7 @@
     <Compile Include="OutsourcingCompany.cs" />
     <Compile Include="ICompanyService.cs" />
     <Compile Include="Project.cs" />
+    <Compile Include="Task.cs" />
     <Compile Include="Tim.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
