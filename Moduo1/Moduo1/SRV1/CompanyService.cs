@@ -103,7 +103,6 @@ namespace SRV1
             return lista;
         }
 
-
         public bool EditUser(User editUser)
         {
             bool done = false;
@@ -228,6 +227,7 @@ namespace SRV1
 
             return companies;
         }
+
         public bool AddHiringCompany(HiringCompany hc)
         {
             bool done = false;
@@ -251,19 +251,68 @@ namespace SRV1
 
             return done;
         }
+      
+        public bool ChangePass(string username, string oldPass, string newPass)
+        {
+            bool done = false;
 
+            done = DB.Instance.ChangePass(username, oldPass, newPass);
+
+            Console.WriteLine("Promenjen password za usera: " + username);
+
+            return done;
+        }
+
+        public string GetCompany(string username)
+        {
+            Console.WriteLine("GetCompany!");
+
+            string comp = string.Empty;
+            comp = DB.Instance.GetCompany(username);
+
+            if (comp != null)
+                return comp;
+            else
+                return null;
+        }
 
         public List<string> GetAllHiringCompanies()
         {
-            //GetAllHiring
-            throw new NotImplementedException();
+            List<string> list = new List<string>();
+            list = DB.Instance.GetAllHiringCompanies();
+
+            return list;
         }
 
         public bool ApproveUserStory(string usName, string usCriteria, string projectName)
         {
-            //message box, yes or no
-            //ubaci u bazu
-            throw new NotImplementedException();
+            DialogResult result = MessageBox.Show("Da li zelite da prihvatite UserStory?", "Warning", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+
+                DB.Instance.AddUserStory(usName, usCriteria, projectName);
+                return true;
+            }
+            else if (result == DialogResult.No)
+            {
+                return false;
+            }
+            else if (result == DialogResult.Cancel)
+            {
+                return false;
+            }
+            return false;
+        }
+
+        public List<string> GetAllUserStories(Project proj)
+        {
+            Console.WriteLine("Poslata lista User stories!");
+
+            List<string> lista = new List<string>();
+
+            lista = DB.Instance.GetAllUserStories(proj);
+
+            return lista;
         }
     }
 }

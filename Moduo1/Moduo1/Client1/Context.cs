@@ -15,7 +15,7 @@ namespace Client1
         private NetTcpBinding binding2 = new NetTcpBinding();
         private string address = "net.tcp://localhost:9999/CompanyService";
         //private string address2 = "net.tcp://10.1.212.121:9998/CompanyService";
-        private string address2 = "net.tcp://localhost:8080/CompanyService2";
+        private string address2 = "net.tcp://localhost:8080/CommonService";
 
         private static volatile Context instance;
         public CompanyViewModel cvm;
@@ -23,6 +23,7 @@ namespace Client1
         public Window subwin;
         public Client1Proxy proxy;
         public OutsourcingProxy outsourcingProxy;
+        public Window changePass;
 
         private Context()
         {
@@ -31,6 +32,7 @@ namespace Client1
             subwin = new Window();
             proxy = new Client1Proxy(binding, new EndpointAddress(new Uri(address)));
             outsourcingProxy = new OutsourcingProxy(binding2, new EndpointAddress(new Uri(address2)));
+            changePass = new Window();
         }
 
         public static Context getInstance()

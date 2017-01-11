@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace Client1.ViewModel
 {
@@ -45,6 +46,9 @@ namespace Client1.ViewModel
         private string pi_name;
         private string pi_from;
         private string pi_to;
+
+        //pass change
+        private string pc_password_change;
 
         // ** ADMIN **
         private string ae_username_admin;             //add employee
@@ -263,6 +267,19 @@ namespace Client1.ViewModel
             {
                 pi_to = value;
                 OnPropertyChanged("pi_to");
+            }
+        }
+        public string PcNewPassword
+        {
+            get
+            {
+                return pc_password_change;
+            }
+
+            set
+            {
+                pc_password_change = value;
+                OnPropertyChanged("pc_password_change");
             }
         }
         public string AePasswordAdmin
@@ -548,6 +565,7 @@ namespace Client1.ViewModel
         private ICommand adminAddUser;
         private ICommand adminEditUser;
         private ICommand poAddProject;
+        private ICommand editPc;
         #endregion
 
         #region Public Commands
@@ -601,6 +619,14 @@ namespace Client1.ViewModel
             get
             {
                 return poAddProject ?? (poAddProject = new RelayCommand(param => PoAddProjectExecution(param)));
+            }
+        }
+
+        public ICommand EditPc
+        {
+            get
+            {
+                return editPc ?? (editPc = new RelayCommand(param => EditPcExecution(param)));
             }
         }
 
@@ -672,6 +698,11 @@ namespace Client1.ViewModel
                         }
 
                     }
+
+                    //thread za 6 meseci
+                    var t = new Thread(() => ProveraPass(currentUser));
+                    t.SetApartmentState(ApartmentState.STA);
+                    t.Start();
 
                     switch (currentUser.Role)
                     {
@@ -857,6 +888,35 @@ namespace Client1.ViewModel
             win.Show();
             wrap.mw = win;
         }
+
+        private void EditPcExecution(object param)
+        {
+            Context wrap = Context.getInstance();
+            wrap.proxy.ChangePass(PiUsername, PiPassword, PcNewPassword);
+            wrap.changePass.Close();
+        }
+
+        public static void ProveraPass(User currentUser)
+        {
+            Context wrap = Context.getInstance();
+            User newUser = wrap.proxy.GetUser(currentUser.Username);
+
+            while (true)
+            {             
+                DateTime userTime = Convert.ToDateTime(newUser.Passeditime);
+                DateTime trenutnovr = DateTime.Now;
+
+                TimeSpan span = trenutnovr.Subtract(userTime);
+
+                if (span.Minutes > 1)
+                {
+                    ChangePassWindow changePass = new ChangePassWindow();
+                    changePass.ShowDialog();
+                    newUser = wrap.proxy.GetUser(currentUser.Username);
+                }
+            }
+        }
+
         #endregion
     }
 }

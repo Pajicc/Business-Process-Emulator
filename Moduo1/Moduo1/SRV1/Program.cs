@@ -31,7 +31,15 @@ namespace SRV1
             ServiceHost host = new ServiceHost(typeof(CompanyService));
             host.AddServiceEndpoint(typeof(ICompanyService), binding, address);
 
+            NetTcpBinding binding2 = new NetTcpBinding();
+            string address2 = "net.tcp://localhost:9988/CompanyService";
+
+            ServiceHost host2 = new ServiceHost(typeof(CompanyService));
+            host.AddServiceEndpoint(typeof(IHiringCompanyService), binding2, address2);
+
             host.Open();
+            host2.Open();
+
             Console.WriteLine("CompanyService is opened. Press <enter> to finish...");
             log.Info("CompanyService has started working");
 
@@ -68,64 +76,29 @@ namespace SRV1
             User user2 = new User("user2", "user2", "user2@li.com", "09:00:00", "12:00:00", Roles.Employee);
             users.Add(user2);
 
-            //List<Partner> partners1 = new List<Partner>();
-            //partners1.Add(new Partner("partner1", "HiringCompany1"));
-            //partners1.Add(new Partner("partner2", "HiringCompany2"));
-
             HiringCompany hc1 = new HiringCompany("HiringCompany1", "ceo1");
-            //hc1.ParnterCompanies = partners1;
             HiringCompany hc2 = new HiringCompany("HiringCompany2", "ceo2");
             HiringCompany hc3 = new HiringCompany("HiringCompany3", "ceo3");
-      
+
             using (var access = new AccessDB())
             {
-                if(access.Users.Count<User>() == 0)
+                if (access.Users.Count<User>() == 0)
                 {
                     foreach (User us in users)
                     {
-                        access.Users.Add(us);
+                        DB.Instance.AddUser(us);
                     }
 
-                    int i = access.SaveChanges();
+                    DB.Instance.AddHiringCompany(hc1);
+                    DB.Instance.AddHiringCompany(hc2);
+                    DB.Instance.AddHiringCompany(hc3);
 
-                    if (i > 0)
-                    {
-                        Console.WriteLine("Uspesno kreirani korisnici!");
-                    }
-
-                    access.HiringCompanies.Add(hc1);
-                    access.HiringCompanies.Add(hc2);
-                    access.HiringCompanies.Add(hc3);
-
-                    int j = access.SaveChanges();
-
-                    if (j > 0)
-                    {
-                        Console.WriteLine("Uspesno kreirane kompanije!");
-                    }
+                    Console.WriteLine("Uspesno popunjena baza!");
                 }
-
-                //test za dodavanje novog partnera, ne radi jer ne moze da se doda na polje u listi
-                /*
-                List<Partner> partnersOld = access.HiringCompanies.FirstOrDefault(f => f.Name == hc1.Name).ParnterCompanies;
-
-                Partner noviPart = new Partner("noviPart");
-
-                partnersOld.Add(noviPart);
-                //access.HiringCompanies.Find(0).ParnterCompanies.Add(noviPart);
-
-                access.HiringCompanies.FirstOrDefault(f => f.Name == hc1.Name).ParnterCompanies = partnersOld;
-
-                int ff = access.SaveChanges();
-
-                if (ff > 0)
-                {
-                    Console.WriteLine("Uspesno dodat novi partner!");
-                }
-                */
             }
+
             #endregion
-            
+
             Console.ReadLine();
 
             host.Close();

@@ -50,5 +50,13 @@ namespace Common
         [OperationContract]
         bool AddPartnerCompany(string ceo, string partner);
 
+        [OperationContract]
+        bool ChangePass(string username, string oldPass, string newPass);
+
+        [OperationContract]
+        string GetCompany(string username);
+
+        [OperationContract]
+        List<string> GetAllUserStories(Project proj);
     }
 }

@@ -244,6 +244,57 @@ namespace Client1
             }
 
             return allowed;
-        }      
+        }
+
+        public bool ChangePass(string username, string oldPass, string newPass)
+        {
+            bool allowed = false;
+
+            try
+            {
+                allowed = factory.ChangePass(username, oldPass, newPass);
+                Console.WriteLine("ChangePass() >> succeded");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while trying to ChangePass(). {0}", e.Message);
+            }
+
+            return allowed;
+        }
+
+        public string GetCompany(string username)
+        {
+            string comp =string.Empty;
+
+            try
+            {
+                comp = factory.GetCompany(username);
+                Console.WriteLine("GetCompany() >> succeded");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while trying to GetCompany(). {0}", e.Message);
+            }
+
+            return comp;
+        }
+
+        public List<string> GetAllUserStories(Project proj)
+        {
+            List<string> userStories = new List<string>();
+
+            try
+            {
+                userStories = factory.GetAllUserStories(proj);
+                Console.WriteLine("GetAllUserStories() >> succeded");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while trying to GetAllUserStories(). {0}", e.Message);
+            }
+
+            return userStories;
+        }
     }
 }

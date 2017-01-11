@@ -71,6 +71,9 @@
     <Compile Include="AdminWindow.xaml.cs">
       <DependentUpon>AdminWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChangePassWindow.xaml.cs">
+      <DependentUpon>ChangePassWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Command\ICommandActive.cs" />
     <Compile Include="Command\RelayCommand.cs" />
     <Compile Include="Context.cs" />
@@ -90,6 +93,10 @@
     </Compile>
     <Compile Include="ViewModel\CompanyViewModel.cs" />
     <Page Include="AddUsers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChangePassWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

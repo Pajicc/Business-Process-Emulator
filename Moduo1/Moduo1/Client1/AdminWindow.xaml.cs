@@ -36,7 +36,9 @@ namespace Client1
                 ee_listOfEmployees_admin.Items.Add(usr.Username);
             }
 
-            foreach (string comp in wrapper.outsourcingProxy.GetAllOutsourcingCompanies())
+            List<string> allOutComp = wrapper.outsourcingProxy.GetAllOutsourcingCompanies();
+
+            foreach (string comp in allOutComp)
             {
                 outsourcingCompanies.Items.Add(comp);
             }  
@@ -114,7 +116,7 @@ namespace Client1
 
             Project p = partnerCompanies_Copy.SelectedItem as Project;
 
-            string company = wrap.proxy.GetCompany(wrap.cvm.LoggedInUser);      //craca ime kompanije
+            string company = wrap.proxy.GetCompany(wrap.cvm.LoggedInUser);      //vraca ime kompanije
 
             if (wrap.outsourcingProxy.SendProject(p.Name, p.Description, company))
             {
@@ -138,9 +140,10 @@ namespace Client1
 
             userStories.Items.Clear();
 
-            //wrap.proxy.GetAllStories(projectsGrid.SelectedItem as Project);
-
-            //userStories.Items.Add("User story 1");
+            foreach(string userStory in wrap.proxy.GetAllUserStories(projectsGrid.SelectedItem as Project))
+            {
+                userStories.Items.Add(userStory);
+            }
             
         }
 

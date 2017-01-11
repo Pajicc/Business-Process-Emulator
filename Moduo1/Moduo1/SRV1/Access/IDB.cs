@@ -23,5 +23,10 @@ namespace SRV1.Access
         List<string> GetAllPartnerCompanies(string username);
         bool AddPartnerCompany(string ceo, string partner);
         bool AddHiringCompany(HiringCompany hc);
+        bool ChangePass(string username, string oldPass, string newPass);
+        string GetCompany(string username);
+        List<string> GetAllHiringCompanies();
+        List<string> GetAllUserStories();
+        bool AddUserStory(string usName, string usCriteria, string projectName);
     }
 }

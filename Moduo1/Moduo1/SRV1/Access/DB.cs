@@ -36,8 +36,11 @@ namespace SRV1.Access
         /// <returns></returns>
         public bool AddUser(User user)
         {
+            DateTime registerTime = DateTime.Now;
+
             using (var access = new AccessDB())
             {
+                user.Passeditime = registerTime.ToString();
                 access.Users.Add(user);
 
                 int i = access.SaveChanges();
@@ -211,6 +214,10 @@ namespace SRV1.Access
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public List<User> GetAllOnlineUsers()
         {
             List<User> usrs = new List<User>();
@@ -442,6 +449,98 @@ namespace SRV1.Access
             }
 
             return false;
+        }
+
+        public bool ChangePass(string username, string oldPass, string newPass)
+        {
+            DateTime currentTime = DateTime.Now;
+
+            using (var access = new AccessDB())
+            {
+                if (access.Users.Find(username).Password == oldPass)
+                {
+                    access.Users.Find(username).Password = newPass;
+                    access.Users.Find(username).Passeditime = currentTime.ToString();
+
+                    int k = access.SaveChanges();
+
+                    if (k > 0)
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
+        public string GetCompany(string username)
+        {
+            using (var access = new AccessDB())
+            {
+                foreach (HiringCompany hc in access.HiringCompanies)
+                {
+                    if(hc.CEO == username)
+                    {
+                        Program.log.Info("Successfully returned Company name " + hc.Name);
+                        return hc.Name;
+                    }
+                }
+
+                Program.log.Info("Failed to return company name: ");
+                return string.Empty;
+            }
+        }
+
+        public List<string> GetAllHiringCompanies( )
+        {
+            List<string> hiringCompanies = new List<string>();
+
+            using (var access = new AccessDB())
+            {
+                foreach (HiringCompany hc in access.HiringCompanies)
+                {
+                    hiringCompanies.Add(hc.Name);
+                }
+
+                return hiringCompanies;
+            }
+        }
+
+        public bool AddUserStory(string usName, string usCriteria, string projectName)
+        {
+            using (var access = new AccessDB())
+            {
+                UserStory us = new UserStory();
+                us.Name = usName;
+                us.Criteria = usCriteria;
+                us.Project = projectName;
+
+                access.UserStories.Add(us);
+
+                int k = access.SaveChanges();
+
+                if (k > 0)
+                    return true;
+            }
+
+            return false;
+        }
+
+        public List<string> GetAllUserStories(Project proj)
+        {
+            List<string> userStories = new List<string>();
+
+            using (var access = new AccessDB())
+            {
+                foreach (UserStory us in access.UserStories)
+                {
+                    if (us.Project == proj.Name)
+                    {
+                        userStories.Add(us.Name);
+                    }
+                }
+
+                return userStories;
+            }
         }
     }
 }
