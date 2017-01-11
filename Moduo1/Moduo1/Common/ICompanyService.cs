@@ -15,7 +15,7 @@ namespace Common
         bool Login(string username, string pass);
 
         [OperationContract]
-        bool LogOut(string username, string pass);
+        bool LogOut(string username);
 
         [OperationContract]
         bool AddUser(User user);

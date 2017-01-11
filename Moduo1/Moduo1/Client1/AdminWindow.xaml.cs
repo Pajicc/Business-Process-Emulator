@@ -114,7 +114,9 @@ namespace Client1
 
             Project p = partnerCompanies_Copy.SelectedItem as Project;
 
-            if (wrap.outsourcingProxy.SendProject(p))
+            string company = wrap.proxy.GetCompany(wrap.cvm.LoggedInUser);      //craca ime kompanije
+
+            if (wrap.outsourcingProxy.SendProject(p.Name, p.Description, company))
             {
                 p.State = States.inProgress;
                 wrap.proxy.UpdateProject(p);
@@ -124,6 +126,23 @@ namespace Client1
             projectsGrid.Items.Refresh();
         }
 
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
+        }
+
+        private void DataGrid_DoubleMouseClick(object sender, MouseButtonEventArgs e)
+        {
+            Context wrap = Context.getInstance();
+
+            userStories.Items.Clear();
+
+            //wrap.proxy.GetAllStories(projectsGrid.SelectedItem as Project);
+
+            //userStories.Items.Add("User story 1");
+            
+        }
 
     }
 }

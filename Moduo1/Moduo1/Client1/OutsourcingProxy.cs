@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Client1
 {
-    public class OutsourcingProxy : ChannelFactory<ICommonService>, ICommonService, IDisposable
+    public class OutsourcingProxy : ChannelFactory<IOutsourcingCompanyService>, IOutsourcingCompanyService, IDisposable
     {
-        ICommonService factory;
+        IOutsourcingCompanyService factory;
 
         public OutsourcingProxy(NetTcpBinding binding, EndpointAddress address)
             : base(binding, address)
@@ -52,13 +52,13 @@ namespace Client1
             return companies;
         }
 
-        public bool SendProject(Project p)
+        public bool SendProject(string name, string desc, string company)
         {
             bool allowed = false;
 
             try
             {
-                allowed = factory.SendProject(p);
+                allowed = factory.SendProject(name, desc, company);
                 Console.WriteLine("SendProject() >> succeded");
             }
             catch (Exception e)

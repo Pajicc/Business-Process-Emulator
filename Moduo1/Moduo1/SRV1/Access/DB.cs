@@ -108,7 +108,7 @@ namespace SRV1.Access
         /// <param name="username"></param>
         /// <param name="pass"></param>
         /// <returns></returns>
-        public bool LogOut(string username, string pass)
+        public bool LogOut(string username)
         {
             using (var access = new AccessDB())
             {

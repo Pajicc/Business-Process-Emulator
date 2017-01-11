@@ -35,13 +35,13 @@ namespace Client1
             return allowed;
         }
 
-        public bool LogOut(string username, string pass)
+        public bool LogOut(string username)
         {
             bool done = false;
 
             try
             {
-                factory.LogOut(username, pass);
+                factory.LogOut(username);
                 Console.WriteLine("LogOut() >> succeded");
                 done = true;
             }

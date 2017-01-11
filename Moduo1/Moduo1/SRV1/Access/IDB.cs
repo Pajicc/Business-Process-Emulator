@@ -11,7 +11,7 @@ namespace SRV1.Access
     {
         bool AddUser(User user);
         bool LoginUser(string username, string pass);
-        bool LogOut(string username, string pass);
+        bool LogOut(string username);
         User GetUser(string username);
         bool EditUser(User userEdit);
         List<User> GetAllEmployees();

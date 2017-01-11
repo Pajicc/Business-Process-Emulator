@@ -28,5 +28,23 @@ namespace Client1
             this.DataContext = wrapper.cvm;
 
         }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
+        }
+
+        private void DataGrid_DoubleMouseClick(object sender, MouseButtonEventArgs e)
+        {
+            Context wrap = Context.getInstance();
+
+            userStories.Items.Clear();
+
+            //wrap.proxy.GetAllStories(projectsGrid.SelectedItem as Project);
+
+            //userStories.Items.Add("User story 1");
+
+        }
     }
 }

@@ -85,6 +85,9 @@
     <Compile Include="ProductOwnerWindow.xaml.cs">
       <DependentUpon>ProductOwnerWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ScrumMasterWindow.xaml.cs">
+      <DependentUpon>ScrumMasterWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\CompanyViewModel.cs" />
     <Page Include="AddUsers.xaml">
       <SubType>Designer</SubType>
@@ -116,6 +119,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ProductOwnerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ScrumMasterWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

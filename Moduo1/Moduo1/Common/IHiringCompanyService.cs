@@ -8,15 +8,12 @@ using System.Threading.Tasks;
 namespace Common
 {
     [ServiceContract]
-    public interface ICommonService
+    public interface IHiringCompanyService
     {
         [OperationContract]
-        bool PartnershipRequest(string company);
+        List<string> GetAllHiringCompanies();
 
         [OperationContract]
-        List<string> GetAllOutsourcingCompanies();
-
-        [OperationContract]
-        bool SendProject(Project p);
+        bool ApproveUserStory(string usName, string usCriteria, string projectName);
     }
 }
