@@ -13,7 +13,6 @@ namespace Common
     {
         private string name = string.Empty;
         private string ceo = string.Empty;
-        private List<Partner> partnerCompanies = new List<Partner>();
 
         public HiringCompany() { }
         public HiringCompany(string name, string ceo)
@@ -34,13 +33,5 @@ namespace Common
             get { return ceo; }
             set { ceo = value; }
         }
-
-        [NotMapped]
-        public List<Partner> ParnterCompanies
-        {
-            get { return partnerCompanies; }
-            set { partnerCompanies = value; }
-        }
-       
     }
 }
