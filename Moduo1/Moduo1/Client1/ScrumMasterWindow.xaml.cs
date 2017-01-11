@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,10 +42,10 @@ namespace Client1
 
             userStories.Items.Clear();
 
-            //wrap.proxy.GetAllStories(projectsGrid.SelectedItem as Project);
-
-            //userStories.Items.Add("User story 1");
-
+            foreach (string userStory in wrap.proxy.GetAllUserStories(projectsGrid.SelectedItem as Project))
+            {
+                userStories.Items.Add(userStory);
+            }
         }
 
     }

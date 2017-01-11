@@ -20,12 +20,10 @@ namespace Client1.ViewModel
         #region propertyFields
 
         public ObservableCollection<User> employeeList { get; set; }
-
         public ObservableCollection<Project> projects { get; set; }
-
         public ObservableCollection<Project> activeProjects { get; set; }
         public ObservableCollection<Project> notActiveProjects { get; set; }
-
+        public ObservableCollection<Project> projectsAdmin { get; set; }
         public ObservableCollection<string> partnerCompanies { get; set; }
 
         public User currentUser = new User();
@@ -75,7 +73,6 @@ namespace Client1.ViewModel
         private string ap_from_po;
         private string ap_to_po;
 
-
         public ObservableCollection<string> EeEmployeeList { get; set; }
         private string eeEmployeeAdmin;
 
@@ -92,6 +89,7 @@ namespace Client1.ViewModel
             projects = new ObservableCollection<Project>();
             activeProjects = new ObservableCollection<Project>();
             notActiveProjects = new ObservableCollection<Project>();
+            projectsAdmin = new ObservableCollection<Project>();
             partnerCompanies = new ObservableCollection<string>();
         }
         public string LoggedInUser
@@ -676,31 +674,21 @@ namespace Client1.ViewModel
                     PiLastname = currentUser.LastName;
                     PiEmail = currentUser.Email;
                     PiFrom = currentUser.WorkTimeStart;
-                    PiFrom = currentUser.WorkTimeEnd;
+                    PiTo = currentUser.WorkTimeEnd;
 
                     projects.Clear();
                     notActiveProjects.Clear();
-                    activeProjects.Clear();
-
-                    foreach (Project proj in wrap.proxy.GetAllProjects())   //iz baze dodaj u observable liste sve projekte
+                    foreach (Project proj in wrap.proxy.GetAllProjects())   //svi projekti svih kompanija, ucitaj u sve sem admina
                     {
                         if (!projects.Contains(proj))
                             projects.Add(proj);
 
-                        switch (proj.State)
-                        {
-                            case States.approved:
-                                activeProjects.Add(proj);
-                                break;
-                            case States.notApproved:
-                                notActiveProjects.Add(proj);
-                                break;
-                        }
-
+                        if (proj.State == States.notApproved)               //u admin comboBox "For approval" svi neodobreni projekti
+                            notActiveProjects.Add(proj);
                     }
 
-                    //thread za 6 meseci
-                    var t = new Thread(() => ProveraPass(currentUser));
+                        //thread za 6 meseci
+                        var t = new Thread(() => ProveraPass(currentUser));
                     t.SetApartmentState(ApartmentState.STA);
                     t.Start();
 
@@ -722,6 +710,18 @@ namespace Client1.ViewModel
                             {
                                 partnerCompanies.Add(comp);
                             }
+
+                            projectsAdmin.Clear();                        
+                            activeProjects.Clear();
+                            foreach (Project proj in wrap.proxy.GetAllProjectsCEO(currentUser.Username))  
+                            {
+                                if (!projectsAdmin.Contains(proj))
+                                    projectsAdmin.Add(proj);
+
+                                if(proj.State == States.approved)
+                                    activeProjects.Add(proj);                              
+                            }
+
                             break;
                         case Roles.HR:
                             HumanResourceWindow hrWin = new HumanResourceWindow();
@@ -756,8 +756,7 @@ namespace Client1.ViewModel
             User newUser = new User();
 
             Context wrap = Context.getInstance();
-            AdminWindow win = ((AdminWindow)wrap.subwin);
-
+            
             newUser = wrap.proxy.GetUser(LoggedInUser); //stare vrednosti
 
             if (PiName != null)              //ako su izmenjene, zameni ih
@@ -780,9 +779,9 @@ namespace Client1.ViewModel
             {
                 employeeList.Add(u);
             }
-            win.allEmployeesGrid.Items.Refresh();
+            //AdminWindow win = ((AdminWindow)wrap.subwin);
+            //win.allEmployeesGrid.Items.Refresh();
 
-            //wrap.subwin.Close();
         }
 
         private void AdminAddUserExecution(object param)
@@ -908,7 +907,7 @@ namespace Client1.ViewModel
 
                 TimeSpan span = trenutnovr.Subtract(userTime);
 
-                if (span.Minutes > 1)
+                if (span.Minutes > 100)
                 {
                     ChangePassWindow changePass = new ChangePassWindow();
                     changePass.ShowDialog();

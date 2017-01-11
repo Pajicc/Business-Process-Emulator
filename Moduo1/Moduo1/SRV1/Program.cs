@@ -27,18 +27,18 @@ namespace SRV1
 
             NetTcpBinding binding = new NetTcpBinding();
             string address = "net.tcp://localhost:9999/CompanyService";
+            NetTcpBinding binding2 = new NetTcpBinding();
+            string address2 = "net.tcp://localhost:8888/CompanyService";
+
 
             ServiceHost host = new ServiceHost(typeof(CompanyService));
-            host.AddServiceEndpoint(typeof(ICompanyService), binding, address);
-
-            NetTcpBinding binding2 = new NetTcpBinding();
-            string address2 = "net.tcp://localhost:9988/CompanyService";
+            host.AddServiceEndpoint(typeof(ICompanyService), binding, address);           
 
             ServiceHost host2 = new ServiceHost(typeof(CompanyService));
-            host.AddServiceEndpoint(typeof(IHiringCompanyService), binding2, address2);
+            host2.AddServiceEndpoint(typeof(IHiringCompanyService), binding2, address2);
 
             host.Open();
-            //host2.Open();
+            host2.Open();
 
             Console.WriteLine("CompanyService is opened. Press <enter> to finish...");
             log.Info("CompanyService has started working");

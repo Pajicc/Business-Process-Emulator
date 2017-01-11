@@ -5,11 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client1"
         mc:Ignorable="d"
-        Title="EmployeeWindow" Height="326.453" Width="364.157" MouseDown="Window_MouseDown">
+        Title="EmployeeWindow" Height="326.453" Width="364.157" MouseDown="Window_MouseDown"
+        WindowStyle="None">
     <Grid Background="#FFE5E5E5" Margin="0,0,2,7">
         <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="307" VerticalAlignment="Top" Width="354">
             <TabItem Header="Personal Info" Margin="-2,-2,-44,0">
                 <Grid Background="#FFE5E5E5" Margin="0,-2,0,-15">
+                    <TextBox x:Name="pi_username" HorizontalAlignment="Left" Height="23" Margin="132,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" IsReadOnly="True" Text="{Binding PiUsername}"/>
+                    <TextBox x:Name="pi_name" HorizontalAlignment="Left" Height="23" Margin="132,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding PiName}"/>
                     <TextBox x:Name="pi_lastname" HorizontalAlignment="Left" Height="23" Margin="132,76,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding PiLastname}"/>
                     <Label x:Name="label" Content="Last name:" HorizontalAlignment="Left" Margin="49,73,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="pi_password" HorizontalAlignment="Left" Height="23" Margin="132,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding PiPassword}"/>
@@ -17,15 +20,14 @@
                     <TextBox x:Name="pi_email" HorizontalAlignment="Left" Height="23" Margin="132,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding PiEmail}"/>
                     <Label x:Name="label_Copy1" Content="Email:" HorizontalAlignment="Left" Margin="49,129,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="label_Copy2" Content="Work time:" HorizontalAlignment="Left" Margin="49,179,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="pi_from" HorizontalAlignment="Left" Height="23" Margin="165,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Text="{Binding PiFrom}"/>
                     <TextBox x:Name="pi_to" HorizontalAlignment="Left" Height="23" Margin="255,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Text="{Binding PiTo}"/>
                     <Label x:Name="label_Copy3" Content="from:" HorizontalAlignment="Left" Margin="127,179,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="label_Copy4" Content="to:" HorizontalAlignment="Left" Margin="231,179,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="pi_from" HorizontalAlignment="Left" Height="23" Margin="165,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Text="{Binding PiFrom}"/>
-                    <Button x:Name="EditEmployee" Content="Edit Info" HorizontalAlignment="Left" Margin="155,240,0,0" VerticalAlignment="Top" Width="76" Command="{Binding EditPi}"/>
-                    <TextBox x:Name="pi_name" HorizontalAlignment="Left" Height="23" Margin="132,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding PiName}"/>
+                    <Button x:Name="EditEmployee" Content="Edit Info" HorizontalAlignment="Left" Margin="132,257,0,0" VerticalAlignment="Top" Width="76" Command="{Binding EditPi}"/>
                     <Label x:Name="label_Copy5" Content="Name:" HorizontalAlignment="Left" Margin="49,42,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="pi_username" HorizontalAlignment="Left" Height="23" Margin="132,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" IsReadOnly="True" Text="{Binding PiUsername}"/>
                     <Label x:Name="label_Copy6" Content="Username:" HorizontalAlignment="Left" Margin="49,11,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="label1" Content="(format: 00:00:00)" HorizontalAlignment="Left" Margin="185,205,0,0" VerticalAlignment="Top" FontSize="10"/>
                 </Grid>
             </TabItem>
         </TabControl>

@@ -280,7 +280,8 @@ namespace SRV1.Access
             {
                 if (access.Projects.Find(prj.Name).Name == prj.Name)
                 {
-                    access.Projects.Find(prj.Name).State = prj.State;       //dodati ako treba jos nesto da se izmeni
+                    access.Projects.Find(prj.Name).State = prj.State;                     //dodati ako treba jos nesto da se izmeni
+                    access.Projects.Find(prj.Name).HiringCompany = prj.HiringCompany;
 
                     int k = access.SaveChanges();
 
@@ -307,6 +308,24 @@ namespace SRV1.Access
                 projects = access.Projects.ToList();
 
                 Program.log.Info("GetAllProjects function has been called");
+
+                return projects;
+            }
+        }
+        public List<Project> GetAllProjectsCEO(string username)
+        {
+            List<Project> projects = new List<Project>();
+
+            string company = GetCompany(username);  //na osnovu CEO.Username nadji ime kompanije
+
+            using (var access = new AccessDB())
+            {
+                foreach (Project p in access.Projects)
+                {
+                    if(p.HiringCompany == company)
+                        projects.Add(p);
+                }
+                Program.log.Info("GetAllProjectsCEO function has been called");
 
                 return projects;
             }
@@ -354,26 +373,6 @@ namespace SRV1.Access
                 return false;
             }
         }
-        /*
-        public bool SetUserStory(List<UserStory> us)
-        {
-            using (var access = new AccessDB())
-            {
-                foreach (UserStory story in us)
-                {
-                    access.UserStories.Add(story);
-                }
-          
-                Program.log.Info("SetUserStory function has been called");
-
-                int i = access.SaveChanges();
-
-                if (i > 0)
-                    return true;
-                return false;
-            }
-        }
-         */
 
         public bool AddHiringCompany(HiringCompany hc)
         {
@@ -450,7 +449,6 @@ namespace SRV1.Access
 
             return false;
         }
-
         public bool ChangePass(string username, string oldPass, string newPass)
         {
             DateTime currentTime = DateTime.Now;

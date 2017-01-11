@@ -25,6 +25,7 @@ namespace Common
         private string endTime;
         private States state;
         private string po;
+        private string hiringCompany;
 
         public Project() { }
         public Project(string name, string desc, string start, string end, string po)
@@ -67,6 +68,12 @@ namespace Common
         {
             get { return po; }
             set { po = value; }
+        }
+
+        public string HiringCompany
+        {
+            get { return hiringCompany; }
+            set { hiringCompany = value; }
         }
     }
 }

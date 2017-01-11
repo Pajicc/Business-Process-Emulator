@@ -16,15 +16,15 @@
                 <Grid Background="#FFE5E5E5" Margin="0,-2,1,8">
                     <TextBox x:Name="pi_username" HorizontalAlignment="Left" Height="23" Margin="132,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" IsReadOnly="True" Text="{Binding PiUsername}"/>
                     <Label x:Name="label" Content="Username:" HorizontalAlignment="Left" Margin="49,34,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="pi_password" HorizontalAlignment="Left" Height="23" Margin="132,139,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding PiPassword}"/>
-                    <Label x:Name="label_Copy" Content="Password:" HorizontalAlignment="Left" Margin="49,136,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="pi_email" HorizontalAlignment="Left" Height="23" Margin="132,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding PiEmail}"/>
-                    <Label x:Name="label_Copy1" Content="Email:" HorizontalAlignment="Left" Margin="49,182,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="pi_password" HorizontalAlignment="Left" Height="23" Margin="132,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding PiPassword}"/>
+                    <TextBox x:Name="pi_name" HorizontalAlignment="Left" Height="23" Margin="132,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding PiName}"/>
+                    <TextBox x:Name="pi_lastname" HorizontalAlignment="Left" Height="23" Margin="132,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding PiLastname}"/>
+                    <Label x:Name="label_Copy" Content="Password:" HorizontalAlignment="Left" Margin="49,78,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="pi_email" HorizontalAlignment="Left" Height="22" Margin="132,190,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding PiEmail}"/>
+                    <Label x:Name="label_Copy1" Content="Email:" HorizontalAlignment="Left" Margin="49,186,0,0" VerticalAlignment="Top"/>
                     <Button x:Name="editPersonalInfo" Content="Edit Info" HorizontalAlignment="Left" Margin="155,240,0,0" VerticalAlignment="Top" Width="76" Command="{Binding EditPi}"/>
-                    <TextBox x:Name="pi_name" HorizontalAlignment="Left" Height="23" Margin="132,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding PiName}"/>
-                    <Label x:Name="label_Copy2" Content="Name:" HorizontalAlignment="Left" Margin="49,74,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="pi_lastname" HorizontalAlignment="Left" Height="23" Margin="132,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding PiLastname}"/>
-                    <Label x:Name="label_Copy3" Content="Last name:" HorizontalAlignment="Left" Margin="49,105,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="label_Copy2" Content="Name:" HorizontalAlignment="Left" Margin="49,114,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="label_Copy3" Content="Last name:" HorizontalAlignment="Left" Margin="49,150,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Add project" Margin="11,-2,-24,0">
@@ -38,16 +38,13 @@
                     <Label x:Name="label_Copy6" Content="to:" HorizontalAlignment="Left" Margin="231,192,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="ap_from_po" HorizontalAlignment="Left" Height="23" Margin="165,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Text="{Binding ApFromPo}"/>
                     <TextBox x:Name="ap_desc_po" HorizontalAlignment="Left" Height="95" Margin="132,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding ApDescPo}"/>
-                    <Label x:Name="label1_Copy1" Content="Created user stories:" HorizontalAlignment="Left" Margin="393,19,0,0" VerticalAlignment="Top"/>
                     <Button Content="Add project" HorizontalAlignment="Left" Margin="231,253,0,0" VerticalAlignment="Top" Width="90" Height="24" Command="{Binding PoAddProject}"/>
-                    <Button Content="Add more user stories" HorizontalAlignment="Left" Margin="393,201,0,0" VerticalAlignment="Top" Width="127" Height="24"/>
-                    <ListBox HorizontalAlignment="Left" Height="141" Margin="393,45,0,0" VerticalAlignment="Top" Width="127"/>
 
                 </Grid>
             </TabItem>
             <TabItem Header="Projects" Margin="24,-2,-54,0">
                 <Grid Background="#FFE5E5E5" Margin="0,-2,-2,-8">
-                    <DataGrid Name="projectsGrid" HorizontalAlignment="Left" Height="245" Margin="10,26,0,0" VerticalAlignment="Top" Width="295" AutoGenerateColumns="True" ItemsSource="{Binding projects}" MouseDoubleClick="DataGrid_DoubleMouseClick"/>
+                    <DataGrid Name="projectsGrid" HorizontalAlignment="Left" Height="245" Margin="10,26,0,0" VerticalAlignment="Top" Width="295" IsReadOnly="True" AutoGenerateColumns="True" ItemsSource="{Binding projects}" MouseDoubleClick="DataGrid_DoubleMouseClick"/>
                     <ListBox Name="userStories" HorizontalAlignment="Left" Height="190" Margin="356,39,0,0" VerticalAlignment="Top" Width="157"/>
                     <Label Content="Projects:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
                     <Label Content="User stories:" HorizontalAlignment="Left" Margin="356,8,0,0" VerticalAlignment="Top"/>

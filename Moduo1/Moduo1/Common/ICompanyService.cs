@@ -42,6 +42,9 @@ namespace Common
         List<Project> GetAllProjects();
 
         [OperationContract]
+        List<Project> GetAllProjectsCEO(string username);
+
+        [OperationContract]
         bool UpdateProject(Project p);
 
         [OperationContract]

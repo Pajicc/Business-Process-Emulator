@@ -70,23 +70,38 @@ namespace Client1
         private void sendReqButton_Click(object sender, RoutedEventArgs e)
         {
             Context wrap = Context.getInstance();
-            bool app = wrap.outsourcingProxy.PartnershipRequest(outsourcingCompanies.SelectedItem.ToString());
 
-            if (app)
+            if (!wrap.cvm.partnerCompanies.Contains(outsourcingCompanies.SelectedItem.ToString()))
             {
-                MessageBox.Show("Approved!!");
-                wrap.proxy.AddPartnerCompany(wrap.cvm.LoggedInUser,outsourcingCompanies.SelectedItem.ToString());   //dodavanje u bazu
+                bool app = wrap.outsourcingProxy.PartnershipRequest(outsourcingCompanies.SelectedItem.ToString());
 
-                wrap.cvm.partnerCompanies.Clear();  //ocisti bind listu 
-
-                
-                foreach (string comp in wrap.proxy.GetAllPartnerCompanies(wrap.cvm.LoggedInUser))       //iscitaj iz baze i ubaci u listu
+                if (app)
                 {
-                    wrap.cvm.partnerCompanies.Add(comp);
-                    partnerCompaniesComboBox.Items.Refresh();
+                    MessageBox.Show("Approved!");
+                    wrap.proxy.AddPartnerCompany(wrap.cvm.LoggedInUser, outsourcingCompanies.SelectedItem.ToString());   //dodavanje u bazu
+
+                    wrap.cvm.partnerCompanies.Clear();  //ocisti bind listu 
+
+
+                    foreach (string comp in wrap.proxy.GetAllPartnerCompanies(wrap.cvm.LoggedInUser))       //iscitaj iz baze i ubaci u listu
+                    {
+                        if (!wrap.cvm.partnerCompanies.Contains(comp))
+                            wrap.cvm.partnerCompanies.Add(comp);
+                        partnerCompaniesComboBox.Items.Refresh();
+                    }
+
                 }
-                
+                else
+                {
+                    MessageBox.Show("Not approved!");
+                }
             }
+            else
+            {
+                MessageBox.Show("Companies already have partnership");
+            }
+
+           
                 
         }
 
@@ -99,33 +114,44 @@ namespace Client1
         {
             Context wrap = Context.getInstance();
 
-            Project p = partnerCompanies_Copy1.SelectedItem as Project;
+            if(partnerCompanies_Copy1.SelectedItem != null)
+            {
+                Project p = partnerCompanies_Copy1.SelectedItem as Project;
+
+                string company = wrap.proxy.GetCompany(wrap.cvm.currentUser.Username);
+
+                p.State = States.approved;
+                p.HiringCompany = company;
+                wrap.proxy.UpdateProject(p);
+
+                wrap.cvm.activeProjects.Add(p);         //dodaj u aktivne
+                wrap.cvm.notActiveProjects.Remove(p);   //obrisi iz neaktivnih
+                wrap.cvm.projectsAdmin.Add(p);          //dodaj u sve projekte za tog konkretnoh CEO(kompaniju)
+
+                projectsGrid.Items.Refresh();
+            }
             
-            p.State = States.approved;
-            wrap.proxy.UpdateProject(p);
-
-            wrap.cvm.activeProjects.Add(p);
-            wrap.cvm.notActiveProjects.Remove(p);
-
-            projectsGrid.Items.Refresh();
         }
 
         private void sendProject_Click(object sender, RoutedEventArgs e)
         {
             Context wrap = Context.getInstance();
 
-            Project p = partnerCompanies_Copy.SelectedItem as Project;
-
-            string company = wrap.proxy.GetCompany(wrap.cvm.LoggedInUser);      //vraca ime kompanije
-
-            if (wrap.outsourcingProxy.SendProject(p.Name, p.Description, company))
+            if (partnerCompanies_Copy.SelectedItem != null)
             {
-                p.State = States.inProgress;
-                wrap.proxy.UpdateProject(p);
-                wrap.cvm.activeProjects.Remove(p);
+                Project p = partnerCompanies_Copy.SelectedItem as Project;
+
+                //string company = wrap.proxy.GetCompany(wrap.cvm.LoggedInUser);      //vraca ime kompanije
+
+                if (wrap.outsourcingProxy.SendProject(p.Name, p.Description, p.HiringCompany))
+                {
+                    p.State = States.inProgress;
+                    wrap.proxy.UpdateProject(p);
+                    wrap.cvm.activeProjects.Remove(p);
+                }
+
+                projectsGrid.Items.Refresh();
             }
-                
-            projectsGrid.Items.Refresh();
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

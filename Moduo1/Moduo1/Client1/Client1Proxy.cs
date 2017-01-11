@@ -212,6 +212,23 @@ namespace Client1
             return projekti;
         }
 
+        public List<Project> GetAllProjectsCEO(string username)
+        {
+            List<Project> projekti = new List<Project>();
+
+            try
+            {
+                projekti = factory.GetAllProjectsCEO(username);
+                Console.WriteLine("GetAllProjectsCEO() >> succeded");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while trying to GetAllProjectsCEO(). {0}", e.Message);
+            }
+
+            return projekti;
+        }
+
         public List<string> GetAllPartnerCompanies(string username)
         {
             List<string> companies = new List<string>();

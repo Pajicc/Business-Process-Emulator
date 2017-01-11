@@ -196,6 +196,17 @@ namespace SRV1
 
             return projekti;
         }
+        public List<Project> GetAllProjectsCEO(string username)
+        {
+            Console.WriteLine("Poslata lista Usera!");
+
+            List<Project> projekti = new List<Project>();
+
+            projekti = DB.Instance.GetAllProjectsCEO(username);
+
+            return projekti;
+        }
+
 
         public bool DeleteProject(Project prj)
         {
