@@ -35,7 +35,7 @@
                     <Button x:Name="button1" Content="Load all employees" HorizontalAlignment="Left" Margin="10,194,0,0" VerticalAlignment="Top" Width="109" Click="button1_Click"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Tasks" Margin="44,-3,-90,1">
+            <TabItem Header="Tasks" Margin="75,0,-121,-2">
                 <Grid Background="#FFE5E5E5" Margin="0,-4,-11,-13">
                     <Grid.ColumnDefinitions>
 

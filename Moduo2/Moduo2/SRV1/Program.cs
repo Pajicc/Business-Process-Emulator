@@ -5,11 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using Common;
 using System.ServiceModel;
+using log4net.Config;
+using log4net;
+using log4net.Appender;
 
 namespace SRV2
 {
     class Program
     {
+
+        public static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         static void Main(string[] args)
         {
             NetTcpBinding binding = new NetTcpBinding();

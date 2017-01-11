@@ -8,21 +8,42 @@ namespace Common
 {
     public class UserStory
     {
+       
         private string name = string.Empty;
         private string criteria = string.Empty;
-        private double startTime = 0;
-        private double endTime = 0;
+        private DateTime startTime = new DateTime();
+        private DateTime endTime = new DateTime();
+        private List<Task> tasks = new List<Task>();
+        private int tezina = 0;
 
         public UserStory() { }
-        public UserStory(string name, string criteria, double start, double end)
+        public UserStory(string name, string criteria, DateTime start, DateTime end, List<Task> lista, int tezina)
         {
             this.name = name;
             this.criteria = criteria;
             this.startTime = start;
             this.endTime = end;
+            this.tezina = tezina;
+          
         }
 
-        public double EndTime
+     
+        public  List<Task> Tasks
+        {
+            get { return tasks; }
+            set { tasks = value; }
+        }
+       
+
+        public int Tezina
+        {
+            get { return tezina; }
+            set { tezina = value; }
+        }
+        
+        
+
+        public DateTime EndTime
         {
             get { return endTime; }
             set { endTime = value; }
@@ -37,7 +58,7 @@ namespace Common
             get { return criteria; }
             set { criteria = value; }
         }
-        public double StartTime
+        public DateTime StartTime
         {
             get { return startTime; }
             set { startTime = value; }
