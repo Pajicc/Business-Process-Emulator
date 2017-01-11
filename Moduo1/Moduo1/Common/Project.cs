@@ -25,17 +25,15 @@ namespace Common
         private string endTime;
         private States state;
         private string po;
-        private List<UserStory> userStories = new List<UserStory>();
 
         public Project() { }
-        public Project(string name, string desc, string start, string end, string po, List<UserStory> userStories)
+        public Project(string name, string desc, string start, string end, string po)
         {
             this.name = name;
             this.description = desc;
             this.startTime = start;
             this.endTime = end;
             this.po = po;
-            this.userStories = userStories;
         }
 
         [Key]
@@ -69,13 +67,6 @@ namespace Common
         {
             get { return po; }
             set { po = value; }
-        }
-
-        //[Compare("UserStories")]
-        public List<UserStory> UserStories
-        {
-            get { return userStories; }
-            set { userStories = value; }
         }
     }
 }
