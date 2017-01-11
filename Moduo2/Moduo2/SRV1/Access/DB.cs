@@ -36,8 +36,15 @@ namespace SRV2.Access
                 int i = access.SaveChanges();
 
                 if (i > 0)
+                {
+                    Program.log.Info("User: " + user.Username + " has been added to database!");
                     return true;
-                return false;
+                }
+                else
+                {
+                    Program.log.Info("Failed to add to database! User: " + user.Username);
+                    return false;
+                }
             }
         }
 
@@ -49,8 +56,15 @@ namespace SRV2.Access
                 int i = access.SaveChanges();
 
                 if (i > 0)
+                {
+                    Program.log.Info("Project: " + project.Name + " has been added to database!");
                     return true;
-                return false;
+                }
+                else
+                {
+                    Program.log.Info("Failed to add to database! Project: " + project.Name);
+                    return false;
+                }
             }
         }
 
@@ -64,10 +78,11 @@ namespace SRV2.Access
                     {
                         access.Actions.Find(username).LoggedIn = true;
                         int i = access.SaveChanges();
+                        Program.log.Info("User: " + username + " has been loged!");
                         return access.Actions.Find(username);
                     }
                 }
-
+                Program.log.Info("User: " + username + " failed to log!");
                 return null;
             }
         }
@@ -80,8 +95,10 @@ namespace SRV2.Access
                 {
                     access.Actions.Find(username).LoggedIn = false;
                     int i = access.SaveChanges();
+                    Program.log.Info("User: " + username + " loged!");
                     return true;
                 }
+                Program.log.Info("User: " + username + " Failed to log!");
 
                 return false;
             }
@@ -93,8 +110,12 @@ namespace SRV2.Access
             {
                 if (access.Actions.Find(username).Username == username)
                 {
+
+                    Program.log.Info("Getuser: " + username + " sucess!");
                     return access.Actions.Find(username);
                 }
+
+                Program.log.Info("Getuser: " + username + " failed!");
 
                 return null;
             }
@@ -121,10 +142,15 @@ namespace SRV2.Access
                     int k = access.SaveChanges();
 
                     if (k > 0)
+                    {
+                        Program.log.Info("Edit: " + userMain.Username + " sucess!");
                         return true;
+                    }
 
                 }
             }
+
+            Program.log.Info("Edit: " + userMain.Username + " failed!");
 
             return false;
         }
@@ -147,6 +173,8 @@ namespace SRV2.Access
                     }
                 }
 
+                Program.log.Info("GetAllULogedUsers:  sucess!");
+
                 return usrEmpl;
             }
         }
@@ -168,6 +196,8 @@ namespace SRV2.Access
                         usrEmpl.Add(uu);
                     }
                 }
+
+                Program.log.Info("GetAllUsersByType:  sucess!");
 
                 return usrEmpl;
             }
@@ -192,6 +222,8 @@ namespace SRV2.Access
                     
                 }
 
+                Program.log.Info("GetAllProjects:  sucess!");
+
                 return projlist;
             }
         }
@@ -204,8 +236,15 @@ namespace SRV2.Access
                 int i = access.SaveChanges();
 
                 if (i > 0)
+                {
+                    Program.log.Info("Team: " + tim.NazivTima + " has been added to database!");
                     return true;
-                return false;
+                }
+                else
+                {
+                    Program.log.Info("Team: " + tim.NazivTima + " failed to add to database!");
+                    return false;
+                }
             }
         }
 
@@ -227,6 +266,8 @@ namespace SRV2.Access
 
                 }
 
+                Program.log.Info("GeatAllTeams: sucess!");
+
                 return projlist;
             }
         }
@@ -242,6 +283,8 @@ namespace SRV2.Access
                     return access.Actions3.Find(naziv);
                 }
 
+                Program.log.Info("GetTimByName: sucess!");
+
                 return null;
             }
         }
@@ -256,8 +299,15 @@ namespace SRV2.Access
                     access.Actions2.Find(nazivProjekta).Tim = nazivTima;
                     int i = access.SaveChanges();
                     if (i > 0)
+                    {
+                        Program.log.Info("Team: " + nazivTima + " has been added to Project!");
                         return true;
-                    return false;
+                    }
+                    else
+                    {
+                        Program.log.Info("Team: " + nazivTima + " failed to add to Project!");
+                        return false;
+                    }
 
                 }
 
@@ -285,6 +335,8 @@ namespace SRV2.Access
                     
                 }
 
+                Program.log.Info("GetAllUsers: sucess!");
+
                 return usrEmpl;
             }
         }
@@ -301,8 +353,15 @@ namespace SRV2.Access
 
                     int i = access.SaveChanges();
                     if (i > 0)
+                    {
+                        Program.log.Info("Updatovana lozinka za usera: " + username );
                         return true;
-                    return false;
+                    }
+                    else
+                    {
+                        Program.log.Info("Lozinka nije updatovana za usera: " + username);
+                        return false;
+                    }
 
                 }
 
