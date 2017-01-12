@@ -24,26 +24,26 @@ namespace Client1
         {
             InitializeComponent();
 
-            Context wrapper = Context.getInstance();
-            wrapper.subwin = this;
-            this.DataContext = wrapper.cvm;
+            Context wrapper = Context.GetInstance();
+            wrapper.Subwin = this;
+            this.DataContext = wrapper.Cvm;
 
-            foreach (User usr in wrapper.proxy.GetAllEmployees())
+            foreach (User usr in wrapper.Proxy.GetAllEmployees())
             {
                 ee_listOfEmployees_admin.Items.Add(usr.Username);
             }
 
         }
 
-        private void ee_listOfEmployees_admin_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Ee_listOfEmployees_admin_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             User u = new User();
 
-            Context wrap = Context.getInstance();
+            Context wrap = Context.GetInstance();
 
             if (ee_listOfEmployees_admin.SelectedIndex != -1 || ee_listOfEmployees_admin.SelectedItem != null)
             {
-                u = wrap.proxy.GetUser(ee_listOfEmployees_admin.SelectedItem.ToString());
+                u = wrap.Proxy.GetUser(ee_listOfEmployees_admin.SelectedItem.ToString());
 
                 ee_username_admin.Text = u.Username;
                 ee_name_admin.Text = u.Name;
@@ -52,13 +52,15 @@ namespace Client1
                 ee_email_admin.Text = u.Email;
                 ee_roleComboBox_admin.SelectedIndex = 4;
 
-                wrap.cvm.selectedUserForEdit = ee_username_admin.Text;
+                wrap.Cvm.SelectedUserForEdit = ee_username_admin.Text;
             }
         }
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
+            {
                 this.DragMove();
+            }
         }
     }
 }

@@ -40,7 +40,7 @@
                     <Label x:Name="label2_Copy1" Content="Email:" HorizontalAlignment="Left" Margin="67,177,0,0" VerticalAlignment="Top"/>
                     <Button x:Name="EditEmployee" Content="Edit" HorizontalAlignment="Left" Margin="166,257,0,0" VerticalAlignment="Top" Width="76" Command="{Binding AdminEditUser}"/>
                     <Label x:Name="label2_Copy5" Content="Role:" HorizontalAlignment="Left" Margin="67,208,0,0" VerticalAlignment="Top"/>
-                    <ComboBox x:Name="ee_listOfEmployees_admin" HorizontalAlignment="Left" Margin="180,10,0,0" VerticalAlignment="Top" Width="183" SelectedItem="{Binding EeEmployeeAdmin}" SelectedIndex="{Binding EeEmployeeAdminIdx}" ItemsSource="{Binding EmployeeListAdmin}" SelectionChanged="ee_listOfEmployees_admin_SelectionChanged"/>
+                    <ComboBox x:Name="ee_listOfEmployees_admin" HorizontalAlignment="Left" Margin="180,10,0,0" VerticalAlignment="Top" Width="183" SelectedItem="{Binding EeEmployeeAdmin}" SelectedIndex="{Binding EeEmployeeAdminIdx}" ItemsSource="{Binding EmployeeListAdmin}" SelectionChanged="Ee_listOfEmployees_admin_SelectionChanged"/>
                     <Label x:Name="label2_Copy2" Content="Select employee to edit:" HorizontalAlignment="Left" Margin="22,6,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="ee_name_admin" HorizontalAlignment="Left" Height="23" Margin="150,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding EeNameAdmin}"/>
                     <Label x:Name="label2_Copy3" Content="Name:" HorizontalAlignment="Left" Margin="67,81,0,0" VerticalAlignment="Top"/>

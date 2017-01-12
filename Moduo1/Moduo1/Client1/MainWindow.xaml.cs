@@ -21,23 +21,23 @@ namespace Client1
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {        
-        public static Client1Proxy proxy;
-
+    {
         public MainWindow()
         {
             InitializeComponent();
 
-            Context wrapper = Context.getInstance();
-            wrapper.mw = this;
-            this.DataContext = wrapper.cvm;
+            Context wrapper = Context.GetInstance();
+            wrapper.Mw = this;
+            this.DataContext = wrapper.Cvm;
 
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
+            {
                 this.DragMove();
+            }
         }
     }
 }

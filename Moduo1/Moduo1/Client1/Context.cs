@@ -18,24 +18,102 @@ namespace Client1
         private string address2 = "net.tcp://10.1.212.121:9998/CommonService";
 
         private static volatile Context instance;
-        public CompanyViewModel cvm;
-        public Window mw;
-        public Window subwin;
-        public Client1Proxy proxy;
-        public OutsourcingProxy outsourcingProxy;
-        public Window changePass;
+        private CompanyViewModel cvm;
+        private Window mw;
+        private Window subwin;
+        private Client1Proxy proxy;
+        private OutsourcingProxy outsourcingProxy;
+        private Window changePass;
+
+        public CompanyViewModel Cvm
+        {
+            get
+            {
+                return cvm;
+            }
+
+            set
+            {
+                cvm = value;
+            }
+        }
+
+        public Window Mw
+        {
+            get
+            {
+                return mw;
+            }
+
+            set
+            {
+                mw = value;
+            }
+        }
+
+        public Window Subwin
+        {
+            get
+            {
+                return subwin;
+            }
+
+            set
+            {
+                subwin = value;
+            }
+        }
+
+        public Client1Proxy Proxy
+        {
+            get
+            {
+                return proxy;
+            }
+
+            set
+            {
+                proxy = value;
+            }
+        }
+
+        public OutsourcingProxy OutsourcingProxy
+        {
+            get
+            {
+                return outsourcingProxy;
+            }
+
+            set
+            {
+                outsourcingProxy = value;
+            }
+        }
+
+        public Window ChangePass
+        {
+            get
+            {
+                return changePass;
+            }
+
+            set
+            {
+                changePass = value;
+            }
+        }
 
         private Context()
         {
-            cvm = new CompanyViewModel();
-            mw = new Window();
-            subwin = new Window();
-            proxy = new Client1Proxy(binding, new EndpointAddress(new Uri(address)));
-            outsourcingProxy = new OutsourcingProxy(binding2, new EndpointAddress(new Uri(address2)));
-            changePass = new Window();
+            Cvm = new CompanyViewModel();
+            Mw = new Window();
+            Subwin = new Window();
+            Proxy = new Client1Proxy(binding, new EndpointAddress(new Uri(address)));
+            OutsourcingProxy = new OutsourcingProxy(binding2, new EndpointAddress(new Uri(address2)));
+            ChangePass = new Window();
         }
 
-        public static Context getInstance()
+        public static Context GetInstance()
         {
             if (instance == null)
             {

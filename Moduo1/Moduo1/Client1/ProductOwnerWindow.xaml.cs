@@ -24,25 +24,27 @@ namespace Client1
         {
             InitializeComponent();
 
-            Context wrapper = Context.getInstance();
-            wrapper.subwin = this;
-            this.DataContext = wrapper.cvm;
+            Context wrapper = Context.GetInstance();
+            wrapper.Subwin = this;
+            this.DataContext = wrapper.Cvm;
 
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
+            {
                 this.DragMove();
+            }
         }
 
         private void DataGrid_DoubleMouseClick(object sender, MouseButtonEventArgs e)
         {
-            Context wrap = Context.getInstance();
+            Context wrap = Context.GetInstance();
 
             userStories.Items.Clear();
 
-            foreach (string userStory in wrap.proxy.GetAllUserStories(projectsGrid.SelectedItem as Project))
+            foreach (string userStory in wrap.Proxy.GetAllUserStories(projectsGrid.SelectedItem as Project))
             {
                 userStories.Items.Add(userStory);
             }

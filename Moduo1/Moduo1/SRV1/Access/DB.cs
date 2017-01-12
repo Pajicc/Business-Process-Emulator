@@ -18,14 +18,18 @@ namespace SRV1.Access
             get
             {
                 if (myDB == null)
+                {
                     myDB = new DB();
+                }
 
                 return myDB;
             }
             set
             {
                 if (myDB == null)
+                {
                     myDB = value;
+                }
             }
         }
 
@@ -47,12 +51,12 @@ namespace SRV1.Access
 
                 if (i > 0)
                 {
-                    Program.log.Info("User: " + user.Username + " has been added to database!");
+                    Program.Log.Info("User: " + user.Username + " has been added to database!");
                     return true;
                 }
                 else
                 {
-                    Program.log.Info("Failed to add to database! User: " + user.Username);
+                    Program.Log.Info("Failed to add to database! User: " + user.Username);
                     return false;
                 }
 
@@ -79,7 +83,7 @@ namespace SRV1.Access
 
                             access.SaveChanges();
 
-                            Program.log.Info("Check username for login: " + username);
+                            Program.Log.Info("Check username for login: " + username);
                             //return access.Users.Find(username);
                             return true;
                         }
@@ -99,7 +103,7 @@ namespace SRV1.Access
                     MessageBox.Show("Username doesn't exist!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
-                Program.log.Info("Check username for login failed! Username: " + username);
+                Program.Log.Info("Check username for login failed! Username: " + username);
                 //return null;
                 return false;
             }
@@ -121,11 +125,11 @@ namespace SRV1.Access
 
                     access.SaveChanges();
 
-                    Program.log.Info("User: " + username + " has been logged out!");
+                    Program.Log.Info("User: " + username + " has been logged out!");
                     return true;
                 }
 
-                Program.log.Info("User: " + username + " has failed to logout!");
+                Program.Log.Info("User: " + username + " has failed to logout!");
                 return false;
             }
         }
@@ -141,11 +145,11 @@ namespace SRV1.Access
             {
                 if (access.Users.Find(username).Username == username)
                 {
-                    Program.log.Info("GetUser: " + username);
+                    Program.Log.Info("GetUser: " + username);
                     return access.Users.Find(username);
                 }
 
-                Program.log.Info("Failed to GetUser: " + username);
+                Program.Log.Info("Failed to GetUser: " + username);
                 return null;
             }
         }
@@ -176,13 +180,13 @@ namespace SRV1.Access
 
                     if (k > 0)
                     {
-                        Program.log.Info("User: " + userEdit.Username + " has been edited!");
+                        Program.Log.Info("User: " + userEdit.Username + " has been edited!");
                         return true;
                     }
                 }
             }
 
-            Program.log.Info("User: " + userEdit.Username + " wasnt edited ERROR!");
+            Program.Log.Info("User: " + userEdit.Username + " wasnt edited ERROR!");
             return false;
         }
 
@@ -208,16 +212,12 @@ namespace SRV1.Access
                     }
                 }
 
-                Program.log.Info("GetAllEmployee function has been called");
+                Program.Log.Info("GetAllEmployee function has been called");
 
                 return usrEmpl;
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
         public List<User> GetAllOnlineUsers()
         {
             List<User> usrs = new List<User>();
@@ -236,7 +236,7 @@ namespace SRV1.Access
                     }
                 }
 
-                Program.log.Info("GetAllOnlineUsers function has been called");
+                Program.Log.Info("GetAllOnlineUsers function has been called");
 
                 return usrOn;
             }
@@ -263,12 +263,12 @@ namespace SRV1.Access
 
                 if (i > 0)
                 {
-                    Program.log.Info("Project: " + prj.Name + " has been created by: " + usr.Username);
+                    Program.Log.Info("Project: " + prj.Name + " has been created by: " + usr.Username);
                     return true;
                 }
                 else
                 {
-                    Program.log.Info("Project: " + prj.Name + " has failed to be created by: " + usr.Username);
+                    Program.Log.Info("Project: " + prj.Name + " has failed to be created by: " + usr.Username);
                     return false;
                 }
             }
@@ -287,7 +287,7 @@ namespace SRV1.Access
 
                     if (k > 0)
                     {
-                        Program.log.Info("Project: " + prj.Name + " has been activated!");
+                        Program.Log.Info("Project: " + prj.Name + " has been activated!");
                         return true;
                     }
                 }
@@ -307,10 +307,13 @@ namespace SRV1.Access
             {
                 foreach (Project p in access.Projects)
                 {
-                    if(p.HiringCompany == user.Company)
+                    if (p.HiringCompany == user.Company)
+                    {
                         projects.Add(p);
+                    }
                 }
-                Program.log.Info("GetAllProjects function has been called");
+
+                Program.Log.Info("GetAllProjects function has been called");
 
                 return projects;
             }
@@ -327,7 +330,7 @@ namespace SRV1.Access
                 {
                     projects.Add(p);
                 }
-                Program.log.Info("GetAllProjects function has been called");
+                Program.Log.Info("GetAllProjects function has been called");
 
                 return projects;
             }
@@ -365,12 +368,12 @@ namespace SRV1.Access
 
                     if (i > 0)
                     {
-                        Program.log.Info("Project: " + projDB.Name + " is deleted");
+                        Program.Log.Info("Project: " + projDB.Name + " is deleted");
                         return true;
                     }
                 }
 
-                Program.log.Info("Failed to delete Project: " + projDB.Name);
+                Program.Log.Info("Failed to delete Project: " + projDB.Name);
                 return false;
             }
         }
@@ -422,7 +425,9 @@ namespace SRV1.Access
                 int k = access.SaveChanges();
 
                 if (k > 0)
-                    return true;               
+                {
+                    return true;
+                }           
             }
 
             return false;
@@ -442,14 +447,16 @@ namespace SRV1.Access
                     int k = access.SaveChanges();
 
                     if (k > 0)
+                    {
                         return true;
+                    }
                 }
             }
 
             return false;
         }
 
-        public List<string> GetAllHiringCompanies( )
+        public List<string> GetAllHiringCompanies()
         {
             List<string> hiringCompanies = new List<string>();
 
@@ -478,7 +485,9 @@ namespace SRV1.Access
                 int k = access.SaveChanges();
 
                 if (k > 0)
+                {
                     return true;
+                }
             }
 
             return false;

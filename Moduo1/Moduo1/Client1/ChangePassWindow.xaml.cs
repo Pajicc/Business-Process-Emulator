@@ -23,9 +23,9 @@ namespace Client1
         {
             InitializeComponent();
 
-            Context wrapper = Context.getInstance();
-            wrapper.changePass = this;
-            this.DataContext = wrapper.cvm;
+            Context wrapper = Context.GetInstance();
+            wrapper.ChangePass = this;
+            this.DataContext = wrapper.Cvm;
         }
     }
 }

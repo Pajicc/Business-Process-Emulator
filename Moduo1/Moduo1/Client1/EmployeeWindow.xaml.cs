@@ -25,16 +25,18 @@ namespace Client1
         {
             InitializeComponent();
 
-            Context wrapper = Context.getInstance();
-            wrapper.subwin = this;
-            this.DataContext = wrapper.cvm;
+            Context wrapper = Context.GetInstance();
+            wrapper.Subwin = this;
+            this.DataContext = wrapper.Cvm;
 
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
+            {
                 this.DragMove();
+            } 
         }
     }
 }

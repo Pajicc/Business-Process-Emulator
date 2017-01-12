@@ -7,7 +7,7 @@ using System.Data.Entity.Migrations;
 
 namespace SRV1.Access
 {
-    class Configuration : DbMigrationsConfiguration<AccessDB>
+    public class Configuration : DbMigrationsConfiguration<AccessDB>
     {
         public Configuration()
         {

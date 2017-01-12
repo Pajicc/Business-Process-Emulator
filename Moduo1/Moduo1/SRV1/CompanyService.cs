@@ -24,33 +24,6 @@ namespace SRV1
             {
                 User u = DB.Instance.GetUser(username);
 
-                #region testProjekat(add/remove)
-                /* //testiranje za addovanje i brisanje projekta
-                Project prj = new Project();
-                List<UserStory> us = new List<UserStory>();
-
-                prj.Name = "Projekat24411";
-                prj.Active = true;
-                prj.Description = "testProjekat";
-                prj.Po = GetUser("poTest");
-
-                for (int i = 0; i < 5; i++)
-                {
-                    UserStory story = new UserStory();
-                    story.Ime = "us" + i;
-                    story.Criteria = "criteria" + i;
-
-                    us.Add(story);
-                }
-
-                prj.UserStories = us;
-
-                //CreateProject(prj);
-
-                DeleteProject(prj);    
-                */
-                #endregion
-
                 DateTime dt = DateTime.Now;
                 if (ProveriDaLiKasni(dt, u.WorkTimeStart))
                 {
@@ -58,12 +31,12 @@ namespace SRV1
                     //SendMail(u);
                 }
 
-                Program.log.Info("User: " + username + " Has been loggedIn!");
+                Program.Log.Info("User: " + username + " Has been loggedIn!");
                 return true;
             }
             else
             {
-                Program.log.Info("Failed login! User: " + username);
+                Program.Log.Info("Failed login! User: " + username);
                 return false;
             }
 
@@ -134,9 +107,13 @@ namespace SRV1
             u = DB.Instance.GetUser(username);
 
             if (u != null)
+            {
                 return u;
+            } 
             else
+            {
                 return null;
+            }   
         }
 
         public bool ProveriDaLiKasni(DateTime ulogovao, string timestart)

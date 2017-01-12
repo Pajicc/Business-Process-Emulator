@@ -9,14 +9,13 @@ using Common;
 namespace Client1
 {
     public class Client1Proxy : ChannelFactory<ICompanyService>, ICompanyService, IDisposable
-	{
-		ICompanyService factory;
+    {
+        private ICompanyService factory;
 
-		public Client1Proxy(NetTcpBinding binding, EndpointAddress address)
-			: base(binding, address)
-		{
-			factory = this.CreateChannel();
-		}
+        public Client1Proxy(NetTcpBinding binding, EndpointAddress address) : base(binding, address)
+        {
+            factory = this.CreateChannel();
+        }
 
         public bool Login(string username, string pass)
         {

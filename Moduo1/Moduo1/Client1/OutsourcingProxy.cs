@@ -10,7 +10,7 @@ namespace Client1
 {
     public class OutsourcingProxy : ChannelFactory<IOutsourcingCompanyService>, IOutsourcingCompanyService, IDisposable
     {
-        IOutsourcingCompanyService factory;
+        private IOutsourcingCompanyService factory;
 
         public OutsourcingProxy(NetTcpBinding binding, EndpointAddress address)
             : base(binding, address)

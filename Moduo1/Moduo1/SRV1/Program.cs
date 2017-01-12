@@ -15,7 +15,20 @@ namespace SRV1
 {
     public class Program
     {
-        public static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        public static ILog Log
+        {
+            get
+            {
+                return log;
+            }
+
+            set
+            {
+                log = value;
+            }
+        }
 
         public static void Main(string[] args)
         {
@@ -41,9 +54,8 @@ namespace SRV1
             host2.Open();
 
             Console.WriteLine("CompanyService is opened. Press <enter> to finish...");
-            log.Info("CompanyService has started working");
+            Log.Info("CompanyService has started working");
 
-            #region addovanjeCeoiHiringCompanies
             //addovanje CEO i HiringCompanies
             List<User> users = new List<User>();
 
@@ -98,8 +110,6 @@ namespace SRV1
                     Console.WriteLine("Uspesno popunjena baza!");
                 }
             }
-
-            #endregion
 
             Console.ReadLine();
 
