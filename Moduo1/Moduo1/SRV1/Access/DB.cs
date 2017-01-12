@@ -476,7 +476,7 @@ namespace SRV1.Access
             {
                 foreach (HiringCompany hc in access.HiringCompanies)
                 {
-                    if(hc.CEO == username)
+                    if(hc.CEO == username || hc.SM == username)
                     {
                         Program.log.Info("Successfully returned Company name " + hc.Name);
                         return hc.Name;

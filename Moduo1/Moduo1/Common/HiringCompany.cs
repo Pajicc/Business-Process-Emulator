@@ -11,14 +11,16 @@ namespace Common
     [Table("HiringCompanies")]
     public class HiringCompany
     {
-        private string name = string.Empty;
-        private string ceo = string.Empty;
+        private string name;
+        private string ceo;
+        private string sm;
 
         public HiringCompany() { }
-        public HiringCompany(string name, string ceo)
+        public HiringCompany(string name, string ceo, string sm)
         {
             this.name = name;
             this.ceo = ceo;
+            this.sm = sm;
         }
 
         [Key]
@@ -32,6 +34,12 @@ namespace Common
         {
             get { return ceo; }
             set { ceo = value; }
+        }
+
+        public string SM
+        {
+            get { return sm; }
+            set { sm = value; }
         }
     }
 }

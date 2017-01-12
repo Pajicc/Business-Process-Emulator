@@ -14,6 +14,7 @@ namespace CommonTest
         private HiringCompany hiring;
         private string name = "hcComp1";
         private string ceo = "ceo1";
+        private string sm = "sm1";
 
         [OneTimeSetUp]
         public void SetupTest()
@@ -30,7 +31,7 @@ namespace CommonTest
         [Test]
         public void UserStoryConstructorTestWithParameters()
         {
-            Assert.DoesNotThrow(() => new HiringCompany(name, ceo));
+            Assert.DoesNotThrow(() => new HiringCompany(name, ceo, sm));
         }
 
         [Test]
@@ -47,6 +48,13 @@ namespace CommonTest
             hiring.CEO = ceo;
 
             Assert.AreEqual(ceo, hiring.CEO);
+        }
+        [Test]
+        public void Sm()
+        {
+            hiring.SM = sm;
+
+            Assert.AreEqual(sm, hiring.SM);
         }
     }
 }

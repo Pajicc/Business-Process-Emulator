@@ -28,7 +28,7 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Add project" Margin="11,-2,-24,0">
-                <Grid Background="#FFE5E5E5" Margin="-10,-2,1,-1">
+                <Grid Background="#FFE5E5E5" Margin="-16,-4,7,1">
                     <TextBox x:Name="ap_name_po" HorizontalAlignment="Left" Height="23" Margin="132,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding ApNamePo}"/>
                     <Label x:Name="label1" Content="Name:" HorizontalAlignment="Left" Margin="49,34,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="label1_Copy" Content="Description:" HorizontalAlignment="Left" Margin="49,80,0,0" VerticalAlignment="Top"/>
@@ -39,6 +39,7 @@
                     <TextBox x:Name="ap_from_po" HorizontalAlignment="Left" Height="23" Margin="165,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Text="{Binding ApFromPo}"/>
                     <TextBox x:Name="ap_desc_po" HorizontalAlignment="Left" Height="95" Margin="132,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Text="{Binding ApDescPo}"/>
                     <Button Content="Add project" HorizontalAlignment="Left" Margin="231,253,0,0" VerticalAlignment="Top" Width="90" Height="24" Command="{Binding PoAddProject}"/>
+                    <Label x:Name="label1_Copy1" Content="(format: 00:00:00)" HorizontalAlignment="Left" Margin="188,218,0,0" VerticalAlignment="Top" FontSize="10"/>
 
                 </Grid>
             </TabItem>
