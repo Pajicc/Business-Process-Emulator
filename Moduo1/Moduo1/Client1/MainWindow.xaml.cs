@@ -34,15 +34,6 @@ namespace Client1
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Context wrapper = Context.getInstance();
-            AddUsers win = new AddUsers();
-            wrapper.subwin = win;
-            win.DataContext = wrapper.cvm;
-            win.ShowDialog();
-        }
-
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)

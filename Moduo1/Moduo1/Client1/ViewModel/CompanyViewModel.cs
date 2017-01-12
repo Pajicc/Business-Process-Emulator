@@ -26,6 +26,8 @@ namespace Client1.ViewModel
         public ObservableCollection<Project> projectsAdmin { get; set; }
         public ObservableCollection<string> partnerCompanies { get; set; }
 
+        public Thread t;
+
         public User currentUser = new User();
 
         private string loggedInUser = "";
@@ -687,8 +689,8 @@ namespace Client1.ViewModel
                             notActiveProjects.Add(proj);
                     }
 
-                        //thread za 6 meseci
-                        var t = new Thread(() => ProveraPass(currentUser));
+                    //thread za 6 meseci
+                    t = new Thread(() => ProveraPass(currentUser));
                     t.SetApartmentState(ApartmentState.STA);
                     t.Start();
 
@@ -882,6 +884,7 @@ namespace Client1.ViewModel
             wrap.proxy.LogOut(LoggedInUser);
             employeeList.Remove(currentUser);
             wrap.subwin.Close();
+            t.Suspend();
 
             MainWindow win = new MainWindow();
             win.Show();
@@ -907,7 +910,7 @@ namespace Client1.ViewModel
 
                 TimeSpan span = trenutnovr.Subtract(userTime);
 
-                if (span.Minutes > 100)
+                if (span.Minutes > 2)
                 {
                     ChangePassWindow changePass = new ChangePassWindow();
                     changePass.ShowDialog();
