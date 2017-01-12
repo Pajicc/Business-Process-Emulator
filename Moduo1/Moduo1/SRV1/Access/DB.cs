@@ -69,7 +69,7 @@ namespace SRV1.Access
         /// <param name="username"></param>
         /// <param name="pass"></param>
         /// <returns></returns>
-        public bool LoginUser(string username, string pass)
+        public bool Login(string username, string pass)
         {
             using (var access = new AccessDB())
             {
@@ -141,17 +141,20 @@ namespace SRV1.Access
         /// <returns></returns>
         public User GetUser(string username)
         {
-            using (var access = new AccessDB())
+            using (AccessDB context = new AccessDB())
             {
-                if (access.Users.Find(username).Username == username)
-                {
-                    Program.Log.Info("GetUser: " + username);
-                    return access.Users.Find(username);
-                }
 
-                Program.Log.Info("Failed to GetUser: " + username);
-                return null;
+                User user = context.Users.FirstOrDefault((x) => x.Username == username);
+                if (user != null)
+                {
+                    Program.Log.Info("GetUser succeded: " + username);
+
+                    return user;
+                }
             }
+            Program.Log.Info("Failed to GetUser: " + username);
+            return null;
+ 
         }
 
         /// <summary>
@@ -290,6 +293,11 @@ namespace SRV1.Access
                         Program.Log.Info("Project: " + prj.Name + " has been activated!");
                         return true;
                     }
+                    else
+                    {
+                        Program.Log.Info("Project: " + prj.Name + "failed to update!");
+                        return false;
+                    }
                 }
                 return false;
             }
@@ -333,48 +341,6 @@ namespace SRV1.Access
                 Program.Log.Info("GetAllProjects function has been called");
 
                 return projects;
-            }
-        }
-        /// <summary>
-        /// Brisanje projekta iz baze
-        /// </summary>
-        /// <param name="proj"></param>
-        /// <returns></returns>
-        public bool DeleteProject(Project proj)
-        {
-            using (var access = new AccessDB())
-            {
-                List<UserStory> usdb = new List<UserStory>();
-                foreach (UserStory us in access.UserStories)
-                {
-                    if (us.Name == proj.Name)
-                    {
-                        usdb.Add(us);
-                    }
-                }
-
-                foreach (UserStory usrstr in usdb)
-                {
-                    access.UserStories.Remove(usrstr);
-                }
-
-                Project projDB = access.Projects.FirstOrDefault(f => f.Name == proj.Name);
-
-                if (projDB != null)
-                {
-                    access.Projects.Remove(projDB);
-
-                    int i = access.SaveChanges();
-
-                    if (i > 0)
-                    {
-                        Program.Log.Info("Project: " + projDB.Name + " is deleted");
-                        return true;
-                    }
-                }
-
-                Program.Log.Info("Failed to delete Project: " + projDB.Name);
-                return false;
             }
         }
 

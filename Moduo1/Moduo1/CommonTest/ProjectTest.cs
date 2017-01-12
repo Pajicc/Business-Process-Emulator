@@ -18,6 +18,7 @@ namespace CommonTest
         private string endTime = "01/01/2002 12:12:12";
         private States state = States.notApproved;
         private string po = "po1";
+        private string hiringCompany = "hiringCompany";
 
         [OneTimeSetUp]
         public void SetupTest()
@@ -83,6 +84,13 @@ namespace CommonTest
             project.Po = po;
 
             Assert.AreEqual(po, project.Po);
+        }
+        [Test]
+        public void HiringCompany()
+        {
+            project.HiringCompany = hiringCompany;
+
+            Assert.AreEqual(hiringCompany, project.HiringCompany);
         }
     }
 }

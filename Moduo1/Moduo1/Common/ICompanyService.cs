@@ -36,9 +36,6 @@ namespace Common
         bool CreateProject(Project prj);
 
         [OperationContract]
-        bool DeleteProject(Project prj);
-
-        [OperationContract]
         List<Project> GetAllProjectsForUser(User user);
 
         [OperationContract]

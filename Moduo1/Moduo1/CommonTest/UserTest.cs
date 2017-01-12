@@ -139,6 +139,13 @@ namespace CommonTest
 
             Assert.AreEqual(company, user.Company);
         }
+        [Test]
+        public void Role()
+        {
+            user.Role = role;
+
+            Assert.AreEqual(role, user.Role);
+        }
         #endregion tests
     }
 }

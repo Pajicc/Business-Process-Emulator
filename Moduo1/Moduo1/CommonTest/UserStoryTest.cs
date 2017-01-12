@@ -14,7 +14,9 @@ namespace CommonTest
         #region Declarations
 
         private UserStory userStory;
+
         private string name = "name";
+        private int id = 1;
         private string project = "project";
         private string criteria = "1. criteria, 2. criteria, 3. criteria";
 
@@ -45,7 +47,13 @@ namespace CommonTest
         {
             Assert.DoesNotThrow(() => new UserStory(name, criteria));
         }
+        [Test]
+        public void Id()
+        {
+            userStory.Id = id;
 
+            Assert.AreEqual(id, userStory.Id);
+        }
         [Test]
         public void Name()
         {

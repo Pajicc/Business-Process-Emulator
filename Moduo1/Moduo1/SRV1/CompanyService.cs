@@ -15,17 +15,18 @@ namespace SRV1
     public class CompanyService : ICompanyService, IHiringCompanyService
     {
         public bool Login(string username, string pass)
-        {
-            Console.WriteLine("Username: " + username + "\nPassword: " + pass);
+        { 
+            Program.Log.Info("Login method from CompanyService called");
 
-            bool loggedIn = DB.Instance.LoginUser(username, pass);
+            bool loggedIn = false;
+            loggedIn = DB.Instance.Login(username, pass);
 
             if (loggedIn)
             {
                 User u = DB.Instance.GetUser(username);
 
                 DateTime dt = DateTime.Now;
-                if (ProveriDaLiKasni(dt, u.WorkTimeStart))
+                if (CheckIfLate(dt, u.WorkTimeStart))
                 {
                     MessageBox.Show("You are late for work!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     //SendMail(u);
@@ -44,227 +45,101 @@ namespace SRV1
 
         public bool LogOut(string username)
         {
-            bool done = false;
-            Console.WriteLine("User: " + username + " is now logged out.");
-
-            done = DB.Instance.LogOut(username);
-
-            return done;
+            Program.Log.Info("Logout method from CompanyService called");
+            return DB.Instance.LogOut(username);
         }
 
         public bool AddUser(User user)
         {
-            bool done = false;
-            user.WorkTimeStart = "09:00:00";
-
-            Console.WriteLine("Dodat nov User!");
-            Console.WriteLine("Username: " + user.Username + "\nPassword: " + user.Password);
-            
-            done = DB.Instance.AddUser(user);
-
-            return done;
+            Program.Log.Info("AddUser method from CompanyService called");
+            return DB.Instance.AddUser(user);
         }
 
         public List<User> GetAllOnlineUsers()
         {
-            Console.WriteLine("Poslata listaonline Usera!");
-
-            List<User> lista = new List<User>();
-
-            lista = DB.Instance.GetAllOnlineUsers();
-
-            return lista;
+            Program.Log.Info("GetAllOnlineUsers method from CompanyService called");
+            return DB.Instance.GetAllOnlineUsers();
         }
 
         public bool EditUser(User editUser)
         {
-            bool done = false;
-
-            Console.WriteLine("Editovan User!");
-            Console.WriteLine("Username: " + editUser.Username + "\nPassword: " + editUser.Password);
-
-            done = DB.Instance.EditUser(editUser);
-
-            return done;
+            Program.Log.Info("EditUser method from CompanyService called");
+            return DB.Instance.EditUser(editUser);
         }
 
         public List<User> GetAllEmployees()
         {
-            Console.WriteLine("Poslata lista Usera!");
-
-            List<User> lista = new List<User>();
-
-            lista = DB.Instance.GetAllEmployees();
-
-            return lista;
+            Program.Log.Info("GetAllEmployees method from CompanyService called");
+            return DB.Instance.GetAllEmployees(); 
         }
 
         public User GetUser(string username)
         {
-            Console.WriteLine("GetUsername: " + username);
-
-            User u = new User();
-            u = DB.Instance.GetUser(username);
-
-            if (u != null)
-            {
-                return u;
-            } 
-            else
-            {
-                return null;
-            }   
-        }
-
-        public bool ProveriDaLiKasni(DateTime ulogovao, string timestart)
-        {
-            DateTime definisanoVreme = Convert.ToDateTime(timestart);
-
-            TimeSpan span = ulogovao.Subtract(definisanoVreme);
-
-            double minutes = span.TotalMinutes;
-            int minutesRounded = (int)Math.Round(span.TotalMinutes);
-
-            if (minutesRounded > 15)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-        public void SendMail(User u)
-        {
-            SmtpClient client = new SmtpClient();
-            client.Port = 587;
-            client.Host = "smtp-mail.outlook.com";
-            client.EnableSsl = true;
-            client.Timeout = 10000;
-            client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            client.UseDefaultCredentials = false;
-            client.Credentials = new System.Net.NetworkCredential("email", "pass"); //ko salje
-
-            MailMessage mm = new MailMessage("CEO@hiringcompany.com", u.Email, "Obavestenje!", "KASNIS NA POSO DRUZE!");
-            mm.BodyEncoding = UTF8Encoding.UTF8;
-            mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
-
-            client.Send(mm);
+            Program.Log.Info("GetUser method from CompanyService called");
+            return DB.Instance.GetUser(username); 
         }
 
         public bool CreateProject(Project prj)
         {
-            bool done = false;
-
-            Console.WriteLine("Dodat nov Projekat!");
-            Console.WriteLine("Ime projekta: " + prj.Name);
-
-            done = DB.Instance.CreateProject(prj);
-
-            return done;
+            Program.Log.Info("CreateProject method from CompanyService called"); 
+            return DB.Instance.CreateProject(prj);
         }
 
         public List<Project> GetAllProjectsForUser(User user)
         {
-            Console.WriteLine("Poslata lista projekata!");
-
-            List<Project> projekti = new List<Project>();
-
-            projekti = DB.Instance.GetAllProjectsForUser(user);
-
-            return projekti;
+            Program.Log.Info("GetAllProjectsForUser method from CompanyService called"); 
+            return DB.Instance.GetAllProjectsForUser(user);
         }
 
         public List<Project> GetAllProjects()
         {
-            Console.WriteLine("Poslata lista projekata!");
-
-            List<Project> projekti = new List<Project>();
-
-            projekti = DB.Instance.GetAllProjects();
-
-            return projekti;
-        }
-
-        public bool DeleteProject(Project prj)
-        {
-            bool done = false;
-
-            Console.WriteLine("Obrisan Projekat: " + prj.Name);
-
-            done = DB.Instance.DeleteProject(prj);
-
-            return done;
+            Program.Log.Info("GetAllProjects method from CompanyService called"); 
+            return DB.Instance.GetAllProjects();
         }
 
         public bool UpdateProject(Project prj)
         {
-            bool done = false;
-
-            Console.WriteLine("Updateovan Projekat: " + prj.Name);
-
-            done = DB.Instance.UpdateProject(prj);
-
-            return done;
+            Program.Log.Info("UpdateProject method from CompanyService called");
+            return DB.Instance.UpdateProject(prj);
         }
 
         public List<string> GetAllPartnerCompanies(User user)
         {
-            List<string> companies = new List<string>();
-
-            companies = DB.Instance.GetAllPartnerCompanies(user);
-
-            return companies;
+            Program.Log.Info("GetAllPartnerCompanies method from CompanyService called"); 
+            return DB.Instance.GetAllPartnerCompanies(user);
         }
 
         public bool AddHiringCompany(HiringCompany hc)
         {
-            bool done = false;
-
-            Console.WriteLine("Dodata nova Kompanija!");
-            Console.WriteLine("Ime Kompanije: " + hc.Name);
-
-            done = DB.Instance.AddHiringCompany(hc);
-
-            return done;
+            Program.Log.Info("AddHiringCompany method from CompanyService called");
+            return DB.Instance.AddHiringCompany(hc);
         }
 
         public bool AddPartnerCompany(User user, string partner)
         {
-            bool done = false;
-
-            Console.WriteLine("Dodata nova Parnter kompanija!");
-            Console.WriteLine("Ime Kompanije: " + partner);
-
-            done = DB.Instance.AddPartnerCompany(user, partner);
-
-            return done;
+            Program.Log.Info("AddPartnerCompany method from CompanyService called");
+            return DB.Instance.AddPartnerCompany(user, partner);
         }
       
         public bool ChangePass(string username, string oldPass, string newPass)
         {
-            bool done = false;
-
-            done = DB.Instance.ChangePass(username, oldPass, newPass);
-
-            Console.WriteLine("Promenjen password za usera: " + username);
-
-            return done;
+            Program.Log.Info("ChangePass method from CompanyService called");
+            return DB.Instance.ChangePass(username, oldPass, newPass);
         }
 
         public List<string> GetAllHiringCompanies()
         {
-            List<string> list = new List<string>();
-            list = DB.Instance.GetAllHiringCompanies();
-
-            return list;
+            Program.Log.Info("GetAllHiringCompanies method from CompanyService called"); 
+            return DB.Instance.GetAllHiringCompanies();
         }
 
         public bool ApproveUserStory(string usName, string usCriteria, string projectName)
         {
+            Program.Log.Info("ApproveUserStory method from CompanyService called");
+
             DialogResult result = MessageBox.Show("Da li zelite da prihvatite UserStory?", "Warning", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
-
                 DB.Instance.AddUserStory(usName, usCriteria, projectName);
                 return true;
             }
@@ -281,13 +156,28 @@ namespace SRV1
 
         public List<string> GetAllUserStories(Project proj)
         {
-            Console.WriteLine("Poslata lista User stories!");
-
-            List<string> lista = new List<string>();
-
-            lista = DB.Instance.GetAllUserStories(proj);
-
-            return lista;
+            Program.Log.Info("GetAllUserStories method from CompanyService called");
+            return DB.Instance.GetAllUserStories(proj);
         }
+
+        public bool CheckIfLate(DateTime ulogovao, string timestart)
+        {
+            Program.Log.Info("CheckIfLate method from CompanyService called");
+
+            DateTime definisanoVreme = Convert.ToDateTime(timestart);
+
+            TimeSpan span = ulogovao.Subtract(definisanoVreme);
+
+            double minutes = span.TotalMinutes;
+            int minutesRounded = (int)Math.Round(span.TotalMinutes);
+
+            if (minutesRounded > 15)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
     }
 }

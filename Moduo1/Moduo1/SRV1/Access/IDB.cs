@@ -10,14 +10,13 @@ namespace SRV1.Access
     public interface IDB
     {
         bool AddUser(User user);
-        bool LoginUser(string username, string pass);
+        bool Login(string username, string pass);
         bool LogOut(string username);
         User GetUser(string username);
         bool EditUser(User userEdit);
         List<User> GetAllEmployees();
         List<User> GetAllOnlineUsers();
         bool CreateProject(Project prj);
-        bool DeleteProject(Project prj);
         bool UpdateProject(Project p);
         List<Project> GetAllProjectsForUser(User user);
         List<Project> GetAllProjects();

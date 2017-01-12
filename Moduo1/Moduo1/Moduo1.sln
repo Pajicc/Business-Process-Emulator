@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRV1", "SRV1\SRV1.csproj", "{19A41C1F-E2E8-4A1F-B100-172810A39D6F}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{39404839-2455-4F8D-9C40-F8C9833321BD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonTest", "CommonTest\CommonTest.csproj", "{CD942E16-41EC-4DCE-80AF-FD5B02686856}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRV1Test", "SRV1Test\SRV1Test.csproj", "{EF9BB010-510B-4B1D-980B-09200070144E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,11 +37,16 @@ Global
 		{CD942E16-41EC-4DCE-80AF-FD5B02686856}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD942E16-41EC-4DCE-80AF-FD5B02686856}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD942E16-41EC-4DCE-80AF-FD5B02686856}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF9BB010-510B-4B1D-980B-09200070144E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF9BB010-510B-4B1D-980B-09200070144E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF9BB010-510B-4B1D-980B-09200070144E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF9BB010-510B-4B1D-980B-09200070144E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{CD942E16-41EC-4DCE-80AF-FD5B02686856} = {39404839-2455-4F8D-9C40-F8C9833321BD}
+		{EF9BB010-510B-4B1D-980B-09200070144E} = {39404839-2455-4F8D-9C40-F8C9833321BD}
 	EndGlobalSection
 EndGlobal
