@@ -567,6 +567,9 @@ namespace Client1.ViewModel
         private ICommand adminEditUser;
         private ICommand poAddProject;
         private ICommand editPc;
+        private ICommand sendRequest;
+        private ICommand approveProject;
+        private ICommand sendProject;
         #endregion
 
         #region Public Commands
@@ -630,6 +633,30 @@ namespace Client1.ViewModel
                 return editPc ?? (editPc = new RelayCommand(param => EditPcExecution(param)));
             }
         }
+
+        public ICommand SendRequest
+        {
+            get
+            {
+                return sendRequest ?? (sendRequest = new RelayCommand(param => SendRequestExecution(param)));
+            }
+        }
+
+        public ICommand ApproveProject
+        {
+            get
+            {
+                return approveProject ?? (approveProject = new RelayCommand(param => ApproveProjectExecution(param)));
+            }
+        }
+        public ICommand SendProject
+        {
+            get
+            {
+                return sendProject ?? (sendProject = new RelayCommand(param => SendProjectExecution(param)));
+            }
+        }
+
 
         #endregion
 
@@ -902,6 +929,83 @@ namespace Client1.ViewModel
             Context wrap = Context.getInstance();
             wrap.proxy.ChangePass(PiUsername, PiPassword, PcNewPassword);
             wrap.changePass.Close();
+        }
+
+        private void SendRequestExecution(object param)
+        {
+            Context wrap = Context.getInstance();
+            AdminWindow win = ((AdminWindow)wrap.subwin);
+
+            if (!partnerCompanies.Contains(win.outsourcingCompanies.SelectedItem.ToString()))
+            {
+                bool app = wrap.outsourcingProxy.PartnershipRequest(win.outsourcingCompanies.SelectedItem.ToString());
+
+                if (app)
+                {
+                    MessageBox.Show("Approved!");
+                    wrap.proxy.AddPartnerCompany(wrap.cvm.currentUser, win.outsourcingCompanies.SelectedItem.ToString());   //dodavanje u bazu
+
+                    partnerCompanies.Clear();  //ocisti bind listu 
+
+                    foreach (string comp in wrap.proxy.GetAllPartnerCompanies(wrap.cvm.currentUser))       //iscitaj iz baze i ubaci u listu
+                    {
+                        if (!partnerCompanies.Contains(comp))
+                            partnerCompanies.Add(comp);
+                        win.partnerCompaniesComboBox.Items.Refresh();
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Not approved!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Companies already have partnership");
+            }
+        }
+
+        private void ApproveProjectExecution(object param)
+        {
+            Context wrap = Context.getInstance();
+            AdminWindow win = ((AdminWindow)wrap.subwin);
+
+            if (win.partnerCompanies_Copy1.SelectedItem != null)
+            {
+                Project p = win.partnerCompanies_Copy1.SelectedItem as Project;
+
+                p.State = States.approved;
+                p.HiringCompany = wrap.cvm.currentUser.Company;
+                wrap.proxy.UpdateProject(p);
+
+                activeProjects.Add(p);         //dodaj u aktivne
+                notActiveProjects.Remove(p);   //obrisi iz neaktivnih
+                projects.Add(p);                //dodaj u sve projekte za tog konkretnoh CEO(kompaniju)
+
+                win.projectsGrid.Items.Refresh();
+            }
+            
+        }
+
+        private void SendProjectExecution(object param)
+        {
+            Context wrap = Context.getInstance();
+            AdminWindow win = ((AdminWindow)wrap.subwin);
+
+            if (win.partnerCompanies_Copy.SelectedItem != null)
+            {
+                Project p = win.partnerCompanies_Copy.SelectedItem as Project;
+
+                if (wrap.outsourcingProxy.SendProject(p.Name, p.Description, p.HiringCompany))
+                {
+                    p.State = States.inProgress;
+                    wrap.proxy.UpdateProject(p);
+                    activeProjects.Remove(p);
+                }
+
+                win.projectsGrid.Items.Refresh();
+            }
         }
 
         public void ProveraPass(User currentUser)

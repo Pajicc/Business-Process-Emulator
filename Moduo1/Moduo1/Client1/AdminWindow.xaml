@@ -83,20 +83,20 @@
                     <ComboBox Name="outsourcingCompanies" HorizontalAlignment="Left" Margin="10,44,0,0" VerticalAlignment="Top" Width="167" Height="22" SelectionChanged="outsourcingCompanies_SelectionChanged"/>
                     <Label Content="Outsourcing companies:" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" FontSize="15"/>
                     <Label Content="Partner companies:" HorizontalAlignment="Left" Margin="360,52,0,0" VerticalAlignment="Top" FontSize="15"/>
-                    <Button Name="sendReqButton" Content="Send request" HorizontalAlignment="Left" Margin="44,82,0,0" VerticalAlignment="Top" Width="89" Height="26" Click="sendReqButton_Click"/>
+                    <Button Name="sendReqButton" Content="Send request" HorizontalAlignment="Left" Margin="44,82,0,0" VerticalAlignment="Top" Width="89" Height="26" Command="{Binding SendRequest}" />
                     <ComboBox Name="partnerCompaniesComboBox" HorizontalAlignment="Left" Margin="345,82,0,0" VerticalAlignment="Top" Width="167" Height="22" ItemsSource="{Binding partnerCompanies}"/>
-                    <Button Name="sendProject" Content="Send project" HorizontalAlignment="Left" Margin="375,229,0,0" VerticalAlignment="Top" Width="108" Height="25" Click="sendProject_Click"/>
+                    <Button Name="sendProject" Content="Send project" HorizontalAlignment="Left" Margin="375,229,0,0" VerticalAlignment="Top" Width="108" Height="25" Command="{Binding SendProject}"/>
                     <ComboBox x:Name="partnerCompanies_Copy" HorizontalAlignment="Left" Margin="345,166,0,0" VerticalAlignment="Top" Width="167" Height="22" ItemsSource="{Binding activeProjects}" DisplayMemberPath="Name"/>
                     <Label Content="Approved projects:" HorizontalAlignment="Left" Margin="360,131,0,0" VerticalAlignment="Top" FontSize="15"/>
                     <Label Content="Projects for approval:" HorizontalAlignment="Left" Margin="27,158,0,0" VerticalAlignment="Top" FontSize="15"/>
                     <ComboBox x:Name="partnerCompanies_Copy1" HorizontalAlignment="Left" Margin="10,193,0,0" VerticalAlignment="Top" Width="167" Height="22" ItemsSource="{Binding notActiveProjects}" DisplayMemberPath="Name"/>
-                    <Button x:Name="approveProject" Content="Approve" HorizontalAlignment="Left" Margin="44,229,0,0" VerticalAlignment="Top" Width="89" Height="26" Click="approveProject_Click"/>
+                    <Button x:Name="approveProject" Content="Approve" HorizontalAlignment="Left" Margin="44,229,0,0" VerticalAlignment="Top" Width="89" Height="26" Command="{Binding ApproveProject}"/>
                     <Label Content="Select project and partner company" HorizontalAlignment="Left" Margin="333,10,0,0" VerticalAlignment="Top" FontSize="11"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Projects" Margin="64,-2,-94,3">
                 <Grid Background="#FFE5E5E5" Margin="0,-2,-2,-8">
-                    <DataGrid Name="projectsGrid" HorizontalAlignment="Left" Height="245" Margin="10,26,0,0" VerticalAlignment="Top" Width="295" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="True" ItemsSource="{Binding projects}" MouseDoubleClick="DataGrid_DoubleMouseClick"/>
+                    <DataGrid Name="projectsGrid" HorizontalAlignment="Left" Height="245" Margin="10,26,0,0" VerticalAlignment="Top" Width="295" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="True" ItemsSource="{Binding projects}"  MouseDoubleClick="DataGrid_DoubleMouseClick"/>
                     <ListBox Name="userStories" HorizontalAlignment="Left" Height="190" Margin="356,39,0,0" VerticalAlignment="Top" Width="157"/>
                     <Label Content="Projects:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
                     <Label Content="User stories:" HorizontalAlignment="Left" Margin="356,8,0,0" VerticalAlignment="Top"/>
