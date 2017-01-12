@@ -27,6 +27,7 @@ namespace Client1.ViewModel
         public ObservableCollection<string> partnerCompanies { get; set; }
 
         public Thread t;
+        public Thread projT;
 
         public User currentUser = new User();
 
@@ -738,6 +739,9 @@ namespace Client1.ViewModel
                         case Roles.SM:
                             ScrumMasterWindow smWin = new ScrumMasterWindow();
                             smWin.Show();
+                            projT = new Thread(() => CheckProjects(currentUser));
+                            projT.SetApartmentState(ApartmentState.STA);
+                            projT.Start();
                             break;
                         case Roles.PO:
                             ProductOwnerWindow poWin = new ProductOwnerWindow();
@@ -884,7 +888,12 @@ namespace Client1.ViewModel
             wrap.proxy.LogOut(LoggedInUser);
             employeeList.Remove(currentUser);
             wrap.subwin.Close();
-            t.Suspend();
+            t.Suspend();                                //zatvaramo thread za check pass kada se korisnik izloguje
+
+            if (currentUser.Role == Roles.SM)
+            {
+                projT.Suspend();                        //zatvaramo thread za check isteka projekta
+            }
 
             MainWindow win = new MainWindow();
             win.Show();
@@ -898,7 +907,7 @@ namespace Client1.ViewModel
             wrap.changePass.Close();
         }
 
-        public static void ProveraPass(User currentUser)
+        public void ProveraPass(User currentUser)
         {
             Context wrap = Context.getInstance();
             User newUser = wrap.proxy.GetUser(currentUser.Username);
@@ -917,6 +926,11 @@ namespace Client1.ViewModel
                     newUser = wrap.proxy.GetUser(currentUser.Username);
                 }
             }
+        }
+
+        public void CheckProjects(User currentUser)
+        {
+
         }
 
         #endregion
