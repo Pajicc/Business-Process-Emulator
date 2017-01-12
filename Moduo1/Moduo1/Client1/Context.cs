@@ -15,7 +15,7 @@ namespace Client1
         private NetTcpBinding binding2 = new NetTcpBinding();
         private string address = "net.tcp://localhost:9999/CompanyService";
         //private string address2 = "net.tcp://10.1.212.121:9998/CompanyService";
-        private string address2 = "net.tcp://localhost:9998/CommonService";
+        private string address2 = "net.tcp://192.168.137.159:9998/CommonService";
 
         private static volatile Context instance;
         public CompanyViewModel cvm;

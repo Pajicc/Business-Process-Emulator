@@ -298,39 +298,40 @@ namespace SRV1.Access
         /// <summary>
         /// Metoda za vracanje svih kreiranih projekata
         /// </summary>
-        /// <returns></returns>
+        /// <returns></returns> }        
+        public List<Project> GetAllProjectsForUser(User user)
+        {
+            List<Project> projects = new List<Project>();
+
+            using (var access = new AccessDB())
+            {
+                foreach (Project p in access.Projects)
+                {
+                    if(p.HiringCompany == user.Company)
+                        projects.Add(p);
+                }
+                Program.log.Info("GetAllProjects function has been called");
+
+                return projects;
+            }
+        }
+
+
         public List<Project> GetAllProjects()
         {
             List<Project> projects = new List<Project>();
 
             using (var access = new AccessDB())
             {
-                projects = access.Projects.ToList();
-
+                foreach (Project p in access.Projects)
+                {
+                    projects.Add(p);
+                }
                 Program.log.Info("GetAllProjects function has been called");
 
                 return projects;
             }
         }
-        public List<Project> GetAllProjectsCEO(string username)
-        {
-            List<Project> projects = new List<Project>();
-
-            string company = GetCompany(username);  //na osnovu CEO.Username nadji ime kompanije
-
-            using (var access = new AccessDB())
-            {
-                foreach (Project p in access.Projects)
-                {
-                    if(p.HiringCompany == company)
-                        projects.Add(p);
-                }
-                Program.log.Info("GetAllProjectsCEO function has been called");
-
-                return projects;
-            }
-        }
-
         /// <summary>
         /// Brisanje projekta iz baze
         /// </summary>
@@ -393,25 +394,15 @@ namespace SRV1.Access
             }
         }
 
-        public List<string> GetAllPartnerCompanies(string username)
+        public List<string> GetAllPartnerCompanies(User user)
         {
             List<string> partCompanies = new List<string>();
 
             using (var access = new AccessDB())
-            {
-                HiringCompany findHC = new HiringCompany();
-
-                foreach (HiringCompany hc in access.HiringCompanies)
-                {
-                    if (hc.CEO == username)
-                    {
-                        findHC = hc;
-                    }
-                }
-
+            {           
                 foreach (Partner part in access.Partners)
                 {
-                    if (part.ImeHiringKompanije == findHC.Name)
+                    if (part.ImeHiringKompanije == user.Company)
                     {
                         partCompanies.Add(part.ImeOutKompanije);
                     }
@@ -421,34 +412,22 @@ namespace SRV1.Access
             }
         }
 
-        public bool AddPartnerCompany(string ceo, string partner)
+        public bool AddPartnerCompany(User user, string partner)
         {
             using (var access = new AccessDB())
             {
-                HiringCompany findHC = new HiringCompany();
+                Partner part1 = new Partner(user.Company, partner);
+                access.Partners.Add(part1);
 
-                foreach (HiringCompany hc in access.HiringCompanies)
-                {
-                    if (hc.CEO == ceo)
-                    {
-                        findHC = hc;
-                    }
-                }
+                int k = access.SaveChanges();
 
-                if (findHC != null)
-                {
-                    Partner part1 = new Partner(findHC.Name, partner);
-                    access.Partners.Add(part1);
-
-                    int k = access.SaveChanges();
-
-                    if (k > 0)
-                        return true;
-                }
+                if (k > 0)
+                    return true;               
             }
 
             return false;
         }
+       
         public bool ChangePass(string username, string oldPass, string newPass)
         {
             DateTime currentTime = DateTime.Now;
@@ -468,24 +447,6 @@ namespace SRV1.Access
             }
 
             return false;
-        }
-
-        public string GetCompany(string username)
-        {
-            using (var access = new AccessDB())
-            {
-                foreach (HiringCompany hc in access.HiringCompanies)
-                {
-                    if(hc.CEO == username || hc.SM == username)
-                    {
-                        Program.log.Info("Successfully returned Company name " + hc.Name);
-                        return hc.Name;
-                    }
-                }
-
-                Program.log.Info("Failed to return company name: ");
-                return string.Empty;
-            }
         }
 
         public List<string> GetAllHiringCompanies( )

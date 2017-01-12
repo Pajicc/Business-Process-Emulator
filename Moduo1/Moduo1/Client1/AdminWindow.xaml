@@ -96,7 +96,7 @@
             </TabItem>
             <TabItem Header="Projects" Margin="64,-2,-94,3">
                 <Grid Background="#FFE5E5E5" Margin="0,-2,-2,-8">
-                    <DataGrid Name="projectsGrid" HorizontalAlignment="Left" Height="245" Margin="10,26,0,0" VerticalAlignment="Top" Width="295" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="True" ItemsSource="{Binding projectsAdmin}" MouseDoubleClick="DataGrid_DoubleMouseClick"/>
+                    <DataGrid Name="projectsGrid" HorizontalAlignment="Left" Height="245" Margin="10,26,0,0" VerticalAlignment="Top" Width="295" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="True" ItemsSource="{Binding projects}" MouseDoubleClick="DataGrid_DoubleMouseClick"/>
                     <ListBox Name="userStories" HorizontalAlignment="Left" Height="190" Margin="356,39,0,0" VerticalAlignment="Top" Width="157"/>
                     <Label Content="Projects:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
                     <Label Content="User stories:" HorizontalAlignment="Left" Margin="356,8,0,0" VerticalAlignment="Top"/>

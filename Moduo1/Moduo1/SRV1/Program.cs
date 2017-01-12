@@ -47,38 +47,40 @@ namespace SRV1
             //addovanje CEO i HiringCompanies
             List<User> users = new List<User>();
 
-            User test = new User("test", "test", "test@li.com", "09:00:00", "12:00:00", Roles.CEO);
+            User test = new User("test", "test", "test@li.com", "09:00:00", "12:00:00", Roles.CEO, "HiringCompany1");
             users.Add(test);
-            User ceo1 = new User("ceo1", "ceo1", "mail1@li.com", "09:00:00", "12:00:00", Roles.CEO);
+            User ceo1 = new User("ceo1", "ceo1", "mail1@li.com", "09:00:00", "12:00:00", Roles.CEO, "HiringCompany1");
             users.Add(ceo1);
-            User ceo2 = new User("ceo2", "ceo2", "mail2@li.com", "09:00:00", "12:00:00", Roles.CEO);
+            User ceo2 = new User("ceo2", "ceo2", "mail2@li.com", "09:00:00", "12:00:00", Roles.CEO, "HiringCompany2");
             users.Add(ceo2);
-            User ceo3 = new User("ceo3", "ceo3", "mail3@li.com", "09:00:00", "12:00:00", Roles.CEO);
+            User ceo3 = new User("ceo3", "ceo3", "mail3@li.com", "09:00:00", "12:00:00", Roles.CEO, "HiringCompany3");
             users.Add(ceo3);
 
-            User po1 = new User("po1", "po1", "po1@li.com", "09:00:00", "12:00:00", Roles.PO);
+            User po1 = new User("po1", "po1", "po1@li.com", "09:00:00", "12:00:00", Roles.PO, "HiringCompany1");
             users.Add(po1);
-            User po2 = new User("po2", "po2", "po2@li.com", "09:00:00", "12:00:00", Roles.PO);
+            User po2 = new User("po2", "po2", "po2@li.com", "09:00:00", "12:00:00", Roles.PO, "HiringCompany1");
             users.Add(po2);
 
-            User hr1 = new User("hr1", "hr1", "hr1@li.com", "09:00:00", "12:00:00", Roles.HR);
+            User hr1 = new User("hr1", "hr1", "hr1@li.com", "09:00:00", "12:00:00", Roles.HR, "HiringCompany1");
             users.Add(hr1);
-            User hr2 = new User("hr2", "hr2", "hr2@li.com", "09:00:00", "12:00:00", Roles.HR);
+            User hr2 = new User("hr2", "hr2", "hr2@li.com", "09:00:00", "12:00:00", Roles.HR, "HiringCompany2");
             users.Add(hr2);
+            User hr3 = new User("hr3", "hr3", "hr3@li.com", "09:00:00", "12:00:00", Roles.HR, "HiringCompany3");
+            users.Add(hr3);
 
-            User sm1 = new User("sm1", "sm1", "sm1@li.com", "09:00:00", "12:00:00", Roles.SM);
+            User sm1 = new User("sm1", "sm1", "sm1@li.com", "09:00:00", "12:00:00", Roles.SM, "HiringCompany1");
             users.Add(sm1);
-            User sm2 = new User("sm2", "sm2", "sm2@li.com", "09:00:00", "12:00:00", Roles.SM);
+            User sm2 = new User("sm2", "sm2", "sm2@li.com", "09:00:00", "12:00:00", Roles.SM, "HiringCompany2");
             users.Add(sm2);
 
-            User user1 = new User("user1", "user1", "user1@li.com", "09:00:00", "12:00:00", Roles.Employee);
+            User user1 = new User("user1", "user1", "user1@li.com", "09:00:00", "12:00:00", Roles.Employee, "HiringCompany1");
             users.Add(user1);
-            User user2 = new User("user2", "user2", "user2@li.com", "09:00:00", "12:00:00", Roles.Employee);
+            User user2 = new User("user2", "user2", "user2@li.com", "09:00:00", "12:00:00", Roles.Employee, "HiringCompany2");
             users.Add(user2);
 
-            HiringCompany hc1 = new HiringCompany("HiringCompany1", "ceo1");
-            HiringCompany hc2 = new HiringCompany("HiringCompany2", "ceo2");
-            HiringCompany hc3 = new HiringCompany("HiringCompany3", "ceo3");
+            HiringCompany hc1 = new HiringCompany("HiringCompany1");
+            HiringCompany hc2 = new HiringCompany("HiringCompany2");
+            HiringCompany hc3 = new HiringCompany("HiringCompany3");
 
             using (var access = new AccessDB())
             {

@@ -39,25 +39,22 @@ namespace Common
         bool DeleteProject(Project prj);
 
         [OperationContract]
-        List<Project> GetAllProjects();
+        List<Project> GetAllProjectsForUser(User user);
 
         [OperationContract]
-        List<Project> GetAllProjectsCEO(string username);
+        List<Project> GetAllProjects();
 
         [OperationContract]
         bool UpdateProject(Project p);
 
         [OperationContract]
-        List<string> GetAllPartnerCompanies(string username);
+        List<string> GetAllPartnerCompanies(User user);
 
         [OperationContract]
-        bool AddPartnerCompany(string ceo, string partner);
+        bool AddPartnerCompany(User user, string partner);
 
         [OperationContract]
         bool ChangePass(string username, string oldPass, string newPass);
-
-        [OperationContract]
-        string GetCompany(string username);
 
         [OperationContract]
         List<string> GetAllUserStories(Project proj);

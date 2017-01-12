@@ -36,13 +36,13 @@ namespace Client1
                 ee_listOfEmployees_admin.Items.Add(usr.Username);
             }
 
-            List<string> allOutComp = wrapper.outsourcingProxy.GetAllOutsourcingCompanies();
+            /*List<string> allOutComp = wrapper.outsourcingProxy.GetAllOutsourcingCompanies();
 
             foreach (string comp in allOutComp)
             {
                 outsourcingCompanies.Items.Add(comp);
-            }  
-
+            } */
+            outsourcingCompanies.Items.Add("KompanijaA");
         }
 
         private void ee_listOfEmployees_admin_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -78,12 +78,11 @@ namespace Client1
                 if (app)
                 {
                     MessageBox.Show("Approved!");
-                    wrap.proxy.AddPartnerCompany(wrap.cvm.LoggedInUser, outsourcingCompanies.SelectedItem.ToString());   //dodavanje u bazu
+                    wrap.proxy.AddPartnerCompany(wrap.cvm.currentUser, outsourcingCompanies.SelectedItem.ToString());   //dodavanje u bazu
 
                     wrap.cvm.partnerCompanies.Clear();  //ocisti bind listu 
 
-
-                    foreach (string comp in wrap.proxy.GetAllPartnerCompanies(wrap.cvm.LoggedInUser))       //iscitaj iz baze i ubaci u listu
+                    foreach (string comp in wrap.proxy.GetAllPartnerCompanies(wrap.cvm.currentUser))       //iscitaj iz baze i ubaci u listu
                     {
                         if (!wrap.cvm.partnerCompanies.Contains(comp))
                             wrap.cvm.partnerCompanies.Add(comp);
@@ -118,15 +117,13 @@ namespace Client1
             {
                 Project p = partnerCompanies_Copy1.SelectedItem as Project;
 
-                string company = wrap.proxy.GetCompany(wrap.cvm.currentUser.Username);
-
                 p.State = States.approved;
-                p.HiringCompany = company;
+                p.HiringCompany = wrap.cvm.currentUser.Company;
                 wrap.proxy.UpdateProject(p);
 
                 wrap.cvm.activeProjects.Add(p);         //dodaj u aktivne
                 wrap.cvm.notActiveProjects.Remove(p);   //obrisi iz neaktivnih
-                wrap.cvm.projectsAdmin.Add(p);          //dodaj u sve projekte za tog konkretnoh CEO(kompaniju)
+                wrap.cvm.projects.Add(p);                //dodaj u sve projekte za tog konkretnoh CEO(kompaniju)
 
                 projectsGrid.Items.Refresh();
             }

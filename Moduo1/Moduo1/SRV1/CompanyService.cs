@@ -186,9 +186,20 @@ namespace SRV1
             return done;
         }
 
+        public List<Project> GetAllProjectsForUser(User user)
+        {
+            Console.WriteLine("Poslata lista projekata!");
+
+            List<Project> projekti = new List<Project>();
+
+            projekti = DB.Instance.GetAllProjectsForUser(user);
+
+            return projekti;
+        }
+
         public List<Project> GetAllProjects()
         {
-            Console.WriteLine("Poslata lista Usera!");
+            Console.WriteLine("Poslata lista projekata!");
 
             List<Project> projekti = new List<Project>();
 
@@ -196,17 +207,6 @@ namespace SRV1
 
             return projekti;
         }
-        public List<Project> GetAllProjectsCEO(string username)
-        {
-            Console.WriteLine("Poslata lista Usera!");
-
-            List<Project> projekti = new List<Project>();
-
-            projekti = DB.Instance.GetAllProjectsCEO(username);
-
-            return projekti;
-        }
-
 
         public bool DeleteProject(Project prj)
         {
@@ -230,11 +230,11 @@ namespace SRV1
             return done;
         }
 
-        public List<string> GetAllPartnerCompanies(string username)
+        public List<string> GetAllPartnerCompanies(User user)
         {
             List<string> companies = new List<string>();
 
-            companies = DB.Instance.GetAllPartnerCompanies(username);
+            companies = DB.Instance.GetAllPartnerCompanies(user);
 
             return companies;
         }
@@ -251,14 +251,14 @@ namespace SRV1
             return done;
         }
 
-        public bool AddPartnerCompany(string ceo, string partner)
+        public bool AddPartnerCompany(User user, string partner)
         {
             bool done = false;
 
             Console.WriteLine("Dodata nova Parnter kompanija!");
             Console.WriteLine("Ime Kompanije: " + partner);
 
-            done = DB.Instance.AddPartnerCompany(ceo, partner);
+            done = DB.Instance.AddPartnerCompany(user, partner);
 
             return done;
         }
@@ -272,19 +272,6 @@ namespace SRV1
             Console.WriteLine("Promenjen password za usera: " + username);
 
             return done;
-        }
-
-        public string GetCompany(string username)
-        {
-            Console.WriteLine("GetCompany!");
-
-            string comp = string.Empty;
-            comp = DB.Instance.GetCompany(username);
-
-            if (comp != null)
-                return comp;
-            else
-                return null;
         }
 
         public List<string> GetAllHiringCompanies()

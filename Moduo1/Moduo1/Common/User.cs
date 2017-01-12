@@ -30,9 +30,10 @@ namespace Common
         private string workTimeStart;
         private string workTimeEnd;
         private Roles role;
+        private string company;
 
         public User() { }
-        public User(string name, string pass, string mail, string start, string end, Roles r)
+        public User(string name, string pass, string mail, string start, string end, Roles r, string comp)
         {
             this.username = name;
             this.password = pass;
@@ -40,8 +41,9 @@ namespace Common
             this.workTimeStart = start;
             this.workTimeEnd = end;
             this.role = r;
+            this.company = comp;
         }
-        public User(string usern, string pass, string passTime, string n, string lastn, string mail, bool logged, string start, string end, Roles r)
+        public User(string usern, string pass, string passTime, string n, string lastn, string mail, bool logged, string start, string end, Roles r, string comp)
         {
             this.username = name;
             this.password = pass;
@@ -52,6 +54,7 @@ namespace Common
             this.workTimeStart = start;
             this.workTimeEnd = end;
             this.role = r;
+            this.company = comp;
         }
 
         [Key]
@@ -105,13 +108,11 @@ namespace Common
             get { return role; }
             set { role = value; }
         }
-        public void Login()
+        public string Company
         {
-            this.loggedIn = true;
+            get { return company; }
+            set { company = value; }
         }
-        public void Logout()
-        {
-            this.loggedIn = false;
-        }
+      
     }
 }

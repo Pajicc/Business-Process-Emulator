@@ -19,13 +19,12 @@ namespace SRV1.Access
         bool CreateProject(Project prj);
         bool DeleteProject(Project prj);
         bool UpdateProject(Project p);
+        List<Project> GetAllProjectsForUser(User user);
         List<Project> GetAllProjects();
-        List<Project> GetAllProjectsCEO(string username);
-        List<string> GetAllPartnerCompanies(string username);
-        bool AddPartnerCompany(string ceo, string partner);
+        List<string> GetAllPartnerCompanies(User user);
+        bool AddPartnerCompany(User user, string partner);
         bool AddHiringCompany(HiringCompany hc);
         bool ChangePass(string username, string oldPass, string newPass);
-        string GetCompany(string username);
         List<string> GetAllHiringCompanies();
         List<string> GetAllUserStories(Project proj);
         bool AddUserStory(string usName, string usCriteria, string projectName);

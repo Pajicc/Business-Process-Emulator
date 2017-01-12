@@ -24,6 +24,7 @@ namespace CommonTest
         private string workTimeStart = "01/01/2001 12:12:12";
         private string workTimeEnd = "01/01/2001 12:12:12";
         private Roles role = 0;
+        private string company = "HiringCompany";
 
         #endregion Declarations
 
@@ -48,14 +49,14 @@ namespace CommonTest
 
         [Test]
         public void UserConstructorTestWithParameters()
-        {      
-            Assert.DoesNotThrow(() => new User(username, password, email, workTimeStart, workTimeEnd, role));
+        {
+            Assert.DoesNotThrow(() => new User(username, password, email, workTimeStart, workTimeEnd, role, company));
         }
 
         [Test]
         public void UserConstructorTestWithAllParameters()
         {
-            Assert.DoesNotThrow(() => new User(username, password, passeditime, name, lastName, email, loggedIn, workTimeStart, workTimeEnd, role));
+            Assert.DoesNotThrow(() => new User(username, password, passeditime, name, lastName, email, loggedIn, workTimeStart, workTimeEnd, role, company));
         }
 
         [Test]
@@ -129,6 +130,14 @@ namespace CommonTest
             user.WorkTimeEnd = workTimeEnd;
 
             Assert.AreEqual(workTimeEnd, user.WorkTimeEnd);
+        }
+
+        [Test]
+        public void Company()
+        {
+            user.Company = company;
+
+            Assert.AreEqual(company, user.Company);
         }
         #endregion tests
     }

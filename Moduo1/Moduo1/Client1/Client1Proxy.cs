@@ -195,6 +195,23 @@ namespace Client1
             return allowed;
         }
 
+        public List<Project> GetAllProjectsForUser(User user)
+        {
+            List<Project> projekti = new List<Project>();
+
+            try
+            {
+                projekti = factory.GetAllProjectsForUser(user);
+                Console.WriteLine("GetAllProjectsForUser() >> succeded");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while trying to GetAllProjects(). {0}", e.Message);
+            }
+
+            return projekti;
+        }
+
         public List<Project> GetAllProjects()
         {
             List<Project> projekti = new List<Project>();
@@ -212,30 +229,13 @@ namespace Client1
             return projekti;
         }
 
-        public List<Project> GetAllProjectsCEO(string username)
-        {
-            List<Project> projekti = new List<Project>();
-
-            try
-            {
-                projekti = factory.GetAllProjectsCEO(username);
-                Console.WriteLine("GetAllProjectsCEO() >> succeded");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error while trying to GetAllProjectsCEO(). {0}", e.Message);
-            }
-
-            return projekti;
-        }
-
-        public List<string> GetAllPartnerCompanies(string username)
+        public List<string> GetAllPartnerCompanies(User user)
         {
             List<string> companies = new List<string>();
 
             try
             {
-                companies = factory.GetAllPartnerCompanies(username);
+                companies = factory.GetAllPartnerCompanies(user);
                 Console.WriteLine("GetAllPartnerCompanies() >> succeded");
             }
             catch (Exception e)
@@ -246,13 +246,13 @@ namespace Client1
             return companies;
         }
 
-        public bool AddPartnerCompany(string ceo, string partner)
+        public bool AddPartnerCompany(User user, string partner)
         {
             bool allowed = false;
 
             try
             {
-                allowed = factory.AddPartnerCompany(ceo, partner);
+                allowed = factory.AddPartnerCompany(user, partner);
                 Console.WriteLine("AddPartnerCompany() >> succeded");
             }
             catch (Exception e)
@@ -278,23 +278,6 @@ namespace Client1
             }
 
             return allowed;
-        }
-
-        public string GetCompany(string username)
-        {
-            string comp =string.Empty;
-
-            try
-            {
-                comp = factory.GetCompany(username);
-                Console.WriteLine("GetCompany() >> succeded");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error while trying to GetCompany(). {0}", e.Message);
-            }
-
-            return comp;
         }
 
         public List<string> GetAllUserStories(Project proj)

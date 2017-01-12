@@ -679,15 +679,23 @@ namespace Client1.ViewModel
                     PiFrom = currentUser.WorkTimeStart;
                     PiTo = currentUser.WorkTimeEnd;
 
-                    projects.Clear();
-                    notActiveProjects.Clear();
-                    foreach (Project proj in wrap.proxy.GetAllProjects())   //svi projekti svih kompanija, ucitaj u sve sem admina
+                    projects.Clear();               //za svakog korisnika posebno - DataGrid - svi projekti za tu kompaniju
+                    notActiveProjects.Clear();      //za sve korisnike isto, jednom kad se odobri, izbacuje se
+                    activeProjects.Clear();         //za svakog posebno - Approved projects
+
+                    foreach (Project proj in wrap.proxy.GetAllProjectsForUser(currentUser))   
                     {
                         if (!projects.Contains(proj))
                             projects.Add(proj);
 
-                        if (proj.State == States.notApproved)               //u admin comboBox "For approval" svi neodobreni projekti
-                            notActiveProjects.Add(proj);
+                        if(proj.State == States.approved)
+                             activeProjects.Add(proj);
+                    }
+
+                    foreach(Project p in wrap.proxy.GetAllProjects())
+                    {
+                        if(p.State == States.notApproved)
+                            notActiveProjects.Add(p);
                     }
 
                     //thread za 6 meseci
@@ -709,22 +717,11 @@ namespace Client1.ViewModel
                             adminWin.allEmployeesGrid.Items.Refresh();
 
                             partnerCompanies.Clear();
-                            foreach (string comp in wrap.proxy.GetAllPartnerCompanies(LoggedInUser))
+                            foreach (string comp in wrap.proxy.GetAllPartnerCompanies(currentUser))
                             {
                                 partnerCompanies.Add(comp);
                             }
-
-                            projectsAdmin.Clear();                        
-                            activeProjects.Clear();
-                            foreach (Project proj in wrap.proxy.GetAllProjectsCEO(currentUser.Username))  
-                            {
-                                if (!projectsAdmin.Contains(proj))
-                                    projectsAdmin.Add(proj);
-
-                                if(proj.State == States.approved)
-                                    activeProjects.Add(proj);                              
-                            }
-
+                      
                             break;
                         case Roles.HR:
                             HumanResourceWindow hrWin = new HumanResourceWindow();
