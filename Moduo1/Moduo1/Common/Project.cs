@@ -26,6 +26,8 @@ namespace Common
         private States state;
         private string po;
         private string hiringCompany;
+        private bool notifikovanSM = false;
+        private double percent;
 
         public Project() { }
         public Project(string name, string desc, string start, string end, string po)
@@ -74,6 +76,17 @@ namespace Common
         {
             get { return hiringCompany; }
             set { hiringCompany = value; }
+        }
+        public bool NotifikovanSM
+        {
+            get { return notifikovanSM; }
+            set { notifikovanSM = value; }
+        }
+
+        public double Percent
+        {
+            get { return percent; }
+            set { percent = value; }
         }
     }
 }

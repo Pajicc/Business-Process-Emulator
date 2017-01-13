@@ -15,5 +15,8 @@ namespace Common
 
         [OperationContract]
         bool ApproveUserStory(string usName, string usCriteria, string projectName);
+
+        [OperationContract]
+        bool SendProcentageProj(Procent procent);
     }
 }

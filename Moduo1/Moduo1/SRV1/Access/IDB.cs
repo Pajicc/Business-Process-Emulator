@@ -18,6 +18,7 @@ namespace SRV1.Access
         List<User> GetAllOnlineUsers();
         bool CreateProject(Project prj);
         bool UpdateProject(Project p);
+        bool UpdateProject2(Procent procent);
         List<Project> GetAllProjectsForUser(User user);
         List<Project> GetAllProjects();
         List<string> GetAllPartnerCompanies(User user);

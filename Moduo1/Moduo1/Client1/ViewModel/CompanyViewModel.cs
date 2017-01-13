@@ -24,6 +24,7 @@ namespace Client1.ViewModel
         public ObservableCollection<Project> ActiveProjects { get; set; }
         public ObservableCollection<Project> NotActiveProjects { get; set; }
         public ObservableCollection<Project> ProjectsAdmin { get; set; }
+        public ObservableCollection<Project> FinishedProjects { get; set; }
         public ObservableCollection<string> PartnerCompanies { get; set; }
 
         private Thread t;
@@ -93,6 +94,7 @@ namespace Client1.ViewModel
             ActiveProjects = new ObservableCollection<Project>();
             NotActiveProjects = new ObservableCollection<Project>();
             ProjectsAdmin = new ObservableCollection<Project>();
+            FinishedProjects = new ObservableCollection<Project>();
             PartnerCompanies = new ObservableCollection<string>();
         }
         public string LoggedInUser
@@ -570,6 +572,7 @@ namespace Client1.ViewModel
         private ICommand sendRequest;
         private ICommand approveProject;
         private ICommand sendProject;
+        private ICommand closeProject;
         #endregion
 
         #region Public Commands
@@ -657,6 +660,14 @@ namespace Client1.ViewModel
             }
         }
 
+        public ICommand CloseProject
+        {
+            get
+            {
+                return closeProject ?? (closeProject = new RelayCommand(param => CloseProjectExecution(param)));
+            }
+        }
+
         public string SelectedUserForEdit
         {
             get
@@ -734,6 +745,15 @@ namespace Client1.ViewModel
                         {
                             ActiveProjects.Add(proj);
                         }
+
+                        if (proj.Percent == 100 && proj.State == States.inProgress)
+                        {
+                            if (!FinishedProjects.Contains(proj))
+                            {
+                                FinishedProjects.Add(proj);
+                            }
+                        }
+  
                     }
 
                     foreach (Project p in wrap.Proxy.GetAllProjects())
@@ -767,7 +787,9 @@ namespace Client1.ViewModel
                             {
                                 PartnerCompanies.Add(comp);
                             }
-                      
+
+                            adminWin.finishedProjects.Items.Refresh();
+
                             break;
                         case Roles.HR:
                             HumanResourceWindow hrWin = new HumanResourceWindow();
@@ -942,14 +964,14 @@ namespace Client1.ViewModel
             p.EndTime = ApToPo;
             p.Po = LoggedInUser;
 
-            wrap.Proxy.CreateProject(p);
-
             if (!Projects.Contains(p))
             {
                 Projects.Add(p);
+                wrap.Proxy.CreateProject(p);
+                NotActiveProjects.Add(p);
             }
 
-            NotActiveProjects.Add(p);
+            win.projectsGrid.Items.Refresh();
 
             win.ap_name_po.Clear();
             win.ap_desc_po.Clear();
@@ -1057,7 +1079,29 @@ namespace Client1.ViewModel
                     p.State = States.inProgress;
                     wrap.Proxy.UpdateProject(p);
                     ActiveProjects.Remove(p);
+                    MessageBox.Show("Project in progress.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                else
+                {
+                    MessageBox.Show("Project wasn't accepted.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                win.projectsGrid.Items.Refresh();
+            }
+        }
+
+        public void CloseProjectExecution(object param)
+        {
+            Context wrap = Context.GetInstance();
+            AdminWindow win = wrap.Subwin as AdminWindow;
+
+            if (win.finishedProjects.SelectedItem != null)
+            {
+                Project p = win.finishedProjects.SelectedItem as Project;
+
+                p.State = States.finished;
+                wrap.Proxy.UpdateProject(p);
+                FinishedProjects.Remove(p);
 
                 win.projectsGrid.Items.Refresh();
             }
@@ -1086,7 +1130,37 @@ namespace Client1.ViewModel
 
         public void CheckProjects(User currentUser)
         {
+            Context wrap = Context.GetInstance();
 
+            List<Project> projekti = wrap.Proxy.GetAllProjectsForUser(currentUser);
+
+            while (true)
+            {
+                DateTime atm1 = DateTime.Now;
+
+                foreach (Project pr in projekti)
+                {
+                    DateTime atm = DateTime.Now;
+                    DateTime endTime = Convert.ToDateTime(pr.EndTime);
+
+                    TimeSpan span = atm.Subtract(endTime);
+
+                    double minutes = span.TotalMinutes;
+
+                    if (minutes > 0)
+                    {
+                        if (pr.Percent < 80 && pr.NotifikovanSM == false)
+                        {
+                            MessageBox.Show("Nije zavrseno vise od 80% UserStorija za projekat: " + pr.Name + "!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            pr.NotifikovanSM = true;
+                            wrap.Proxy.UpdateProject(pr);
+                        }
+                    }
+                }
+
+                Thread.Sleep(5000);
+                projekti = wrap.Proxy.GetAllProjectsForUser(currentUser);
+            }
         }
 
         #endregion

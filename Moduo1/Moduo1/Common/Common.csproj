@@ -55,6 +55,7 @@
     <Compile Include="IHiringCompanyService.cs" />
     <Compile Include="IOutsourcingCompanyService.cs" />
     <Compile Include="Partner.cs" />
+    <Compile Include="Procent.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

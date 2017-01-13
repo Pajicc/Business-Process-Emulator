@@ -260,6 +260,8 @@ namespace SRV1.Access
 
                 prj.State = States.notApproved;
 
+                prj.NotifikovanSM = true;           
+
                 access.Projects.Add(prj);
 
                 int i = access.SaveChanges();
@@ -285,6 +287,7 @@ namespace SRV1.Access
                 {
                     access.Projects.Find(prj.Name).State = prj.State;                     //dodati ako treba jos nesto da se izmeni
                     access.Projects.Find(prj.Name).HiringCompany = prj.HiringCompany;
+                    access.Projects.Find(prj.Name).NotifikovanSM = prj.NotifikovanSM;
 
                     int k = access.SaveChanges();
 
@@ -303,6 +306,27 @@ namespace SRV1.Access
             }
         }
 
+        public bool UpdateProject2(Procent procent)
+        {
+            using (var access = new AccessDB())
+            {
+                if (access.Projects.Find(procent.ImeProj).Name == procent.ImeProj)
+                {
+                    access.Projects.Find(procent.ImeProj).NotifikovanSM = false;
+                    access.Projects.Find(procent.ImeProj).Percent = procent.Procenat;
+
+                    int k = access.SaveChanges();
+
+                    if (k > 0)
+                    {
+                        Program.Log.Info("Project: " + procent.ImeProj + " has been updated2!");
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+
         /// <summary>
         /// Metoda za vracanje svih kreiranih projekata
         /// </summary>
@@ -315,10 +339,18 @@ namespace SRV1.Access
             {
                 foreach (Project p in access.Projects)
                 {
-                    if (p.HiringCompany == user.Company)
+                    if (user.Username == p.Po)
                     {
                         projects.Add(p);
                     }
+                    else
+                    {
+                        if (p.HiringCompany == user.Company)
+                        {
+                            projects.Add(p);
+                        }
+                    }
+                    
                 }
 
                 Program.Log.Info("GetAllProjects function has been called");

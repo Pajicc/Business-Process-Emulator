@@ -29,7 +29,6 @@ namespace SRV1
                 if (CheckIfLate(dt, u.WorkTimeStart))
                 {
                     MessageBox.Show("You are late for work!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    //SendMail(u);
                 }
 
                 Program.Log.Info("User: " + username + " Has been loggedIn!");
@@ -179,5 +178,10 @@ namespace SRV1
             return false;
         }
 
+        public bool SendProcentageProj(Procent procent)
+        {
+            Program.Log.Info("ChangePass method from CompanyService called");
+            return DB.Instance.UpdateProject2(procent);
+        }
     }
 }

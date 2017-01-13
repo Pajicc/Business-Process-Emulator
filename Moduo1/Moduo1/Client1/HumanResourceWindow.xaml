@@ -71,7 +71,7 @@
             </TabItem>
             <TabItem Header="All employees" Margin="33,-2,-42,3">
                 <Grid Background="#FFE5E5E5" Margin="0,-2,-2,-8">
-                    <DataGrid Name="allEmployeesGrid" HorizontalAlignment="Left" Height="259" Margin="7,25,0,0" VerticalAlignment="Top" Width="549" AutoGenerateColumns="True" CanUserAddRows="False" IsReadOnly="True" ItemsSource="{Binding employeeList}"/>
+                    <DataGrid Name="allEmployeesGrid" HorizontalAlignment="Left" Height="259" Margin="7,25,0,0" VerticalAlignment="Top" Width="549" AutoGenerateColumns="True" CanUserAddRows="False" IsReadOnly="True" ItemsSource="{Binding EmployeeList}"/>
                     <Label Content="All logged in employees:" HorizontalAlignment="Left" Margin="7,-1,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
