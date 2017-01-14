@@ -68,9 +68,7 @@ namespace SRV1Test
         [TestCase("user1", "user1")]
         public void LoginTestOk(string username, string pass)
         {
-            Assert.DoesNotThrow(() => {
-                companyServiceTest.Login(username, pass);
-            });
+            Assert.DoesNotThrow(() => { companyServiceTest.Login(username, pass); });
         }
 
         [Test]
@@ -78,9 +76,7 @@ namespace SRV1Test
         [TestCase("us")]
         public void GetUserOk(string username)
         {
-            Assert.DoesNotThrow(() => {
-                companyServiceTest.GetUser(username);
-            });
+            Assert.DoesNotThrow(() => { companyServiceTest.GetUser(username); });
         }
         [Test]
         public void GetUserTest()
@@ -156,7 +152,7 @@ namespace SRV1Test
         {
             User u = new User() { Username = "ceo1" };
             string comp = "Kopmanija1";
-            bool result = companyServiceTest.AddPartnerCompany(u,comp);
+            bool result = companyServiceTest.AddPartnerCompany(u, comp);
             Assert.IsTrue(result);
         }
         [Test]
