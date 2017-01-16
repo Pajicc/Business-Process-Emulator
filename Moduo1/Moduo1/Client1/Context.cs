@@ -103,7 +103,7 @@ namespace Client1
             }
         }
 
-        private Context()
+        public Context()
         {
             Cvm = new CompanyViewModel();
             Mw = new Window();

@@ -12,9 +12,26 @@ namespace Client1
     {
         private ICompanyService factory;
 
+        public ICompanyService Factory
+        {
+            get
+            {
+                return factory;
+            }
+
+            set
+            {
+                factory = value;
+            }
+        }
+
         public Client1Proxy(NetTcpBinding binding, EndpointAddress address) : base(binding, address)
         {
-            factory = this.CreateChannel();
+            Factory = this.CreateChannel();
+        }
+
+        public Client1Proxy()
+        {
         }
 
         public bool Login(string username, string pass)
@@ -23,7 +40,7 @@ namespace Client1
 
             try
             {
-                allowed = factory.Login(username, pass);
+                allowed = Factory.Login(username, pass);
                 Console.WriteLine("Login() >> succeded");
             }
             catch (Exception e)
@@ -40,9 +57,8 @@ namespace Client1
 
             try
             {
-                factory.LogOut(username);
-                Console.WriteLine("LogOut() >> succeded");
-                done = true;
+                done = Factory.LogOut(username);
+                Console.WriteLine("LogOut() >> succeded");             
             }
             catch (Exception e)
             {
@@ -57,10 +73,9 @@ namespace Client1
             bool allowed = false;
 
             try
-            {            
-                factory.AddUser(u);
+            {
+                allowed = Factory.AddUser(u);
                 Console.WriteLine("AddUser() >> succeded");
-                allowed = true;
             }
             catch (Exception e)
             {
@@ -77,9 +92,8 @@ namespace Client1
 
             try
             {
-                factory.EditUser(editUser);
+                allowed = Factory.EditUser(editUser);
                 Console.WriteLine("EditUser() >> succeded");
-                allowed = true;
             }
             catch (Exception e)
             {
@@ -96,7 +110,7 @@ namespace Client1
 
             try
             {
-                allEmpl = factory.GetAllEmployees();
+                allEmpl = Factory.GetAllEmployees();
                 Console.WriteLine("GetAllEmployees() >> succeded");
             }
             catch (Exception e)
@@ -112,7 +126,7 @@ namespace Client1
 
             try
             {
-                allEmpl = factory.GetAllOnlineUsers();
+                allEmpl = Factory.GetAllOnlineUsers();
                 Console.WriteLine("GetAllOnlineUsers() >> succeded");
             }
             catch (Exception e)
@@ -129,7 +143,7 @@ namespace Client1
 
             try
             {
-                u = factory.GetUser(username);
+                u = Factory.GetUser(username);
                 Console.WriteLine("GetUser() >> succeded");
             }
             catch (Exception e)
@@ -146,9 +160,8 @@ namespace Client1
 
             try
             {
-                factory.CreateProject(prj);
+                allowed = Factory.CreateProject(prj);
                 Console.WriteLine("CreateProject() >> succeded");
-                allowed = true;
             }
             catch (Exception e)
             {
@@ -164,9 +177,8 @@ namespace Client1
 
             try
             {
-                allowed = factory.UpdateProject(prj);
+                allowed = Factory.UpdateProject(prj);
                 Console.WriteLine("UpdateProject() >> succeded");
-                allowed = true;
             }
             catch (Exception e)
             {
@@ -182,7 +194,7 @@ namespace Client1
 
             try
             {
-                projekti = factory.GetAllProjectsForUser(user);
+                projekti = Factory.GetAllProjectsForUser(user);
                 Console.WriteLine("GetAllProjectsForUser() >> succeded");
             }
             catch (Exception e)
@@ -199,7 +211,7 @@ namespace Client1
 
             try
             {
-                projekti = factory.GetAllProjects();
+                projekti = Factory.GetAllProjects();
                 Console.WriteLine("GetAllProjects() >> succeded");
             }
             catch (Exception e)
@@ -216,7 +228,7 @@ namespace Client1
 
             try
             {
-                companies = factory.GetAllPartnerCompanies(user);
+                companies = Factory.GetAllPartnerCompanies(user);
                 Console.WriteLine("GetAllPartnerCompanies() >> succeded");
             }
             catch (Exception e)
@@ -233,7 +245,7 @@ namespace Client1
 
             try
             {
-                allowed = factory.AddPartnerCompany(user, partner);
+                allowed = Factory.AddPartnerCompany(user, partner);
                 Console.WriteLine("AddPartnerCompany() >> succeded");
             }
             catch (Exception e)
@@ -250,7 +262,7 @@ namespace Client1
 
             try
             {
-                allowed = factory.ChangePass(username, oldPass, newPass);
+                allowed = Factory.ChangePass(username, oldPass, newPass);
                 Console.WriteLine("ChangePass() >> succeded");
             }
             catch (Exception e)
@@ -267,7 +279,7 @@ namespace Client1
 
             try
             {
-                userStories = factory.GetAllUserStories(proj);
+                userStories = Factory.GetAllUserStories(proj);
                 Console.WriteLine("GetAllUserStories() >> succeded");
             }
             catch (Exception e)

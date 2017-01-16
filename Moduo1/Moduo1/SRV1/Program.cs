@@ -24,10 +24,6 @@ namespace SRV1
                 return log;
             }
 
-            set
-            {
-                log = value;
-            }
         }
 
         public static void Main(string[] args)
@@ -57,7 +53,7 @@ namespace SRV1
             Log.Info("CompanyService has started working");
 
             //addovanje CEO i HiringCompanies
-            List<User> users = new List<User>();
+            /*List<User> users = new List<User>();
 
             User test = new User("test", "test", "test@li.com", "09:00:00", "12:00:00", Roles.CEO, "HiringCompany1");
             users.Add(test);
@@ -109,7 +105,7 @@ namespace SRV1
 
                     Console.WriteLine("Uspesno popunjena baza!");
                 }
-            }
+            }*/
 
             Console.ReadLine();
 

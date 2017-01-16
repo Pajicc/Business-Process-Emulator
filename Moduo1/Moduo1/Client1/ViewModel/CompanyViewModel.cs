@@ -77,10 +77,6 @@ namespace Client1.ViewModel
         private string ap_from_po;
         private string ap_to_po;
 
-        public ObservableCollection<string> EeEmployeeList { get; set; }
-        private string eeEmployeeAdmin;
-
-        public ObservableCollection<string> EmployeeListAdmin { get; set; }
 
         #endregion
 
@@ -126,6 +122,7 @@ namespace Client1.ViewModel
         #endregion UI Notification
 
         #region On Property Change Fields
+
 
         public string UsernameLogin
         {
@@ -496,15 +493,6 @@ namespace Client1.ViewModel
             }
         }
 
-        public string EeEmployeeAdmin
-        {
-            get { return eeEmployeeAdmin; }
-            set
-            {
-                eeEmployeeAdmin = value;
-                OnPropertyChanged("EeEmployeeAdmin");
-            }
-        }
 
         public string ApNamePo
         {
@@ -696,7 +684,7 @@ namespace Client1.ViewModel
             wrap.Subwin.Close();
         }
 
-        private void LoginExecution(object param)
+        public void LoginExecution(object param)
         {
             Context wrap = Context.GetInstance();
             MainWindow win = wrap.Mw as MainWindow;
@@ -789,7 +777,7 @@ namespace Client1.ViewModel
                             }
 
                             adminWin.finishedProjects.Items.Refresh();
-
+                            wrap.Subwin = adminWin;
                             break;
                         case Roles.HR:
                             HumanResourceWindow hrWin = new HumanResourceWindow();

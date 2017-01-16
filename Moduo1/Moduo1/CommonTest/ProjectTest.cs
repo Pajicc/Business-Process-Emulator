@@ -19,6 +19,8 @@ namespace CommonTest
         private States state = States.notApproved;
         private string po = "po1";
         private string hiringCompany = "hiringCompany";
+        private bool notifikovanSM = false;
+        private double percent = 0;
 
         [OneTimeSetUp]
         public void SetupTest()
@@ -92,5 +94,22 @@ namespace CommonTest
 
             Assert.AreEqual(hiringCompany, project.HiringCompany);
         }
+
+        [Test]
+        public void Percent()
+        {
+            project.Percent = percent;
+
+            Assert.AreEqual(percent, project.Percent);
+        }
+
+        [Test]
+        public void NotifikovanSM()
+        {
+            project.NotifikovanSM = notifikovanSM;
+
+            Assert.AreEqual(notifikovanSM, project.NotifikovanSM);
+        }
+
     }
 }

@@ -27,40 +27,44 @@ namespace SRV1Test
 
             DB.Instance.LogOut("ceo1").Returns(true);
             DB.Instance.LogOut("ceo").Returns(false);
+            
+            DB.Instance.AddUser(Arg.Is<User>(x => x.Username == "user1" && x.Password == "pass1")).Returns(true);
+            DB.Instance.AddUser(Arg.Is<User>(x => x.Username == "user2" && x.Password == "pass2")).Returns(false);
 
-            DB.Instance.AddUser(new User() { Username = "user1", Password = "pass1" }).Returns(true);
-            DB.Instance.AddUser(new User() { Username = "user2", Password = "pass2" }).Returns(false);
-
-            DB.Instance.EditUser(new User() { Username = "user1", Password = "pass1" }).Returns(true);
-            DB.Instance.EditUser(new User() { Username = "user2", Password = "pass2" }).Returns(false);
+            DB.Instance.EditUser(Arg.Is<User>(x => x.Username == "user1" && x.Password == "pass1")).Returns(true);
+            DB.Instance.EditUser(Arg.Is<User>(x => x.Username == "user2" && x.Password == "pass2")).Returns(false);
 
             DB.Instance.GetUser("user1").Returns(new User() { Username = "user" });
 
-            DB.Instance.GetAllOnlineUsers().Returns(new List<User> { new User() { Username = "user1" } });
+            DB.Instance.GetAllOnlineUsers().Returns(new List<User> { new User() { Username = "user1" }, new User() { Username = "user2" } });
             DB.Instance.GetAllEmployees().Returns(new List<User> { new User() { Username = "user1" } });
             DB.Instance.GetAllHiringCompanies().Returns(new List<string> { "hiringCompany1", "hiringCompany2" });
-            DB.Instance.GetAllPartnerCompanies(new User() { Username = "usr1" }).Returns(new List<string> { "partner1", "partner2" });
+            DB.Instance.GetAllPartnerCompanies(Arg.Is<User>(x => x.Username == "user1")).Returns(new List<string> { "partner1", "partner2" });
             DB.Instance.GetAllProjects().Returns(new List<Project> { new Project() { Name = "Projekat1" } });
-            DB.Instance.GetAllProjectsForUser(new User() { Username = "ceo1" }).Returns(new List<Project> { new Project() { Name = "Projekat1" } });
-            DB.Instance.GetAllUserStories(new Project() { Name = "Projekat1" }).Returns(new List<string> { "Projekat1", "Projekat2" });
+            DB.Instance.GetAllProjectsForUser(Arg.Is<User>(x => x.Username == "user1")).Returns(new List<Project> { new Project() { Name = "Projekat1" } });
+            DB.Instance.GetAllUserStories(Arg.Is<Project>(x => x.Name == "Projekat1")).Returns(new List<string> { "Projekat1", "Projekat2" });
 
-            DB.Instance.AddHiringCompany(new HiringCompany() { Name = "HiringCompany3" }).Returns(true);
-            DB.Instance.AddHiringCompany(new HiringCompany() { Name = "company" }).Returns(false);
+            DB.Instance.AddHiringCompany(Arg.Is<HiringCompany>(x => x.Name == "HiringCompany")).Returns(true);
+            DB.Instance.AddHiringCompany(Arg.Is<HiringCompany>(x => x.Name == "company")).Returns(false);
 
-            DB.Instance.AddPartnerCompany(new User() { Name = "ceo1" }, "Kompanija1").Returns(true);
-            DB.Instance.AddPartnerCompany(new User() { Name = "u" }, "Komp").Returns(false);
+            DB.Instance.AddPartnerCompany(Arg.Is<User>(x => x.Username == "user1"), "Kompanija1").Returns(true);
+            DB.Instance.AddPartnerCompany(Arg.Is<User>(x => x.Username == "u"), "Komp").Returns(false);
 
             DB.Instance.AddUserStory("UserStory1", "criteria", "Projekat1").Returns(true);
             DB.Instance.AddUserStory("UserStory2", "criteria2", "project").Returns(false);
+            DB.Instance.AddUserStory("UserStory3", "criteria3", "project").Returns(false);
 
-            DB.Instance.UpdateProject(new Project() { Name = "Projekat1" }).Returns(true);
-            DB.Instance.UpdateProject(new Project() { Name = "Proj" }).Returns(false);
+            DB.Instance.UpdateProject(Arg.Is<Project>(x => x.Name == "Projekat1")).Returns(true);
+            DB.Instance.UpdateProject(Arg.Is<Project>(x => x.Name == "Proj")).Returns(false);
 
-            DB.Instance.CreateProject(new Project() { Name = "Projekat" }).Returns(true);
-            DB.Instance.CreateProject(new Project() { Name = "Proj" }).Returns(false);
+            DB.Instance.CreateProject(Arg.Is<Project>(x => x.Name == "Projekat1")).Returns(true);
+            DB.Instance.CreateProject(Arg.Is<Project>(x => x.Name == "Proj")).Returns(false);
 
             DB.Instance.ChangePass("ceo1", "ceo1", "c1").Returns(true);
             DB.Instance.ChangePass("ceo", "ceo", "c1").Returns(false);
+
+            DB.Instance.UpdateProject2(Arg.Is<Procent>(x => x.ImeProj == "proj1" && x.Procenat == 1)).Returns(true);
+            DB.Instance.UpdateProject2(Arg.Is<Procent>(x => x.ImeProj == "proj2" && x.Procenat == 2)).Returns(false);
 
         }
 
@@ -68,22 +72,48 @@ namespace SRV1Test
         [TestCase("user1", "user1")]
         public void LoginTestOk(string username, string pass)
         {
-            Assert.DoesNotThrow(() => { companyServiceTest.Login(username, pass); });
+            Assert.DoesNotThrow(() => 
+            {
+                companyServiceTest.Login(username, pass);
+            });
         }
+
+        [Test]
+        [TestCase("20:16:00", "20:00:00")]
+        public void CheckIfLateTestOk(DateTime loggedIn, string timestart)
+        {
+            Assert.DoesNotThrow(() => 
+            {
+                companyServiceTest.CheckIfLate(loggedIn, timestart);
+            });
+        }
+        [Test]
+        [TestCase("20:00:00", "20:00:00")]
+        public void CheckIfLateTestFault(DateTime loggedIn, string timestart)
+        {
+            Assert.DoesNotThrow(() => 
+            {
+                companyServiceTest.CheckIfLate(loggedIn, timestart);
+            });
+        }
+
 
         [Test]
         [TestCase("user1")]
         [TestCase("us")]
         public void GetUserOk(string username)
         {
-            Assert.DoesNotThrow(() => { companyServiceTest.GetUser(username); });
+            Assert.DoesNotThrow(() => 
+            {
+                companyServiceTest.GetUser(username);
+            });
         }
         [Test]
         public void GetUserTest()
         {
-            User result = companyServiceTest.GetUser("user");
-            string name = "user1";
-            Assert.AreEqual(result.Name, name);
+            User result = companyServiceTest.GetUser("user1");
+            string username = "user";
+            Assert.AreEqual(result.Username, username);
         }
 
         [Test]
@@ -108,14 +138,14 @@ namespace SRV1Test
         [Test]
         public void AddUserTestOk()
         {
-            User user = new User() { Username = "user1" };
+            User user = new User() { Username = "user1", Password = "pass1" };
             bool result = companyServiceTest.AddUser(user);
             Assert.IsTrue(result);
         }
         [Test]
         public void AddUserTestFault()
         {
-            User user = new User() { Username = "user2" };
+            User user = new User() { Username = "user2", Password = "pass2" };
             bool result = companyServiceTest.AddUser(user);
             Assert.IsFalse(result);
         }
@@ -136,7 +166,7 @@ namespace SRV1Test
         [Test]
         public void AddHiringCompanyTestOk()
         {
-            HiringCompany comp = new HiringCompany() { Name = "HiringCompany3" };
+            HiringCompany comp = new HiringCompany() { Name = "HiringCompany" };
             bool result = companyServiceTest.AddHiringCompany(comp);
             Assert.IsTrue(result);
         }
@@ -150,8 +180,8 @@ namespace SRV1Test
         [Test]
         public void AddPartnerCompanyTestOk()
         {
-            User u = new User() { Username = "ceo1" };
-            string comp = "Kopmanija1";
+            User u = new User() { Username = "user1" };
+            string comp = "Kompanija1";
             bool result = companyServiceTest.AddPartnerCompany(u, comp);
             Assert.IsTrue(result);
         }
@@ -218,16 +248,16 @@ namespace SRV1Test
         [Test]
         public void GetAllOnlineUsersTest()
         {
-            List<User> expectedList = new List<User>() { new User() { Name = "user1" } };
+            List<User> expectedList = new List<User>() { new User() { Username = "user1" } };
             List<User> list = companyServiceTest.GetAllOnlineUsers();
-            Assert.AreEqual(list, expectedList);
+            Assert.AreEqual(list[0].Name, expectedList[0].Name);
         }
         [Test]
         public void GetAllEmployeesTest()
         {
-            List<User> expectedList = new List<User>() { new User() { Name = "user1" } };
+            List<User> expectedList = new List<User>() { new User() { Username = "user1" }, new User() { Username = "user2" } };
             List<User> list = companyServiceTest.GetAllEmployees();
-            Assert.AreEqual(list, expectedList);
+            Assert.AreEqual(expectedList[0].Username, list[0].Username);
         }
         [Test]
         public void GetAllHiringCompaniesTest()
@@ -239,7 +269,7 @@ namespace SRV1Test
         [Test]
         public void GetAllPartnerCompaniesTest()
         {
-            User u = new User() { Username = "usr1" };
+            User u = new User() { Username = "user1" };
             List<string> expectedList = new List<string>() { "partner1", "partner2" };
             List<string> list = companyServiceTest.GetAllPartnerCompanies(u);
             Assert.AreEqual(list, expectedList);
@@ -249,15 +279,15 @@ namespace SRV1Test
         {
             List<Project> expectedList = new List<Project>() { new Project() { Name = "Projekat1" } };
             List<Project> list = companyServiceTest.GetAllProjects();
-            Assert.AreEqual(list, expectedList);
+            Assert.AreEqual(list[0].Name, expectedList[0].Name);
         }
         [Test]
         public void GetAllProjectsForUserTest()
         {
-            User u = new User() { Username = "ceo1" };
+            User u = new User() { Username = "user1" };
             List<Project> expectedList = new List<Project>() { new Project() { Name = "Projekat1" } };
             List<Project> list = companyServiceTest.GetAllProjectsForUser(u);
-            Assert.AreEqual(list, expectedList);
+            Assert.AreEqual(list[0].Name, expectedList[0].Name);
         }
         [Test]
         public void GetAllUserStoriesTest()
@@ -266,6 +296,20 @@ namespace SRV1Test
             List<string> expectedList = new List<string>() { "Projekat1", "Projekat2" };
             List<string> list = companyServiceTest.GetAllUserStories(p);
             Assert.AreEqual(list, expectedList);
+        }
+        [Test]
+        public void UpdateProject2TestOk()
+        {
+            Procent per = new Procent() { ImeProj = "proj1", Procenat = 1 };
+            bool result = companyServiceTest.SendProcentageProj(per);
+            Assert.IsTrue(result);
+        }
+        [Test]
+        public void UpdateProject2TestFalse()
+        {
+            Procent per = new Procent() { ImeProj = "proj2", Procenat = 2 };
+            bool result = companyServiceTest.SendProcentageProj(per);
+            Assert.IsFalse(result);
         }
     }
 }

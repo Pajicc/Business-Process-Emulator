@@ -18,10 +18,7 @@ namespace SRV1
         { 
             Program.Log.Info("Login method from CompanyService called");
 
-            bool loggedIn = false;
-            loggedIn = DB.Instance.Login(username, pass);
-
-            if (loggedIn)
+            if (DB.Instance.Login(username, pass))
             {
                 User u = DB.Instance.GetUser(username);
 
@@ -136,21 +133,17 @@ namespace SRV1
         {
             Program.Log.Info("ApproveUserStory method from CompanyService called");
 
-            DialogResult result = MessageBox.Show("Da li zelite da prihvatite UserStory?", "Warning", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+            DialogResult result = MessageBox.Show("Da li zelite da prihvatite UserStory?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
                 DB.Instance.AddUserStory(usName, usCriteria, projectName);
                 return true;
             }
-            else if (result == DialogResult.No)
+            else
             {
                 return false;
             }
-            else if (result == DialogResult.Cancel)
-            {
-                return false;
-            }
-            return false;
+
         }
 
         public List<string> GetAllUserStories(Project proj)

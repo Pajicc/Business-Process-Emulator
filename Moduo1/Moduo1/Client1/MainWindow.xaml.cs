@@ -32,7 +32,7 @@ namespace Client1
 
         }
 
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        public void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
             {
