@@ -1,24 +1,25 @@
 ﻿using System;
 using TechTalk.SpecFlow;
+using Common;
+using System.ServiceModel;
 using Client1;
 using NUnit.Framework;
-using System.ServiceModel;
 
 namespace BDD
 {
     [Binding]
-    public class LogoutSteps
+    public class CreateNewProjectSteps
     {
         private static string adress = "net.tcp://localhost:9999/CompanyService";
         private EndpointAddress endpoint = new EndpointAddress(new Uri(adress));
         private NetTcpBinding binding = new NetTcpBinding();
         private Client1Proxy proxy;
 
-        private string username;
-        private string password;
+        private Project proj;
+        private string projectName;
 
-        [Given(@"I am logged in")]
-        public void GivenIAmLoggedIn()
+        [Given(@"I have a form for creating projects")]
+        public void GivenIHaveAFormForCreatingProjects()
         {
             binding.OpenTimeout = new TimeSpan(1, 0, 0);
             binding.CloseTimeout = new TimeSpan(1, 0, 0);
@@ -26,20 +27,25 @@ namespace BDD
             binding.ReceiveTimeout = new TimeSpan(1, 0, 0);
 
             proxy = new Client1Proxy(binding, endpoint);
-
-            proxy.Login("test", "test");
         }
         
-        [When(@"I press logout button")]
-        public void WhenIPressLogoutButton()
+        [Given(@"I have fill it with data")]
+        public void GivenIHaveFillItWithData()
         {
-            username = "test";
+            projectName = "testbdd";
+            proj = new Project();
         }
         
-        [Then(@"I should be logged out")]
-        public void ThenIShouldBeLoggedOut()
+        [When(@"I press create button")]
+        public void WhenIPressCreateButton()
         {
-            Assert.DoesNotThrow(() => proxy.LogOut(username));
+            proj.Name = projectName;
+        }
+        
+        [Then(@"the project should be created")]
+        public void ThenTheProjectShouldBeCreated()
+        {
+            Assert.DoesNotThrow((() => proxy.CreateProject(proj)));
         }
     }
 }

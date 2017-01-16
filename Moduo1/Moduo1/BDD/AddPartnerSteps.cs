@@ -1,24 +1,25 @@
 ﻿using System;
 using TechTalk.SpecFlow;
+using Common;
+using System.ServiceModel;
 using Client1;
 using NUnit.Framework;
-using System.ServiceModel;
 
 namespace BDD
 {
     [Binding]
-    public class LogoutSteps
+    public class AddPartnerSteps
     {
         private static string adress = "net.tcp://localhost:9999/CompanyService";
         private EndpointAddress endpoint = new EndpointAddress(new Uri(adress));
         private NetTcpBinding binding = new NetTcpBinding();
         private Client1Proxy proxy;
 
-        private string username;
-        private string password;
+        private string outsComp;
+        private User ceo = new User();
 
-        [Given(@"I am logged in")]
-        public void GivenIAmLoggedIn()
+        [Given(@"I have form for choosing company")]
+        public void GivenIHaveFormForChoosingCompany()
         {
             binding.OpenTimeout = new TimeSpan(1, 0, 0);
             binding.CloseTimeout = new TimeSpan(1, 0, 0);
@@ -26,20 +27,22 @@ namespace BDD
             binding.ReceiveTimeout = new TimeSpan(1, 0, 0);
 
             proxy = new Client1Proxy(binding, endpoint);
-
-            proxy.Login("test", "test");
+            ceo.Username = "ceo1";
+            ceo.Passeditime = "ceo1";
+            ceo.LoggedIn = true;
+            proxy.Login(ceo.Username, ceo.Password);
         }
         
-        [When(@"I press logout button")]
-        public void WhenIPressLogoutButton()
+        [When(@"I press button")]
+        public void WhenIPressButton()
         {
-            username = "test";
+            outsComp = "Kompanija1";
         }
         
-        [Then(@"I should be logged out")]
-        public void ThenIShouldBeLoggedOut()
+        [Then(@"the outsorcing company should be contacted with request")]
+        public void ThenTheOutsorcingCompanyShouldBeContactedWithRequest()
         {
-            Assert.DoesNotThrow(() => proxy.LogOut(username));
+            Assert.DoesNotThrow(() => proxy.AddPartnerCompany(ceo, outsComp));
         }
     }
 }
