@@ -28,8 +28,7 @@ namespace BDD
 
             proxy = new Client1Proxy(binding, endpoint);
             ceo.Username = "ceo1";
-            ceo.Passeditime = "ceo1";
-            ceo.LoggedIn = true;
+            ceo.Password = "ceo1";
             proxy.Login(ceo.Username, ceo.Password);
             employee = new User();
             employee.Role = Roles.Employee;
