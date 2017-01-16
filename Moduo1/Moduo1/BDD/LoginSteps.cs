@@ -9,10 +9,7 @@ namespace BDD
     [Binding]
     public class LoginSteps
     {
-        private static string adress = "net.tcp://localhost:9999/EmployeeService";
-        private EndpointAddress endpoint = new EndpointAddress(new Uri(adress));
-        private NetTcpBinding binding = new NetTcpBinding();
-        private Client1Proxy proxy;
+        private Context wrap = Context.GetInstance();
 
         private string username;
         private string password;
@@ -22,11 +19,7 @@ namespace BDD
         [Given(@"I have form to log in")]
         public void GivenIHaveFormToLogIn()
         {
-            binding.CloseTimeout = new TimeSpan(1, 0, 0);
-            binding.SendTimeout = new TimeSpan(1, 0, 0);
-            binding.ReceiveTimeout = new TimeSpan(1, 0, 0);
-
-            proxy = new Client1Proxy(binding, endpoint);
+            wrap.Proxy.Open();
         }
 
         [When(@"I enter valid ""(.*)"" and ""(.*)"" as")]
@@ -46,13 +39,13 @@ namespace BDD
         [Then(@"I should be logged in successfully")]
         public void ThenIShouldBeLoggedInSuccessfully()
         {
-            Assert.DoesNotThrow(() => proxy.Login(username, password));
+            Assert.DoesNotThrow(() => wrap.Proxy.Login(username, password));
         }
         
         [Then(@"I should be warned")]
         public void ThenIShouldBeWarned()
         {
-            result = proxy.Login(username, password);
+            result = wrap.Proxy.Login(username, password);
             Assert.AreEqual(false, result);
         }
     }
